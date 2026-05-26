@@ -436,6 +436,12 @@ footer { background: var(--ink); padding: 44px 60px; display: flex; align-items:
 }
 /* triggers when element enters viewport using intersection observer fallback */
 
+/* ─── SCROLL REVEAL ─── */
+.rv { opacity: 0; transform: translateY(28px); transition: opacity 0.7s ease, transform 0.75s cubic-bezier(0.22,1,0.36,1); }
+.rv.vis { opacity: 1; transform: translateY(0); }
+.rv.d1{transition-delay:0.07s}.rv.d2{transition-delay:0.15s}.rv.d3{transition-delay:0.23s}
+.rv.d4{transition-delay:0.31s}.rv.d5{transition-delay:0.38s}.rv.d6{transition-delay:0.45s}
+
 /* ─── RESPONSIVE ─── */
 @media(max-width:960px){
   .banner-80{padding:10px 20px;}
@@ -544,14 +550,14 @@ footer { background: var(--ink); padding: 44px 60px; display: flex; align-items:
 
 <!-- SERVICES -->
 <section class="svc-section" id="servizi">
-  <div class="svc-head">
+  <div class="svc-head rv">
     <div>
-      <div class="eye">I nostri servizi</div>
+      <div class="eye rv">I nostri servizi</div>
       <h2 class="sec-title">Tutto ci&ograve; di cui<br>la tua impresa<br><span>ha bisogno</span></h2>
     </div>
     <p class="sec-body">Un mondo di servizi a 360&deg; che ti accompagna quotidianamente per far crescere la tua attivit&agrave; in modo sostenibile.</p>
   </div>
-  <div class="svc-grid">
+  <div class="svc-grid rv d1">
 
     <a href="https://www.cnaroma.it/bandi" class="svc-card">
       <div class="svc-illus">
@@ -724,9 +730,9 @@ footer { background: var(--ink); padding: 44px 60px; display: flex; align-items:
 
 <!-- SPORTELLI -->
 <section class="sport-section" id="sportelli">
-  <div class="eye">Sportelli di consulenza</div>
+  <div class="eye rv">Sportelli di consulenza</div>
   <h2 class="sec-title">Corner specializzati<br>per <span>ogni esigenza</span></h2>
-  <p class="sec-body">Una serie di corner di assistenza dedicati per agevolare e semplificare la tua attivit&agrave; imprenditoriale.</p>
+  <p class="sec-body rv d1">Una serie di corner di assistenza dedicati per agevolare e semplificare la tua attivit&agrave; imprenditoriale.</p>
   <div class="sport-grid">
     <a href="https://www.cnaroma.it" class="sport-card"><div class="sport-dot"></div><div class="sport-name">Sportello Legale</div><div class="sport-sub">Assistenza giuridica e contrattuale</div></a>
     <a href="https://www.cnaroma.it" class="sport-card"><div class="sport-dot"></div><div class="sport-name">Sportello Energia</div><div class="sport-sub">Ottimizzazione costi energetici</div></a>
@@ -741,19 +747,19 @@ footer { background: var(--ink); padding: 44px 60px; display: flex; align-items:
 
 <!-- TRUST BAND -->
 <div class="trust-band">
-  <div class="trust-grid">
-    <div class="trust-item"><div class="trust-num">80<sub>anni</sub></div><div class="trust-label">Di storia e esperienza</div></div>
-    <div class="trust-item"><div class="trust-num">18<sub>k+</sub></div><div class="trust-label">Imprese associate</div></div>
-    <div class="trust-item"><div class="trust-num">360<sub>&deg;</sub></div><div class="trust-label">Servizi coperti</div></div>
-    <div class="trust-item"><div class="trust-num">100<sub>%</sub></div><div class="trust-label">Quota deducibile</div></div>
+  <div class="trust-grid rv">
+    <div class="trust-item"><div class="trust-num" data-n="80" data-s="anni">80<sub>anni</sub></div><div class="trust-label">Di storia e esperienza</div></div>
+    <div class="trust-item"><div class="trust-num" data-n="18" data-s="k+">18<sub>k+</sub></div><div class="trust-label">Imprese associate</div></div>
+    <div class="trust-item"><div class="trust-num" data-n="360" data-s="°">360<sub>°</sub></div><div class="trust-label">Servizi coperti</div></div>
+    <div class="trust-item"><div class="trust-num" data-n="100" data-s="%">100<sub>%</sub></div><div class="trust-label">Quota deducibile</div></div>
   </div>
 </div>
 
 <!-- CONVENZIONI -->
 <section class="conv-section" id="convenzioni">
-  <div class="eye">Convenzioni esclusive</div>
+  <div class="eye rv">Convenzioni esclusive</div>
   <h2 class="sec-title">Da associato hai<br><span>vantaggi concreti</span></h2>
-  <div class="conv-grid">
+  <div class="conv-grid rv d1">
     <div class="conv-list">
       <div class="conv-item"><div class="conv-check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div><div><div class="conv-item-title">Auto e Veicoli Commerciali</div><div class="conv-item-sub">Noleggio e acquisto con sconti riservati agli associati CNA</div></div></div>
       <div class="conv-item"><div class="conv-check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div><div><div class="conv-item-title">Buoni Carburante</div><div class="conv-item-sub">Risparmia su ogni rifornimento con le convenzioni CNA</div></div></div>
@@ -808,11 +814,116 @@ footer { background: var(--ink); padding: 44px 60px; display: flex; align-items:
 </footer>
 
 <script>
-// Minimal JS only for scroll reveal (IntersectionObserver)
-var io = new IntersectionObserver(function(e){
-  e.forEach(function(x){ if(x.isIntersecting){ x.target.style.animationPlayState='running'; io.unobserve(x.target); } });
+/* ── SCROLL PROGRESS ─── */
+var prog = document.createElement('div');
+prog.style.cssText='position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,#005CA9,#7C3AED,#0070CC);z-index:9999;transition:width 0.1s linear;pointer-events:none;box-shadow:0 0 8px rgba(124,58,237,0.5)';
+document.body.prepend(prog);
+window.addEventListener('scroll',function(){
+  var pct=(window.scrollY/(document.body.scrollHeight-window.innerHeight))*100;
+  prog.style.width=Math.min(pct,100)+'%';
+},{passive:true});
+
+/* ── PARTICLE CANVAS ─── */
+var canvas=document.createElement('canvas');
+canvas.style.cssText='position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;opacity:0.35';
+document.body.prepend(canvas);
+var ctx=canvas.getContext('2d');
+var pts=[];
+function resize(){canvas.width=innerWidth;canvas.height=innerHeight;}
+resize();
+window.addEventListener('resize',resize,{passive:true});
+for(var i=0;i<36;i++){pts.push({x:Math.random()*innerWidth,y:Math.random()*innerHeight,r:Math.random()*2+0.5,dx:(Math.random()-0.5)*0.35,dy:(Math.random()-0.5)*0.35,c:Math.random()>.5?'0,92,169':'107,33,168',o:Math.random()*0.35+0.1});}
+function draw(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  for(var a=0;a<pts.length;a++){
+    var p=pts[a];
+    ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+    ctx.fillStyle='rgba('+p.c+','+p.o+')';ctx.fill();
+    p.x+=p.dx;p.y+=p.dy;
+    if(p.x<0||p.x>canvas.width)p.dx*=-1;
+    if(p.y<0||p.y>canvas.height)p.dy*=-1;
+    for(var b=a+1;b<pts.length;b++){
+      var q=pts[b],d=Math.hypot(p.x-q.x,p.y-q.y);
+      if(d<120){ctx.beginPath();ctx.moveTo(p.x,p.y);ctx.lineTo(q.x,q.y);ctx.strokeStyle='rgba(107,33,168,'+(0.06*(1-d/120))+')';ctx.lineWidth=0.8;ctx.stroke();}
+    }
+  }
+  requestAnimationFrame(draw);
+}
+draw();
+
+/* ── CURSOR GLOW ─── */
+var glow=document.createElement('div');
+glow.style.cssText='position:fixed;width:380px;height:380px;border-radius:50%;background:radial-gradient(circle,rgba(107,33,168,0.08) 0%,transparent 70%);pointer-events:none;z-index:1;transform:translate(-50%,-50%);opacity:0;transition:opacity 0.3s';
+document.body.prepend(glow);
+var mx=0,my=0,gx=0,gy=0;
+document.addEventListener('mousemove',function(e){mx=e.clientX;my=e.clientY;glow.style.opacity='1';});
+document.addEventListener('mouseleave',function(){glow.style.opacity='0';});
+(function animG(){gx+=(mx-gx)*0.08;gy+=(my-gy)*0.08;glow.style.left=gx+'px';glow.style.top=gy+'px';requestAnimationFrame(animG);})();
+
+/* ── SCROLL REVEAL ─── */
+var io=new IntersectionObserver(function(entries){
+  entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('vis');io.unobserve(e.target);}});
 },{threshold:0.1});
-document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);});
+document.querySelectorAll('.rv').forEach(function(el){io.observe(el);});
+
+/* ── 3D TILT ON SERVICE CARDS ─── */
+document.querySelectorAll('.svc-card').forEach(function(card){
+  card.addEventListener('mousemove',function(e){
+    var r=card.getBoundingClientRect();
+    var x=(e.clientX-r.left)/r.width-0.5;
+    var y=(e.clientY-r.top)/r.height-0.5;
+    card.style.transform='perspective(600px) rotateY('+(x*8)+'deg) rotateX('+(-y*6)+'deg) scale(1.02)';
+    card.style.transition='transform 0.1s ease,background 0.25s';
+    card.style.zIndex='10';
+  });
+  card.addEventListener('mouseleave',function(){
+    card.style.transform='';card.style.zIndex='';
+    card.style.transition='transform 0.5s cubic-bezier(0.22,1,0.36,1),background 0.25s';
+  });
+});
+
+/* ── MAGNETIC SPILL PILLS ─── */
+document.querySelectorAll('.spill').forEach(function(el){
+  el.addEventListener('mousemove',function(e){
+    var r=el.getBoundingClientRect();
+    var x=(e.clientX-r.left-r.width/2)*0.06;
+    var y=(e.clientY-r.top-r.height/2)*0.06;
+    el.style.transform='translateY(-3px) translateX('+(4+x)+'px)';
+  });
+  el.addEventListener('mouseleave',function(){el.style.transform='';});
+});
+
+/* ── STAGGER SPORTELLI ─── */
+var sportIO=new IntersectionObserver(function(entries){
+  if(!entries[0].isIntersecting)return;
+  sportIO.disconnect();
+  document.querySelectorAll('.sport-card').forEach(function(c,i){
+    setTimeout(function(){c.style.opacity='1';c.style.transform='translateY(0) scale(1)';},i*60);
+  });
+},{threshold:0.1});
+var sg=document.querySelector('.sport-grid');
+if(sg){
+  document.querySelectorAll('.sport-card').forEach(function(c){
+    c.style.opacity='0';c.style.transform='translateY(20px) scale(0.94)';
+    c.style.transition='opacity 0.5s ease,transform 0.5s cubic-bezier(0.34,1.56,0.64,1),box-shadow 0.3s,border-color 0.3s';
+  });
+  sportIO.observe(sg);
+}
+
+/* ── COUNTER ANIMATION ─── */
+var counterDone=false;
+var counterIO=new IntersectionObserver(function(entries){
+  if(!entries[0].isIntersecting||counterDone)return;
+  counterDone=true;
+  document.querySelectorAll('.trust-num').forEach(function(el){
+    var target=parseInt(el.getAttribute('data-n')||'0');
+    var suffix=el.getAttribute('data-s')||'';
+    var n=0;var step=target/60;
+    var t=setInterval(function(){n+=step;if(n>=target){n=target;clearInterval(t);}el.innerHTML=Math.floor(n)+'<sub>'+suffix+'</sub>';},18);
+  });
+},{threshold:0.5});
+var tb=document.querySelector('.trust-band');
+if(tb)counterIO.observe(tb);
 </script>
 </body>
 </html>
