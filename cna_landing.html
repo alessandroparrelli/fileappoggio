@@ -334,19 +334,29 @@ section { padding: 90px 60px; }
 .sedi-list {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 6px 20px;
-  margin-top: 12px;
+  gap: 8px 16px;
+  margin-top: 14px;
 }
 .sede-item {
-  display: flex; align-items: center; gap: 7px;
-  font-size: 12px; color: var(--muted);
+  display: flex; align-items: flex-start; gap: 8px;
+  background: var(--blue-xlight);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 9px 11px;
+  transition: border-color 0.2s, background 0.2s;
 }
-.sede-item em { font-style: normal; color: var(--blue); font-weight: 600; margin-left: 4px; }
+.sede-item:hover { border-color: var(--blue); background: #E0EEFA; }
 .sede-dot {
-  width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0;
+  width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; margin-top: 3px;
 }
-.sede-dot--main { background: #059669; }
-.sede-dot--point { background: #D97706; }
+.sede-dot--main { background: #059669; box-shadow: 0 0 0 2px rgba(5,150,105,0.2); }
+.sede-dot--point { background: var(--blue); box-shadow: 0 0 0 2px rgba(0,92,169,0.15); }
+.sede-name { font-size: 12.5px; font-weight: 800; color: var(--ink); letter-spacing: -0.01em; line-height: 1.3; display: block; }
+.sede-tel { font-size: 11px; font-weight: 600; color: var(--blue); display: block; margin-top: 2px; letter-spacing: 0.02em; }
+.sede-item--main .sede-name { color: #065F46; }
+.sede-item--main .sede-tel { color: #059669; }
+.sede-item--main { background: #ECFDF5; border-color: #A7F3D0; }
+.sede-item--main:hover { border-color: #059669; background: #D1FAE5; }
 
 @media(max-width:960px){
   .svc-card--wide { grid-template-columns: 1fr; }
@@ -930,15 +940,42 @@ footer { background: var(--ink); padding: 44px 60px; display: flex; align-items:
       <div class="svc-title">Le nostre sedi</div>
       <p class="svc-desc">CNA Roma &egrave; presente su tutto il territorio con <strong>8 sedi e CNA Point</strong>: Sede Centrale (Via Cristoforo Colombo 283/A), Albano Laziale, Tivoli, Centocelle, Dragona&ndash;Acilia, Frascati, Guidonia Montecelio, Monterotondo e CNA Point Jonio. Trova la sede pi&ugrave; vicina a te.</p>
       <div class="sedi-list">
-        <div class="sede-item"><span class="sede-dot sede-dot--main"></span><span>Roma &ndash; Cristoforo Colombo <em>06 570151</em></span></div>
-        <div class="sede-item"><span class="sede-dot sede-dot--point"></span><span>Albano Laziale <em>06 9304976</em></span></div>
-        <div class="sede-item"><span class="sede-dot sede-dot--point"></span><span>Tivoli &ndash; Villa Adriana <em>0774 381102</em></span></div>
-        <div class="sede-item"><span class="sede-dot sede-dot--point"></span><span>Centocelle <em>06 81912303</em></span></div>
-        <div class="sede-item"><span class="sede-dot sede-dot--point"></span><span>Dragona &ndash; Acilia <em>06 52169284</em></span></div>
-        <div class="sede-item"><span class="sede-dot sede-dot--point"></span><span>Frascati <em>06 94015034</em></span></div>
-        <div class="sede-item"><span class="sede-dot sede-dot--point"></span><span>Guidonia Montecelio <em>0774 343813</em></span></div>
-        <div class="sede-item"><span class="sede-dot sede-dot--point"></span><span>Monterotondo <em>06 9003882</em></span></div>
-        <div class="sede-item"><span class="sede-dot sede-dot--point"></span><span>CNA Point Jonio <em>06 88640910</em></span></div>
+        <div class="sede-item sede-item--main">
+          <span class="sede-dot sede-dot--main"></span>
+          <div><span class="sede-name">Roma – Cristoforo Colombo</span><span class="sede-tel">06 570151 &nbsp;·&nbsp; Sede Centrale</span></div>
+        </div>
+        <div class="sede-item">
+          <span class="sede-dot sede-dot--point"></span>
+          <div><span class="sede-name">Albano Laziale</span><span class="sede-tel">06 9304976</span></div>
+        </div>
+        <div class="sede-item">
+          <span class="sede-dot sede-dot--point"></span>
+          <div><span class="sede-name">Tivoli – Villa Adriana</span><span class="sede-tel">0774 381102</span></div>
+        </div>
+        <div class="sede-item">
+          <span class="sede-dot sede-dot--point"></span>
+          <div><span class="sede-name">Centocelle</span><span class="sede-tel">06 81912303</span></div>
+        </div>
+        <div class="sede-item">
+          <span class="sede-dot sede-dot--point"></span>
+          <div><span class="sede-name">Dragona – Acilia</span><span class="sede-tel">06 52169284</span></div>
+        </div>
+        <div class="sede-item">
+          <span class="sede-dot sede-dot--point"></span>
+          <div><span class="sede-name">Frascati</span><span class="sede-tel">06 94015034</span></div>
+        </div>
+        <div class="sede-item">
+          <span class="sede-dot sede-dot--point"></span>
+          <div><span class="sede-name">Guidonia Montecelio</span><span class="sede-tel">0774 343813</span></div>
+        </div>
+        <div class="sede-item">
+          <span class="sede-dot sede-dot--point"></span>
+          <div><span class="sede-name">Monterotondo</span><span class="sede-tel">06 9003882</span></div>
+        </div>
+        <div class="sede-item">
+          <span class="sede-dot sede-dot--point"></span>
+          <div><span class="sede-name">CNA Point Jonio</span><span class="sede-tel">06 88640910</span></div>
+        </div>
       </div>
       <div class="svc-link" style="margin-top:14px">Vedi tutte le sedi <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
     </a>
