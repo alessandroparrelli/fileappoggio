@@ -314,6 +314,46 @@ section { padding: 90px 60px; }
 }
 .svc-card:hover .svc-link { gap: 9px; }
 
+/* Card sedi — full-width span on last row */
+.svc-card--wide {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 340px 1fr;
+  gap: 0 32px;
+  align-items: start;
+  padding: 28px 32px;
+}
+.svc-card--wide .svc-illus {
+  width: 340px; height: 150px; margin-bottom: 0;
+  grid-row: 1 / 5;
+}
+.svc-card--wide .svc-n { position: static; margin-bottom: 6px; }
+.svc-card--wide .svc-title { font-size: 19px; }
+
+/* Sede list */
+.sedi-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px 20px;
+  margin-top: 12px;
+}
+.sede-item {
+  display: flex; align-items: center; gap: 7px;
+  font-size: 12px; color: var(--muted);
+}
+.sede-item em { font-style: normal; color: var(--blue); font-weight: 600; margin-left: 4px; }
+.sede-dot {
+  width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0;
+}
+.sede-dot--main { background: #059669; }
+.sede-dot--point { background: #D97706; }
+
+@media(max-width:960px){
+  .svc-card--wide { grid-template-columns: 1fr; }
+  .svc-card--wide .svc-illus { width: 100%; height: 130px; margin-bottom: 18px; grid-row: auto; }
+  .sedi-list { grid-template-columns: 1fr 1fr; }
+}
+
 /* ─── SPORTELLI ─── */
 .sport-section { background: linear-gradient(135deg, var(--blue-xlight), var(--violet-xlight)); border-top: 2px solid var(--border); }
 .sport-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 14px; margin-top: 48px; }
@@ -821,6 +861,86 @@ footer { background: var(--ink); padding: 44px 60px; display: flex; align-items:
       <div class="svc-title">Rappresentanza</div>
       <p class="svc-desc">Lo sviluppo delle imprese &egrave; da sempre la missione della CNA, che ogni giorno offre supporto, assistenza e consulenza a migliaia di aziende romane. Creativit&agrave;, rispetto della tradizione, valorizzazione del territorio, coesione sociale, contrasto all&apos;omologazione e connessione al cambiamento: la CNA di Roma &egrave; sempre al tuo fianco!</p>
       <div class="svc-link">Associati subito <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+    </a>
+
+    <!-- CARD 07: LE NOSTRE SEDI -->
+    <a href="https://www.cnaroma.it/le-sedi-sul-territorio" class="svc-card svc-card--wide">
+      <div class="svc-illus">
+        <svg viewBox="0 0 320 130" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="320" height="130" fill="#F0FDF4"/>
+          <!-- map background subtle grid -->
+          <line x1="0" y1="32" x2="320" y2="32" stroke="#BBF7D0" stroke-width="0.5"/>
+          <line x1="0" y1="64" x2="320" y2="64" stroke="#BBF7D0" stroke-width="0.5"/>
+          <line x1="0" y1="96" x2="320" y2="96" stroke="#BBF7D0" stroke-width="0.5"/>
+          <line x1="80" y1="0" x2="80" y2="130" stroke="#BBF7D0" stroke-width="0.5"/>
+          <line x1="160" y1="0" x2="160" y2="130" stroke="#BBF7D0" stroke-width="0.5"/>
+          <line x1="240" y1="0" x2="240" y2="130" stroke="#BBF7D0" stroke-width="0.5"/>
+          <!-- roads -->
+          <path d="M20 90 Q80 70 160 65 Q240 60 300 45" stroke="#D1FAE5" stroke-width="3" fill="none"/>
+          <path d="M160 0 L160 130" stroke="#D1FAE5" stroke-width="2.5"/>
+          <path d="M0 65 L320 65" stroke="#D1FAE5" stroke-width="2"/>
+          <!-- pin centrale (sede principale) -->
+          <circle cx="160" cy="58" r="18" fill="#059669" opacity="0.15"/>
+          <circle cx="160" cy="58" r="11" fill="#059669"/>
+          <circle cx="160" cy="55" r="4" fill="white"/>
+          <path d="M160 69 L160 78" stroke="#059669" stroke-width="2.5" stroke-linecap="round"/>
+          <text x="160" y="92" text-anchor="middle" font-family="system-ui" font-weight="800" font-size="8" fill="#065F46">SEDE CENTRALE</text>
+          <!-- pin Centocelle -->
+          <circle cx="230" cy="52" r="8" fill="#F59E0B" opacity="0.2"/>
+          <circle cx="230" cy="52" r="7" fill="#D97706"/>
+          <circle cx="230" cy="50" r="2.5" fill="white"/>
+          <path d="M230 59 L230 65" stroke="#D97706" stroke-width="2" stroke-linecap="round"/>
+          <!-- pin Dragona -->
+          <circle cx="76" cy="88" r="7" fill="#EC4899" opacity="0.9"/>
+          <circle cx="76" cy="86" r="2.5" fill="white"/>
+          <path d="M76 95 L76 101" stroke="#EC4899" stroke-width="2" stroke-linecap="round"/>
+          <!-- pin Tivoli -->
+          <circle cx="276" cy="34" r="7" fill="#6366F1" opacity="0.9"/>
+          <circle cx="276" cy="32" r="2.5" fill="white"/>
+          <path d="M276 41 L276 47" stroke="#6366F1" stroke-width="2" stroke-linecap="round"/>
+          <!-- pin Albano -->
+          <circle cx="196" cy="102" r="7" fill="#0EA5E9" opacity="0.9"/>
+          <circle cx="196" cy="100" r="2.5" fill="white"/>
+          <path d="M196 109 L196 115" stroke="#0EA5E9" stroke-width="2" stroke-linecap="round"/>
+          <!-- pin Guidonia -->
+          <circle cx="258" cy="22" r="6" fill="#8B5CF6" opacity="0.9"/>
+          <circle cx="258" cy="20" r="2" fill="white"/>
+          <path d="M258 28 L258 34" stroke="#8B5CF6" stroke-width="2" stroke-linecap="round"/>
+          <!-- pin Frascati -->
+          <circle cx="220" cy="84" r="6" fill="#F43F5E" opacity="0.9"/>
+          <circle cx="220" cy="82" r="2" fill="white"/>
+          <path d="M220 90 L220 96" stroke="#F43F5E" stroke-width="2" stroke-linecap="round"/>
+          <!-- pin Monterotondo -->
+          <circle cx="210" cy="20" r="6" fill="#10B981" opacity="0.9"/>
+          <circle cx="210" cy="18" r="2" fill="white"/>
+          <path d="M210 26 L210 32" stroke="#10B981" stroke-width="2" stroke-linecap="round"/>
+          <!-- pin Jonio -->
+          <circle cx="186" cy="36" r="6" fill="#F97316" opacity="0.9"/>
+          <circle cx="186" cy="34" r="2" fill="white"/>
+          <path d="M186 42 L186 48" stroke="#F97316" stroke-width="2" stroke-linecap="round"/>
+          <!-- legend bottom right -->
+          <rect x="256" y="90" width="58" height="36" rx="5" fill="white" stroke="#D1FAE5" stroke-width="1"/>
+          <circle cx="264" cy="100" r="3" fill="#059669"/>
+          <text x="270" y="103" font-family="system-ui" font-size="6.5" fill="#065F46" font-weight="600">Sede</text>
+          <circle cx="264" cy="112" r="3" fill="#D97706"/>
+          <text x="270" y="115" font-family="system-ui" font-size="6.5" fill="#92400E" font-weight="600">CNA Point</text>
+        </svg>
+      </div>
+      <div class="svc-n">07</div>
+      <div class="svc-title">Le nostre sedi</div>
+      <p class="svc-desc">CNA Roma &egrave; presente su tutto il territorio con <strong>8 sedi e CNA Point</strong>: Sede Centrale (Via Cristoforo Colombo 283/A), Albano Laziale, Tivoli, Centocelle, Dragona&ndash;Acilia, Frascati, Guidonia Montecelio, Monterotondo e CNA Point Jonio. Trova la sede pi&ugrave; vicina a te.</p>
+      <div class="sedi-list">
+        <div class="sede-item"><span class="sede-dot sede-dot--main"></span><span>Roma &ndash; Cristoforo Colombo <em>06 570151</em></span></div>
+        <div class="sede-item"><span class="sede-dot sede-dot--point"></span><span>Albano Laziale <em>06 9304976</em></span></div>
+        <div class="sede-item"><span class="sede-dot sede-dot--point"></span><span>Tivoli &ndash; Villa Adriana <em>0774 381102</em></span></div>
+        <div class="sede-item"><span class="sede-dot sede-dot--point"></span><span>Centocelle <em>06 81912303</em></span></div>
+        <div class="sede-item"><span class="sede-dot sede-dot--point"></span><span>Dragona &ndash; Acilia <em>06 52169284</em></span></div>
+        <div class="sede-item"><span class="sede-dot sede-dot--point"></span><span>Frascati <em>06 94015034</em></span></div>
+        <div class="sede-item"><span class="sede-dot sede-dot--point"></span><span>Guidonia Montecelio <em>0774 343813</em></span></div>
+        <div class="sede-item"><span class="sede-dot sede-dot--point"></span><span>Monterotondo <em>06 9003882</em></span></div>
+        <div class="sede-item"><span class="sede-dot sede-dot--point"></span><span>CNA Point Jonio <em>06 88640910</em></span></div>
+      </div>
+      <div class="svc-link" style="margin-top:14px">Vedi tutte le sedi <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
     </a>
 
   </div>
