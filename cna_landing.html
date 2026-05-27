@@ -383,12 +383,24 @@ section { padding: 90px 60px; }
 /* ─── TRUST BAND ─── */
 .trust-band { background: linear-gradient(135deg, var(--blue-dark), var(--blue), var(--violet)); padding: 60px; }
 .trust-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 2px; background: rgba(255,255,255,0.1); }
-.trust-item { background: rgba(255,255,255,0.06); padding: 32px 20px; text-align: center; transition: background 0.3s, transform 0.3s; cursor: default; }
+.trust-item {
+  background: rgba(255,255,255,0.06);
+  padding: 44px 20px;
+  text-align: center;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px;
+  transition: background 0.3s, transform 0.3s; cursor: default;
+}
 .trust-item:hover { background: rgba(255,255,255,0.14); transform: scale(1.04); }
-.trust-num { font-size: 44px; font-weight: 900; letter-spacing: -0.055em; line-height: 1; color: #fff; }
-.trust-num sub { font-size: 20px; opacity: 0.5; font-weight: 700; }
+.trust-num {
+  font-size: 56px; font-weight: 900; letter-spacing: -0.055em; line-height: 1;
+  color: #fff; display: flex; align-items: baseline; justify-content: center; gap: 2px;
+}
+.trust-num sub { font-size: 24px; opacity: 0.55; font-weight: 700; letter-spacing: -0.02em; }
 .trust-item:hover .trust-num { color: var(--gold); }
-.trust-label { font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.6); margin-top: 8px; }
+.trust-label {
+  font-size: 11.5px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+  color: rgba(255,255,255,0.65); text-align: center; line-height: 1.4;
+}
 
 /* ─── CONVENZIONI ─── */
 .conv-section { background: #fff; }
@@ -1012,10 +1024,22 @@ footer { background: var(--ink); padding: 44px 60px; display: flex; align-items:
 <!-- TRUST BAND -->
 <div class="trust-band">
   <div class="trust-grid rv">
-    <div class="trust-item"><div class="trust-num" data-n="80" data-s="anni">80<sub>anni</sub></div><div class="trust-label">Di storia e esperienza</div></div>
-    <div class="trust-item"><div class="trust-num" data-n="18" data-s="k+">18<sub>k+</sub></div><div class="trust-label">Imprese associate</div></div>
-    <div class="trust-item"><div class="trust-num" data-n="360" data-s="°">360<sub>°</sub></div><div class="trust-label">Servizi coperti</div></div>
-    <div class="trust-item"><div class="trust-num" data-n="100" data-s="%">100<sub>%</sub></div><div class="trust-label">Quota deducibile</div></div>
+    <div class="trust-item">
+      <div class="trust-num" data-n="80" data-s="anni">80<sub>anni</sub></div>
+      <div class="trust-label">Di storia<br>e esperienza</div>
+    </div>
+    <div class="trust-item">
+      <div class="trust-num" data-n="18" data-s="k+">18<sub>k+</sub></div>
+      <div class="trust-label">Imprese<br>associate</div>
+    </div>
+    <div class="trust-item">
+      <div class="trust-num" data-n="360" data-s="°">360<sub>°</sub></div>
+      <div class="trust-label">Servizi<br>coperti</div>
+    </div>
+    <div class="trust-item">
+      <div class="trust-num" data-n="100" data-s="%">100<sub>%</sub></div>
+      <div class="trust-label">Quota<br>deducibile</div>
+    </div>
   </div>
 </div>
 
