@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <title>CCIAA Loader — CNA Roma</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+    <style>
+        *{box-sizing:border-box;margin:0;padding:0}
+        body{font-family:'Inter',Arial,sans-serif;background:#f0f2f5;padding:30px 20px}
+        .wrap{max-width:860px;margin:0 auto}
+        /* HEADER */
+        .topbar{display:flex;align-items:center;gap:14px;margin-bottom:20px;padding-bottom:16px;border-bottom:2px solid #e5e7eb}
+        .hdiv{width:1px;height:36px;background:#d1d5db}
+        .htxt h1{font-family:'Inter',sans-serif;font-weight:900;font-size:20px;color:#111;line-height:1.1;letter-spacing:-.3px}
+        .htxt h1 span{color:#005CA9}
+        .htxt p{font-size:11px;color:#999;margin-top:2px;font-weight:500;letter-spacing:.2px;text-transform:uppercase}
+        .sub{color:#666;font-size:13px;margin-bottom:20px}
+        .card{background:white;border-radius:10px;padding:22px;box-shadow:0 2px 10px rgba(0,0,0,.08);margin-bottom:16px}
+        .card h3{font-size:12px;font-weight:700;color:#333;text-transform:uppercase;letter-spacing:.6px;border-bottom:2px solid #f0f0f0;padding-bottom:8px;margin-bottom:14px}
+
+        /* drop */
+        .drop{border:2px dashed #005CA9;border-radius:8px;padding:40px;text-align:center;cursor:pointer;background:rgba(0,92,169,.03);transition:background .2s;user-select:none}
+        .drop:hover,.drop.over{background:rgba(0,92,169,.09)}
+        .drop.off{opacity:.4;pointer-events:none}
+        .drop-icon{font-size:40px;margin-bottom:8px}
+        .drop-title{font-size:15px;font-weight:700;color:#005CA9;margin-bottom:4px}
+        .drop-hint{font-size:12px;color:#888}
+
+        /* fields */
+        .g2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+        .g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+        @media(max-width:560px){.g2,.g3{grid-template-columns:1fr}}
+        label{display:block;font-size:11px;font-weight:700;color:#555;margin-bottom:4px;text-transform:uppercase}
+        input{width:100%;padding:9px 11px;border:1px solid #ccc;border-radius:5px;font-size:13px}
+        input:focus{outline:none;border-color:#005CA9;box-shadow:0 0 0 2px rgba(0,92,169,.15)}
+        .hint{font-size:10px;color:#aaa;margin-top:3px}
+
+        /* buttons */
+        .btn{padding:10px 18px;border:none;border-radius:6px;cursor:pointer;font-weight:700;font-size:13px}
+        .b-blue{background:#005CA9;color:#fff} .b-blue:hover{background:#004a87}
+        .b-red{background:#dc2626;color:#fff}  .b-red:hover{background:#b91c1c}
+        .b-ora{background:#d97706;color:#fff}  .b-ora:hover{background:#b45309}
+        .b-gray{background:#6b7280;color:#fff} .b-gray:hover{background:#4b5563}
+        .btn:disabled{opacity:.4;cursor:not-allowed}
+        .btns{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+
+        /* phases */
+        .phases{display:flex;border-radius:8px;overflow:hidden;border:1px solid #e5e7eb;margin-bottom:16px}
+        .ph{flex:1;padding:9px 4px;text-align:center;font-size:11px;font-weight:700;background:#f9fafb;color:#9ca3af;border-right:1px solid #e5e7eb}
+        .ph:last-child{border-right:none}
+        .ph.act{background:#005CA9;color:#fff}
+        .ph.ok{background:#059669;color:#fff}
+        .ph.err{background:#dc2626;color:#fff}
+
+        /* bars */
+        .pw{margin-bottom:10px}
+        .pl{display:flex;justify-content:space-between;font-size:12px;font-weight:700;color:#444;margin-bottom:5px}
+        .bt{height:9px;background:#e5e7eb;border-radius:5px;overflow:hidden}
+        .bf{height:100%;border-radius:5px;transition:width .25s}
+        .bb{background:linear-gradient(90deg,#005CA9,#60a5fa)}
+        .bg{background:linear-gradient(90deg,#059669,#34d399)}
+        .ps{font-size:11px;color:#888;margin-top:3px}
+
+        /* kpi */
+        .kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(100px,1fr));gap:10px;margin:12px 0}
+        .kpi{background:#f4f8ff;padding:11px 12px;border-radius:7px;border-left:4px solid #005CA9}
+        .kpi.g{border-color:#059669} .kpi.r{border-color:#dc2626}
+        .kl{font-size:10px;color:#666;text-transform:uppercase;font-weight:700}
+        .kv{font-size:20px;color:#005CA9;font-weight:700;margin-top:2px}
+        .kpi.g .kv{color:#059669} .kpi.r .kv{color:#dc2626}
+
+        /* chunk grid */
+        .cgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(155px,1fr));gap:6px;max-height:260px;overflow-y:auto;margin-top:10px}
+        .ci{padding:9px 11px;border-radius:6px;border:1px solid #e5e7eb;background:#f9fafb;font-size:12px}
+        .ci .cn{font-weight:700;color:#374151;margin-bottom:2px}
+        .ci .cc{font-size:10px;color:#9ca3af}
+        .ci .cs{font-size:11px;font-weight:700;margin-top:3px}
+        .ci.uploading{border-color:#3b82f6;background:#eff6ff}
+        .ci.done{border-color:#10b981;background:#ecfdf5}
+        .ci.error{border-color:#ef4444;background:#fef2f2}
+        .sw{color:#9ca3af} .su{color:#3b82f6} .so{color:#059669} .se{color:#dc2626}
+
+        /* log */
+        .log{background:#111827;color:#d1fae5;font-family:'Courier New',monospace;font-size:11px;padding:12px;border-radius:7px;max-height:200px;overflow-y:auto;line-height:1.65;margin-top:12px}
+        .log .e{color:#fca5a5} .log .w{color:#fde68a} .log .s{color:#6ee7b7} .log .i{color:#93c5fd}
+
+        /* alert */
+        .alert{padding:11px 15px;border-radius:6px;font-size:13px;font-weight:600;margin-top:10px;display:none}
+        .alert.show{display:block}
+        .ao{background:#ecfdf5;color:#065f46;border:1px solid #6ee7b7}
+        .ae{background:#fef2f2;color:#991b1b;border:1px solid #fca5a5}
+        .aw{background:#fffbeb;color:#92400e;border:1px solid #fde68a}
+
+        hr{border:none;border-top:1px solid #f0f0f0;margin:12px 0}
+    </style>
+</head>
+<body>
+<div class="wrap">
+    <div class="topbar">
+        <img src="https://raw.githubusercontent.com/alessandroparrelli/fileappoggio/main/NUOVO-LOGO-CNA-ROMA-SOLO-ROMA.png"
+             alt="CNA Roma" height="64" style="display:block;flex-shrink:0">
+        <div class="hdiv"></div>
+        <div class="htxt">
+            <h1>CCIAA <span>Loader</span></h1>
+            <p>CNA Roma · Gestione dati registro imprese</p>
+        </div>
+    </div>
+
+    <!-- CONFIG -->
+    <div class="card">
+        <h3>🔌 Connessione Supabase</h3>
+        <div class="g2">
+            <div>
+                <label>Project URL</label>
+                <input id="cfgUrl" value="https://ohahuqlfzqckaevaffbt.supabase.co">
+            </div>
+            <div>
+                <label>Anon Key</label>
+                <input id="cfgKey" value="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9oYWh1cWxmenFja2FldmFmZmJ0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQxODI4NzQsImV4cCI6MjA4OTc1ODg3NH0.MG1N3UUIfISDAi_ArFjxN6ZlHJfk5D77vSeE7qZr020">
+            </div>
+        </div>
+        <div class="g3" style="margin-top:10px">
+            <div>
+                <label>Tabella</label>
+                <input id="cfgTable" value="cciaa">
+            </div>
+            <div>
+                <label>Record per chunk</label>
+                <input id="cfgChunk" type="number" value="500" min="100" max="5000" step="100">
+                <div class="hint">500 consigliato (timeout Supabase)</div>
+            </div>
+            <div>
+                <label>Max retry per chunk</label>
+                <input id="cfgRetry" type="number" value="5" min="1" max="10">
+            </div>
+        </div>
+        <div style="margin-top:12px;display:flex;gap:10px;align-items:center;flex-wrap:wrap">
+            <button class="btn b-blue" onclick="testConn()" id="btnTest">🔗 Testa connessione</button>
+            <span id="testOut" style="font-size:13px;font-weight:600"></span>
+        </div>
+    </div>
+
+    <!-- FILE -->
+    <div class="card">
+        <h3>📂 File TXT sorgente</h3>
+        <div class="drop" id="drop" onclick="document.getElementById('fi').click()">
+            <div class="drop-icon">📄</div>
+            <div class="drop-title" id="dropTitle">Clicca o trascina il file .txt qui</div>
+            <div class="drop-hint">Pipe-delimited · qualsiasi dimensione</div>
+            <input type="file" id="fi" accept=".txt,.csv" style="display:none">
+        </div>
+        <div class="alert" id="mainAlert"></div>
+    </div>
+
+    <!-- PROGRESS -->
+    <div class="card" id="opCard" style="display:none">
+        <h3>⚡ Avanzamento</h3>
+
+        <div class="phases">
+            <div class="ph" id="ph0">1 · Lettura</div>
+            <div class="ph" id="ph1">2 · Parsing</div>
+            <div class="ph" id="ph2">3 · Svuota DB</div>
+            <div class="ph" id="ph3">4 · Upload</div>
+            <div class="ph" id="ph4">✓ Fine</div>
+        </div>
+
+        <div class="pw">
+            <div class="pl"><span id="parseLbl">Lettura...</span><span id="parsePct">0%</span></div>
+            <div class="bt"><div class="bf bb" id="parseBar" style="width:0%"></div></div>
+            <div class="ps" id="parseSub"></div>
+        </div>
+        <hr>
+        <div class="pw">
+            <div class="pl"><span>Upload chunk</span><span id="upPct">0%</span></div>
+            <div class="bt"><div class="bf bg" id="upBar" style="width:0%"></div></div>
+            <div class="ps" id="upSub">In attesa...</div>
+        </div>
+
+        <div class="kpis" id="kpiBlock" style="display:none">
+            <div class="kpi g"><div class="kl">Inseriti</div><div class="kv" id="kIns">0</div></div>
+            <div class="kpi">  <div class="kl">Chunk ✓</div><div class="kv" id="kOk">0</div></div>
+            <div class="kpi r"><div class="kl">Errori</div> <div class="kv" id="kErr">0</div></div>
+            <div class="kpi" style="border-color:#d97706"><div class="kl">Scartati</div><div class="kv" id="kSkip" style="color:#d97706">0</div></div>
+            <div class="kpi">  <div class="kl">Tempo</div>  <div class="kv" id="kTime">0s</div></div>
+            <div class="kpi">  <div class="kl">Velocità</div><div class="kv" id="kSpd">—</div></div>
+        </div>
+
+        <div class="cgrid" id="cgrid"></div>
+
+        <div class="btns">
+            <button class="btn b-red"  id="btnStop"  onclick="doStop()"        style="display:none">⏹ Ferma</button>
+            <button class="btn b-ora"  id="btnRetry" onclick="doRetry()"       style="display:none">🔁 Riprova errori</button>
+            <button class="btn b-gray" id="btnReset" onclick="doReset()"       style="display:none">🔄 Ricomincia</button>
+        </div>
+
+        <div class="log" id="logBox" style="display:none"></div>
+    </div>
+</div>
+
+<script>
+// ── CONFIG ────────────────────────────────────────────────────────────────────
+const INT_COLS  = new Set(['stato_attivita','anno_addetti_ul','num_addetti_fam_ul','num_addetti_sub']);
+const DATE_COLS = new Set(['data_iscrizione_rea']);
+const EXCLUDE   = new Set(['id','created_at','updated_at']);
+const DEDUP_COL = 'num_iscrizione_rea';
+
+// ── STATE ─────────────────────────────────────────────────────────────────────
+let db, chunks=[], status=[], stopFlag=false, t0=0, inserted=0, skipped=0, ticker=null;
+
+// ── HELPERS ───────────────────────────────────────────────────────────────────
+const sleep = ms => new Promise(r=>setTimeout(r,ms));
+const fmt   = n  => (n||0).toLocaleString('it-IT');
+const $     = id => document.getElementById(id);
+const val   = id => $(id).value.trim();
+
+function getDB() {
+    // Crea (o ricrea) il client Supabase con i valori attuali dei campi
+    return supabase.createClient(val('cfgUrl'), val('cfgKey'));
+}
+
+function log(msg, cls='') {
+    $('logBox').style.display='block';
+    const d=document.createElement('div');
+    if(cls) d.className=cls;
+    d.textContent='['+new Date().toLocaleTimeString('it-IT')+'] '+msg;
+    $('logBox').appendChild(d);
+    $('logBox').scrollTop=$('logBox').scrollHeight;
+}
+
+function phase(i, state) {
+    for(let j=0;j<5;j++){
+        $('ph'+j).className='ph'+(j<i?' ok':j===i?' '+state:'');
+    }
+}
+
+function alert_(msg,cls){
+    const el=$('mainAlert');
+    el.textContent=msg; el.className='alert show '+cls;
+}
+
+function parseBar(pct,lbl,sub){
+    $('parseBar').style.width=pct+'%';
+    $('parsePct').textContent=Math.round(pct)+'%';
+    if(lbl) $('parseLbl').textContent=lbl;
+    if(sub) $('parseSub').textContent=sub;
+}
+
+function upBar(pct,sub){
+    $('upBar').style.width=pct+'%';
+    $('upPct').textContent=Math.round(pct)+'%';
+    if(sub) $('upSub').textContent=sub;
+}
+
+function tick(){
+    const ok=status.filter(s=>s==='done').length;
+    const er=status.filter(s=>s==='error').length;
+    const sec=t0?(Date.now()-t0)/1000:0;
+    const spd=sec>1?Math.round(inserted/sec):0;
+    $('kIns').textContent=fmt(inserted);
+    $('kOk').textContent=ok;
+    $('kErr').textContent=er;
+    $('kSkip').textContent=fmt(skipped);
+    $('kTime').textContent=Math.round(sec)+'s';
+    $('kSpd').textContent=spd>0?fmt(spd)+'/s':'—';
+    upBar(chunks.length?(ok/chunks.length)*100:0,
+          `Chunk ${ok+er}/${chunks.length} — ${fmt(inserted)} inseriti, ${fmt(skipped)} scartati`);
+}
+
+function chunkCard(i){
+    const d=document.createElement('div');
+    d.className='ci'; d.id='ci'+i;
+    d.innerHTML=`<div class="cn">Chunk ${i+1}/${chunks.length}</div>
+                 <div class="cc">${fmt(chunks[i].length)} record</div>
+                 <div class="cs sw">⏳ In attesa</div>`;
+    $('cgrid').appendChild(d);
+}
+
+function chunkState(i,state,detail=''){
+    const el=$('ci'+i); if(!el)return;
+    const map={waiting:['sw','⏳ In attesa'],uploading:['su','🔄 Upload...'],done:['so','✅ OK'],error:['se','❌ Errore']};
+    const [cls,txt]=map[state]||['sw','—'];
+    el.className='ci '+state;
+    el.querySelector('.cs').className='cs '+cls;
+    el.querySelector('.cs').textContent=txt+(detail?' — '+detail:'');
+    el.scrollIntoView({block:'nearest'});
+}
+
+// ── CONNECTION TEST ───────────────────────────────────────────────────────────
+async function testConn(){
+    $('btnTest').disabled=true;
+    $('testOut').textContent='⏳ Test...'; $('testOut').style.color='#666';
+    try {
+        const client=getDB();
+        const {data,error}=await client.from(val('cfgTable')).select('id').limit(1);
+        if(error) throw new Error(error.message);
+        $('testOut').textContent='✅ Connessione OK'; $('testOut').style.color='#059669';
+    } catch(e){
+        $('testOut').textContent='❌ '+e.message; $('testOut').style.color='#dc2626';
+    }
+    $('btnTest').disabled=false;
+}
+
+// ── DROP ──────────────────────────────────────────────────────────────────────
+const drop=$('drop'), fi=$('fi');
+drop.addEventListener('dragover',e=>{e.preventDefault();drop.classList.add('over')});
+drop.addEventListener('dragleave',()=>drop.classList.remove('over'));
+drop.addEventListener('drop',e=>{e.preventDefault();drop.classList.remove('over');if(e.dataTransfer.files[0])run(e.dataTransfer.files[0])});
+fi.addEventListener('change',e=>{if(e.target.files[0])run(e.target.files[0])});
+
+// ── MAIN ──────────────────────────────────────────────────────────────────────
+async function run(file){
+    // reset
+    chunks=[];status=[];stopFlag=false;inserted=0;
+    clearInterval(ticker);
+    $('logBox').style.display='none'; $('logBox').innerHTML='';
+    $('cgrid').innerHTML=''; $('kpiBlock').style.display='none';
+    ['btnStop','btnRetry','btnReset'].forEach(b=>$(b).style.display='none');
+    $('mainAlert').className='alert';
+
+    drop.classList.add('off');
+    $('dropTitle').textContent='📄 '+file.name;
+    $('opCard').style.display='block';
+    $('opCard').scrollIntoView({behavior:'smooth',block:'start'});
+
+    const chunkSize=parseInt(val('cfgChunk'))||5000;
+    const maxRetry =parseInt(val('cfgRetry'))||5;
+    db=getDB();
+
+    try {
+        // ── 1. LETTURA ────────────────────────────────────────────────────────
+        phase(0,'act');
+        parseBar(0,'📖 Lettura file...',`${(file.size/1024/1024).toFixed(1)} MB`);
+        log(`File: ${file.name} (${(file.size/1024/1024).toFixed(1)} MB)`);
+        const text=await file.text();
+        phase(0,'ok'); phase(1,'act');
+
+        // ── 2. PARSING ────────────────────────────────────────────────────────
+        const lines=text.split('\n');
+        log(`Righe totali: ${fmt(lines.length)}`);
+
+        const hdrLine=lines[0];
+        if(!hdrLine||!hdrLine.includes('|')) throw new Error('Formato non valido: nessun | nella prima riga');
+
+        const allCols=hdrLine.replace(/^\uFEFF/,'').split('|').map(h=>h.trim());
+        const cols=allCols.filter(h=>h&&!EXCLUDE.has(h));
+        const dedupIdx=allCols.indexOf(DEDUP_COL);
+        log(`Colonne: ${allCols.length} totali → ${cols.length} da inserire`);
+
+        const seen=new Set();
+        let totalRows=0, dupes=0, curChunk=[];
+
+        for(let i=1;i<lines.length;i++){
+            const line=lines[i]; if(!line.trim()) continue;
+            const vals=line.split('|');
+
+            // dedup
+            if(dedupIdx>=0){
+                const key=(vals[dedupIdx]||'').trim().replace(/^"+|"+$/g,'');
+                if(key){if(seen.has(key)){dupes++;continue;}seen.add(key);}
+            }
+
+            // build row
+            const row={};
+            cols.forEach(col=>{
+                const idx=allCols.indexOf(col);
+                let v=idx>=0?(vals[idx]||'').trim():'';
+                if(v.startsWith('"')&&v.endsWith('"')) v=v.slice(1,-1).trim();
+                if(DATE_COLS.has(col)&&v){
+                    const m=v.match(/^(\d{2})-(\d{2})-(\d{4})$/);
+                    if(m) v=`${m[3]}-${m[2]}-${m[1]}`;
+                    else if(!/^\d{4}-\d{2}-\d{2}$/.test(v)) v='';
+                }
+                if(INT_COLS.has(col)){const n=parseInt(v,10);row[col]=isNaN(n)?null:n;}
+                else row[col]=v===''?null:v;
+            });
+
+            curChunk.push(row);
+            totalRows++;
+            if(curChunk.length>=chunkSize){chunks.push(curChunk);curChunk=[];}
+
+            if(i%30000===0){
+                parseBar((i/lines.length)*100,'🔄 Parsing...',
+                    `${fmt(i)} righe · ${fmt(totalRows)} valide · ${fmt(dupes)} dupl. · ${chunks.length} chunk`);
+                await sleep(0);
+            }
+        }
+        if(curChunk.length>0) chunks.push(curChunk);
+        status=chunks.map(()=>'waiting');
+
+        parseBar(100,'✅ Parsing ok',`${fmt(totalRows)} record · ${fmt(dupes)} dupl. rimossi · ${chunks.length} chunk`);
+        log(`Parsing: ${fmt(totalRows)} validi, ${fmt(dupes)} duplicati, ${chunks.length} chunk`,'s');
+        phase(1,'ok');
+
+        chunks.forEach((_,i)=>chunkCard(i));
+        $('kpiBlock').style.display='grid';
+
+        // ── 3. TRUNCATE ───────────────────────────────────────────────────────
+        phase(2,'act');
+        log('Svuotamento tabella...','i');
+        try {
+            const {error}=await db.rpc('truncate_cciaa');
+            if(error) throw new Error(error.message);
+            log('Tabella svuotata ✓','s');
+        } catch(e){
+            log(`Truncate fallito: ${e.message} — procedo senza svuotare`,'w');
+        }
+        phase(2,'ok');
+
+        // ── 4. UPLOAD ─────────────────────────────────────────────────────────
+        phase(3,'act');
+        $('btnStop').style.display='';
+        t0=Date.now();
+        ticker=setInterval(tick,800);
+
+        await upload(maxRetry);
+
+        clearInterval(ticker); tick();
+        $('btnStop').style.display='none';
+        $('btnReset').style.display='';
+
+        const errs=status.filter(s=>s==='error').length;
+        phase(3,errs?'err':'ok'); phase(4,errs?'err':'ok');
+
+        if(errs===0){
+            alert_(`✅ Completato: ${fmt(inserted)} record inseriti`,'ao');
+            log(`════ COMPLETATO ════ ${fmt(inserted)} record ✓`,'s');
+        } else {
+            alert_(`⚠️ ${errs} chunk falliti — clicca "Riprova errori"`,'aw');
+            log(`════ FINE CON ${errs} ERRORI ════`,'e');
+            $('btnRetry').style.display='';
+        }
+
+    } catch(e){
+        clearInterval(ticker);
+        log('ERRORE CRITICO: '+e.message,'e');
+        alert_('❌ '+e.message,'ae');
+        $('btnReset').style.display='';
+        drop.classList.remove('off');
+    }
+}
+
+// ── UPLOAD LOOP ───────────────────────────────────────────────────────────────
+function isTimeout(msg){ return msg.includes('timeout')||msg.includes('canceling')||msg.includes('57014'); }
+function isConstraint(msg){ return msg.includes('violates')&&msg.includes('constraint'); }
+
+// Inserisce rows. Su timeout: auto-split ricorsivo. Su constraint: riga per riga.
+async function insertSmart(rows, label, minSize=50){
+    if(rows.length===0) return 0;
+
+    const {error}=await db.from(val('cfgTable')).insert(rows);
+    if(!error) return rows.length;
+
+    const msg=error.message||'';
+
+    // TIMEOUT → dimezza e riprova
+    if(isTimeout(msg) && rows.length>minSize){
+        const half=Math.floor(rows.length/2);
+        log(`${label}: timeout (${fmt(rows.length)} rec) → split in due da ${fmt(half)}`,'w');
+        await sleep(1500);
+        const a=await insertSmart(rows.slice(0,half), label+'a', minSize);
+        const b=await insertSmart(rows.slice(half),   label+'b', minSize);
+        return a+b;
+    }
+
+    // CONSTRAINT VIOLATION → riga per riga, scarta solo i record sporchi
+    if(isConstraint(msg)){
+        if(rows.length===1){
+            // singola riga → scarta e logga
+            const r=rows[0];
+            const id=r.num_iscrizione_rea||r.ragione_sociale||JSON.stringify(r).substring(0,60);
+            log(`⚠ Record scartato [${label}]: ${msg.split('"')[1]||msg.substring(0,60)} — "${id}"`,'w');
+            skipped++;
+            return 0;
+        }
+        // più righe → riga per riga
+        log(`${label}: constraint violation su ${fmt(rows.length)} rec → inserimento riga per riga`,'w');
+        let count=0;
+        for(let j=0;j<rows.length;j++){
+            count+=await insertSmart([rows[j]], label+'r'+j, minSize);
+            if(j%50===0) await sleep(0); // yield ogni 50 per non bloccare UI
+        }
+        return count;
+    }
+
+    // Altro errore → propaga
+    throw new Error(msg);
+}
+
+async function upload(maxRetry){
+    for(let i=0;i<chunks.length;i++){
+        if(stopFlag){log('Upload fermato','w');break;}
+        if(status[i]!=='waiting') continue;
+
+        status[i]='uploading'; chunkState(i,'uploading');
+        let ok=false, lastErr='', count=0, delay=2000;
+
+        for(let att=1;att<=maxRetry;att++){
+            try {
+                count=await insertSmart(chunks[i], `Chunk ${i+1}`);
+                ok=true; break;
+            } catch(e){
+                lastErr=e.message;
+                // Errore non gestibile da insertSmart → retry con backoff
+                if(att<maxRetry){
+                    log(`Chunk ${i+1} · att.${att}/${maxRetry}: ${lastErr} — retry in ${delay/1000}s`,'w');
+                    chunkState(i,'uploading',`retry ${att}/${maxRetry}`);
+                    await sleep(delay);
+                    delay=Math.min(delay*2,30000);
+                }
+            }
+        }
+
+        if(ok){
+            status[i]='done'; inserted+=count;
+            chunkState(i,'done');
+            log(`Chunk ${i+1}/${chunks.length} ✓ (+${fmt(count)} tot:${fmt(inserted)})`,'s');
+        } else {
+            status[i]='error';
+            chunkState(i,'error',lastErr.substring(0,40));
+            log(`Chunk ${i+1} FALLITO: ${lastErr}`,'e');
+        }
+        tick();
+    }
+}
+
+// ── CONTROLS ─────────────────────────────────────────────────────────────────
+function doStop(){
+    stopFlag=true; $('btnStop').disabled=true;
+    log('Stop richiesto...','w');
+}
+
+async function doRetry(){
+    const failed=status.map((s,i)=>s==='error'?i:-1).filter(i=>i>=0);
+    if(!failed.length) return;
+    log(`Riprovando ${failed.length} chunk...`,'i');
+    $('btnRetry').style.display='none'; $('btnStop').style.display=''; stopFlag=false;
+    failed.forEach(i=>{status[i]='waiting';chunkState(i,'waiting');});
+    if(!t0) t0=Date.now();
+    ticker=setInterval(tick,800);
+    await upload(parseInt(val('cfgRetry'))||5);
+    clearInterval(ticker); tick();
+    $('btnStop').style.display='none';
+    const still=status.filter(s=>s==='error').length;
+    if(still>0){$('btnRetry').style.display='';alert_(`⚠️ Ancora ${still} errori`,'aw');}
+    else{alert_(`✅ Tutto ok! ${fmt(inserted)} record totali`,'ao');phase(3,'ok');phase(4,'ok');}
+}
+
+function doReset(){
+    chunks=[];status=[];stopFlag=false;inserted=0;skipped=0;clearInterval(ticker);
+    $('opCard').style.display='none';
+    $('logBox').style.display='none'; $('logBox').innerHTML='';
+    $('mainAlert').className='alert';
+    $('dropTitle').textContent='Clicca o trascina il file .txt qui';
+    drop.classList.remove('off'); fi.value='';
+    for(let i=0;i<5;i++) $('ph'+i).className='ph';
+}
+</script>
+</body>
+</html>
