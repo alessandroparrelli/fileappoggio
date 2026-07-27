@@ -59,10 +59,11 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:'Outfit
 .page.active{display:block}
 
 /* HEADER */
-.page-header{padding:max(16px,env(safe-area-inset-top)) 16px 0;background:var(--bg);position:sticky;top:0;z-index:50}
+.page-header{padding:max(16px,env(safe-area-inset-top)) 16px 0;background:var(--bg)}
+.oggi-sticky-wrapper{position:sticky;top:0;z-index:60;background:var(--bg)}
 
 /* STICKY TOTALS BAR */
-.sticky-totals{background:var(--surface);border-bottom:1.5px solid var(--border);padding:8px 16px 10px;display:grid;grid-template-columns:repeat(4,1fr);gap:4px;box-shadow:0 2px 8px rgba(0,0,0,0.06)}
+.sticky-totals{background:var(--surface);border-bottom:1.5px solid var(--border);padding:10px 16px 11px;display:grid;grid-template-columns:repeat(4,1fr);gap:4px;box-shadow:0 3px 12px rgba(0,0,0,0.09)}
 .st-cell{text-align:center}
 .st-val{font-size:15px;font-weight:800;letter-spacing:-0.02em;line-height:1}
 .st-val.k{color:var(--green)}
@@ -244,13 +245,15 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:'Outfit
 <div id="app">
   <div id="screen">
     <div class="page active" id="page-oggi">
-      <div class="page-header">
-        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:2px">
-          <div class="page-title">Oggi</div>
-          <div id="oggi-badge" style="margin-top:6px"></div>
+      <div class="oggi-sticky-wrapper">
+        <div class="page-header">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:2px">
+            <div class="page-title">Oggi</div>
+            <div id="oggi-badge" style="margin-top:6px"></div>
+          </div>
+          <div class="page-subtitle" id="oggi-sub"></div>
+          <div class="pills-row" id="day-pills"></div>
         </div>
-        <div class="page-subtitle" id="oggi-sub"></div>
-        <div class="pills-row" id="day-pills"></div>
         <div class="sticky-totals" id="sticky-totals">
           <div class="st-cell"><div class="st-val k" id="st-kcal">—</div><div class="st-lbl">kcal</div></div>
           <div class="st-cell"><div class="st-val p" id="st-p">—</div><div class="st-lbl">prot.</div></div>
@@ -578,16 +581,18 @@ function renderOggi(){
   document.getElementById('oggi-content').innerHTML=html;
 }
 
-function selDay(i){S.selDay=i;save();renderOggi();document.getElementById('screen').scrollTo(0,0);}
+function selDay(i){S.selDay=i;S._spesaStale=true;save();renderOggi();document.getElementById('screen').scrollTo(0,0);}
 function doShuffle(d,m){
   const k=mealKey(d,m);
   const list=getRicette(d,m);
   S.meals[k]=((S.meals[k]||0)+1)%list.length;
   save();
   renderOggi();
-  // also refresh settimana & spesa if open
+  // always sync other views
   if(currentPage==='settimana')renderSettimana();
-  if(currentPage==='spesa')renderSpesa();
+  else if(currentPage==='spesa')renderSpesa();
+  // mark spesa as stale so it rebuilds on next open
+  S._spesaStale=true;
   showToast('Ricetta cambiata 🔀');
 }
 
@@ -807,6 +812,8 @@ function goPage(name){
   document.getElementById('nav-'+name).classList.add('active');
   currentPage=name;
   document.getElementById('screen').scrollTo(0,0);
+  // always rebuild spesa fresh (ingredients may have changed)
+  if(name==='spesa') S._spesaStale=true;
   PAGES[name]();
 }
 
