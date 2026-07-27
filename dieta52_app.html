@@ -84,6 +84,60 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:'Outfit
 /* SECTION LABEL */
 .sec-label{padding:14px 16px 6px;font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-dim)}
 
+/* MEAL TIME ORARIO */
+.meal-orario{display:inline-flex;align-items:center;gap:4px;padding:3px 9px;border-radius:20px;font-size:11px;font-weight:700;background:var(--bg);border:1.5px solid var(--border);color:var(--text-soft);margin-right:6px}
+
+/* EATEN CHECKBOX */
+.eaten-row{display:flex;align-items:center;justify-content:space-between;padding:10px 14px;background:var(--bg);border-top:1.5px solid var(--border);cursor:pointer;transition:background 0.15s;-webkit-user-select:none;user-select:none}
+.eaten-row:active{background:var(--green-lt)}
+.eaten-row.done{background:var(--green-lt)}
+.eaten-check{width:24px;height:24px;border-radius:8px;border:2px solid var(--border);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all 0.18s}
+.eaten-row.done .eaten-check{background:var(--green);border-color:var(--green)}
+.eaten-label{font-size:13px;font-weight:700;color:var(--text-soft);flex:1;margin-left:10px}
+.eaten-row.done .eaten-label{color:var(--green)}
+.eaten-kcal{font-size:12px;font-weight:700;color:var(--text-dim)}
+.eaten-row.done .eaten-kcal{color:var(--green)}
+
+/* EATEN PROGRESS IN STICKY */
+.st-progress{margin-top:6px;height:3px;border-radius:2px;background:var(--border);overflow:hidden;grid-column:1/-1}
+.st-progress-fill{height:100%;border-radius:2px;background:var(--green);transition:width 0.4s ease}
+.st-eaten-label{grid-column:1/-1;font-size:10px;font-weight:600;color:var(--text-dim);text-align:center;letter-spacing:0.04em}
+
+/* MEAL CARD done state */
+.meal-card.eaten{border-color:var(--green);background:linear-gradient(to bottom,#f6fdf8,#fff)}
+.meal-card.eaten .meal-name{color:var(--green)}
+
+/* STICKY TOTALS extended */
+.sticky-totals{background:var(--surface);border-bottom:1.5px solid var(--border);padding:10px 16px 8px;display:grid;grid-template-columns:repeat(4,1fr);gap:4px;box-shadow:0 3px 12px rgba(0,0,0,0.09)}
+
+/* CONSUMED BAR */
+.consumed-row{grid-column:1/-1;display:flex;align-items:center;gap:8px;margin-top:6px}
+.consumed-bar-wrap{flex:1;height:5px;border-radius:3px;background:var(--border);overflow:hidden}
+.consumed-bar-fill{height:100%;border-radius:3px;background:var(--green);transition:width 0.4s ease}
+.consumed-label{font-size:10px;font-weight:700;color:var(--text-soft);white-space:nowrap}
+.consumed-label.done{color:var(--green)}
+
+/* ORARIO colors */
+.orario-col{background:#FEF4E2;border-color:#F5D48A;color:var(--amber)}
+.orario-pra{background:#E8F5EE;border-color:#8EC9A8;color:var(--green)}
+.orario-cen{background:#EEE9FB;border-color:#B8A4E8;color:var(--violet)}
+.orario-snu{background:#E5F5F5;border-color:#7ABFBF;color:var(--teal)}
+
+/* Meal card top row */
+.meal-type-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
+.meal-type-left{display:flex;align-items:center;flex-wrap:wrap;gap:5px}
+
+/* override old sticky-totals grid col */
+
+/* SECTION CONSUMED */
+.consumed-section{margin:0 16px 10px;background:var(--surface);border:1.5px solid var(--border);border-radius:var(--radius);padding:14px 16px;box-shadow:var(--shadow)}
+.consumed-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:10px}
+.consumed-cell{text-align:center}
+.consumed-val{font-size:18px;font-weight:800}
+.consumed-sub{font-size:9px;font-weight:600;text-transform:uppercase;letter-spacing:0.06em;color:var(--text-dim);margin-top:2px}
+.consumed-vs{font-size:10px;color:var(--text-dim);margin-top:2px}
+
+/* SECTION LABEL */
 /* MEAL CARD */
 .meal-card{margin:0 16px 10px;background:var(--surface);border:1.5px solid var(--border);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);transition:box-shadow 0.2s}
 .meal-head{padding:14px 14px 10px}
@@ -254,11 +308,19 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:'Outfit
           <div class="page-subtitle" id="oggi-sub"></div>
           <div class="pills-row" id="day-pills"></div>
         </div>
-        <div class="sticky-totals" id="sticky-totals">
+        <div class="sticky-totals" id="sticky-totals" style="grid-template-columns:repeat(4,1fr);row-gap:2px">
           <div class="st-cell"><div class="st-val k" id="st-kcal">—</div><div class="st-lbl">kcal</div></div>
           <div class="st-cell"><div class="st-val p" id="st-p">—</div><div class="st-lbl">prot.</div></div>
           <div class="st-cell"><div class="st-val g" id="st-g">—</div><div class="st-lbl">grassi</div></div>
           <div class="st-cell"><div class="st-val c" id="st-c">—</div><div class="st-lbl">carbo</div></div>
+          <div style="grid-column:1/-1;margin-top:6px">
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:4px">
+              <span id="st-eaten" style="font-size:10px;font-weight:600;color:var(--text-dim)">0/3 pasti spuntati</span>
+            </div>
+            <div style="height:4px;border-radius:3px;background:var(--border);overflow:hidden">
+              <div id="st-bar-fill" style="height:100%;border-radius:3px;background:var(--green);width:0%;transition:width 0.4s ease"></div>
+            </div>
+          </div>
         </div>
       </div>
       <div id="oggi-content"></div>
@@ -405,6 +467,7 @@ const GIORNI=[
 let S={
   selDay: 0,
   meals:{},       // "d_m" -> idx
+  eaten:{},       // "d_m" -> bool (spuntato come mangiato)
   days28: Array(28).fill(false),
   freqs:{pesce:0,carne:0,uova:0,formaggi:0,affettati:0},
   spesa:{},       // itemKey -> bool
@@ -431,6 +494,24 @@ function getCurRicetta(d,m){
 }
 function getMeals(d){
   return GIORNI[d].we?['col','pra','cen']:['col','pra','cen','snu'];
+}
+function getEatenTotals(d){
+  const tot={kcal:0,p:0,g:0,c:0};
+  getMeals(d).forEach(m=>{
+    if(S.eaten[mealKey(d,m)]){
+      const r=getCurRicetta(d,m);
+      if(r){tot.kcal+=r.kcal;tot.p+=r.p;tot.g+=r.g;tot.c+=r.c;}
+    }
+  });
+  return tot;
+}
+function toggleEaten(d,m){
+  const k=mealKey(d,m);
+  S.eaten[k]=!S.eaten[k];
+  save();
+  renderOggi();
+  const r=getCurRicetta(d,m);
+  if(S.eaten[k])showToast(`✅ ${r.nome} · ${r.kcal} kcal`);
 }
 function getDayTotals(d){
   const tot={kcal:0,p:0,g:0,c:0};
@@ -530,17 +611,29 @@ function renderOggi(){
     `<div class="pill ${i===d?'active':''} ${gg.we?'weekend':''}" onclick="selDay(${i})">${gg.s}</div>`
   ).join('');
 
+  const ORARI={col:'7:30',pra:'13:00',cen:'19:30',snu:'10:30'};
+  const ORARI_WE={col:'9:00',pra:'13:00',cen:'20:00'};
+
   let html='';
   getMeals(d).forEach(m=>{
     const r=getCurRicetta(d,m);
     const {label,cls}=mealTypeInfo(m);
     const list=getRicette(d,m);
     const curIdx=(S.meals[mealKey(d,m)]||0)%list.length;
+    const ek=mealKey(d,m);
+    const isEaten=!!S.eaten[ek];
+    const orario=g.we?(ORARI_WE[m]||'—'):ORARI[m];
     html+=`
-    <div class="meal-card">
+    <div class="meal-card ${isEaten?'eaten':''}">
       <div class="meal-head">
         <div class="meal-type-row">
-          <span class="meal-type-badge ${cls}">${label}</span>
+          <div class="meal-type-left">
+            <span class="meal-type-badge ${cls}">${label}</span>
+            <span class="meal-orario orario-${cls}">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+              ${orario}
+            </span>
+          </div>
           <button class="shuffle-btn" onclick="doShuffle(${d},'${m}')">${IC.shuffle} Cambia</button>
         </div>
         <div class="meal-name">${r.nome}</div>
@@ -562,15 +655,44 @@ function renderOggi(){
         <div class="macro-cell"><div class="macro-val g">${r.g}g</div><div class="macro-lbl">grassi</div></div>
         <div class="macro-cell"><div class="macro-val c">${r.c}g</div><div class="macro-lbl">carbo</div></div>
       </div>
+      <div class="eaten-row ${isEaten?'done':''}" onclick="toggleEaten(${d},'${m}')">
+        <div class="eaten-check">${isEaten?IC.check:''}</div>
+        <span class="eaten-label">${isEaten?'Mangiato ✓':'Segna come mangiato'}</span>
+        <span class="eaten-kcal">${r.kcal} kcal</span>
+      </div>
     </div>`;
   });
 
   const tot=getDayTotals(d);
+  const eaten=getEatenTotals(d);
+  const allMeals=getMeals(d);
+  const eatenCount=allMeals.filter(m=>S.eaten[mealKey(d,m)]).length;
+  const pct=tot.kcal>0?Math.round(eaten.kcal/tot.kcal*100):0;
+
   // update sticky totals bar
   document.getElementById('st-kcal').textContent=tot.kcal;
   document.getElementById('st-p').textContent=tot.p+'g';
   document.getElementById('st-g').textContent=tot.g+'g';
   document.getElementById('st-c').textContent=tot.c+'g';
+  document.getElementById('st-eaten').textContent=eaten.kcal>0?`${eaten.kcal} kcal mangiati (${pct}%)`:`${eatenCount}/${allMeals.length} pasti spuntati`;
+  document.getElementById('st-bar-fill').style.width=pct+'%';
+
+  // consumed section
+  html+=`
+  <div class="consumed-section">
+    <div style="display:flex;justify-content:space-between;align-items:center">
+      <div style="font-size:12px;font-weight:700;color:var(--text-soft);text-transform:uppercase;letter-spacing:0.06em">Consumato oggi</div>
+      <div style="font-size:11px;font-weight:700;color:${eatenCount===allMeals.length?'var(--green)':'var(--text-dim)'}">${eatenCount}/${allMeals.length} pasti</div>
+    </div>
+    <div class="consumed-grid">
+      ${[['k','kcal',eaten.kcal,tot.kcal],['p','prot.',eaten.p+'g',tot.p+'g'],['g','grassi',eaten.g+'g',tot.g+'g'],['c','carbo',eaten.c+'g',tot.c+'g']].map(([cls,lbl,ev,tv])=>`
+      <div class="consumed-cell">
+        <div class="consumed-val" style="color:var(--${cls==='k'?'green':cls==='p'?'teal':cls==='g'?'amber':'violet'})">${ev}</div>
+        <div class="consumed-sub">${lbl}</div>
+        <div class="consumed-vs">di ${tv}</div>
+      </div>`).join('')}
+    </div>
+  </div>`;
 
   html+=`
   <div class="info-banner">
