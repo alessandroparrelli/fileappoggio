@@ -3,7 +3,7 @@ HTML 200 text/html; charset=utf-8 1702890 final=https://signature.cnaroma.it/
 cache-control: no-cache, must-revalidate
 server: Vercel
 x-vercel-cache: HIT
-x-vercel-id: iad1::qdq9m-1792346915553-2d91483b5217
+x-vercel-id: iad1::5xp47-1792347200396-6e46e535b2c5
 -- tag icona/manifest nella pagina:
 <link rel="apple-touch-icon" sizes="180x180" href="https://signature.cnaroma.it/apple-touch-icon.png?v=5"
 <link rel="icon" type="image/png" sizes="32x32" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABmJLR0QA/wD/AP+gvaeTAAAC5klEQVRYhcWXS0hUYRiGn/940gmn
@@ -74,20 +74,21 @@ x-vercel-id: iad1::qdq9m-1792346915553-2d91483b5217
   ICON 200 image/x-icon 451B redirects=0 https://signature.cnaroma.it/favicon.ico [Mozilla/5.0 ]
      /tmp/i: MS Windows icon resource - 1 icon, 16x16 with PNG image data, 16 x 16, 8-bit/color RGBA, non-interlaced, 32 bits/pixel
 ################ erp
-HTML 200 text/html; charset=utf-8 142656 final=https://erp.cnaroma.it/
+HTML 200 text/html; charset=utf-8 143048 final=https://erp.cnaroma.it/
 cache-control: public, max-age=0, must-revalidate
 server: Vercel
-x-vercel-cache: HIT
-x-vercel-id: iad1::5fc9h-1792346917047-0e910fef8f2a
+x-vercel-cache: MISS
+x-vercel-id: iad1::dcrkw-1792347202101-0b9586880975
 -- tag icona/manifest nella pagina:
-<link rel="apple-touch-icon" sizes="180x180" href="https://raw.githubusercontent.com/alessandroparrelli/fileappoggio/main/icone-app/erp-180.png"
+<link rel="apple-touch-icon" sizes="180x180" href="https://erp.cnaroma.it/apple-touch-icon.png?v=6"
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png"
+<link id="app-manifest" rel="manifest" href="data:application/manifest+json;base64,eyJuYW1lIjogImNuYWZsb3ciLCAic2hvcnRfbmFtZSI6ICJjbmFmbG93IiwgImRlc2NyaXB0aW9uIjogIlNpc3RlbWEgRVJQIHN2aWx1cHBhdG8gZGF
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="CNA Roma">
 -- <head> prime 40 righe:
 <head>
-<link rel="apple-touch-icon" sizes="180x180" href="https://raw.githubusercontent.com/alessandroparrelli/fileappoggio/main/icone-app/erp-180.png">
+<link rel="apple-touch-icon" sizes="180x180" href="https://erp.cnaroma.it/apple-touch-icon.png?v=6">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, viewport-fit=cover">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
@@ -101,7 +102,8 @@ x-vercel-id: iad1::5fc9h-1792346917047-0e910fef8f2a
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="CNA Roma">
 <!-- PWA / icona mobile Android -->
-<script>(function(){var ios=/iPhone|iPad|iPod/.test(navigator.userAgent)||(navigator.platform==="MacIntel"&&navigator.maxTouchPoints>1);if(!ios){var l=document.createElement("link");l.rel="manifest";l
+<link id="app-manifest" rel="manifest" href="data:application/manifest+json;base64,eyJuYW1lIjogImNuYWZsb3ciLCAic2hvcnRfbmFtZSI6ICJjbmFmbG93IiwgImRlc2NyaXB0aW9uIjogIlNpc3RlbWEgRVJQIHN2aWx1cHBhdG8gZGFsb
+<script>(function(){var ios=/iPhone|iPad|iPod/.test(navigator.userAgent)||(navigator.platform==="MacIntel"&&navigator.maxTouchPoints>1);if(!ios){document.getElementById("app-manifest").href="manifest.
 <meta name="theme-color" content="#005CA9">
 <meta name="mobile-web-app-capable" content="yes">
 
@@ -125,43 +127,43 @@ x-vercel-id: iad1::5fc9h-1792346917047-0e910fef8f2a
         <rect x="34" y="4"  width="12" height="12" rx="3" fill="#2563EB" opacity=".5"/>
         <rect x="4"  y="19" width="12" height="12" rx="3" fill="#2563EB" opacity=".2"/>
         <rect x="19" y="19" width="12" height="12" rx="3" fill="#2563EB" opacity=".65"/>
-        <rect x="34" y="19" width="12" height="12" rx="3" fill="#2563EB" opacity=".9"/>
-  ICON 200 image/png 799B redirects=0 https://raw.githubusercontent.com/alessandroparrelli/fileappoggio/main/icone-app/erp-180.png [MobileSafari]
+  ICON 200 image/png 668B redirects=0 https://erp.cnaroma.it/apple-touch-icon.png?v=6 [MobileSafari]
      /tmp/i: PNG image data, 180 x 180, 8-bit/color RGB, non-interlaced
-  ICON 200 image/png 799B redirects=0 https://raw.githubusercontent.com/alessandroparrelli/fileappoggio/main/icone-app/erp-180.png [Mozilla/5.0 ]
+  ICON 200 image/png 668B redirects=0 https://erp.cnaroma.it/apple-touch-icon.png?v=6 [Mozilla/5.0 ]
      /tmp/i: PNG image data, 180 x 180, 8-bit/color RGB, non-interlaced
-  ICON 200 image/png 799B redirects=0 https://erp.cnaroma.it/apple-touch-icon.png [MobileSafari]
+  ICON 200 image/png 668B redirects=0 https://erp.cnaroma.it/apple-touch-icon.png [MobileSafari]
      /tmp/i: PNG image data, 180 x 180, 8-bit/color RGB, non-interlaced
-  ICON 200 image/png 799B redirects=0 https://erp.cnaroma.it/apple-touch-icon.png [Mozilla/5.0 ]
+  ICON 200 image/png 668B redirects=0 https://erp.cnaroma.it/apple-touch-icon.png [Mozilla/5.0 ]
      /tmp/i: PNG image data, 180 x 180, 8-bit/color RGB, non-interlaced
-  ICON 404 text/plain; charset=utf-8 79B redirects=0 https://erp.cnaroma.it/apple-touch-icon-precomposed.png [MobileSafari]
-     /tmp/i: ASCII text
-  ICON 404 text/plain; charset=utf-8 79B redirects=0 https://erp.cnaroma.it/apple-touch-icon-precomposed.png [Mozilla/5.0 ]
-     /tmp/i: ASCII text
-  ICON 404 text/plain; charset=utf-8 79B redirects=0 https://erp.cnaroma.it/apple-touch-icon-180x180.png [MobileSafari]
-     /tmp/i: ASCII text
-  ICON 404 text/plain; charset=utf-8 79B redirects=0 https://erp.cnaroma.it/apple-touch-icon-180x180.png [Mozilla/5.0 ]
-     /tmp/i: ASCII text
+  ICON 200 image/png 668B redirects=0 https://erp.cnaroma.it/apple-touch-icon-precomposed.png [MobileSafari]
+     /tmp/i: PNG image data, 180 x 180, 8-bit/color RGB, non-interlaced
+  ICON 200 image/png 668B redirects=0 https://erp.cnaroma.it/apple-touch-icon-precomposed.png [Mozilla/5.0 ]
+     /tmp/i: PNG image data, 180 x 180, 8-bit/color RGB, non-interlaced
+  ICON 200 image/png 668B redirects=0 https://erp.cnaroma.it/apple-touch-icon-180x180.png [MobileSafari]
+     /tmp/i: PNG image data, 180 x 180, 8-bit/color RGB, non-interlaced
+  ICON 200 image/png 668B redirects=0 https://erp.cnaroma.it/apple-touch-icon-180x180.png [Mozilla/5.0 ]
+     /tmp/i: PNG image data, 180 x 180, 8-bit/color RGB, non-interlaced
   ICON 200 image/x-icon 186B redirects=0 https://erp.cnaroma.it/favicon.ico [MobileSafari]
      /tmp/i: MS Windows icon resource - 1 icon, 16x16 with PNG image data, 16 x 16, 8-bit/color RGB, non-interlaced, 32 bits/pixel
   ICON 200 image/x-icon 186B redirects=0 https://erp.cnaroma.it/favicon.ico [Mozilla/5.0 ]
      /tmp/i: MS Windows icon resource - 1 icon, 16x16 with PNG image data, 16 x 16, 8-bit/color RGB, non-interlaced, 32 bits/pixel
 ################ crm
-HTML 200 text/html; charset=utf-8 981365 final=https://crm.cnaroma.it/
+HTML 200 text/html; charset=utf-8 981765 final=https://crm.cnaroma.it/
 cache-control: public, max-age=0, must-revalidate
 server: Vercel
 x-robots-tag: noindex, nofollow, noarchive, nosnippet, noimageindex
-x-vercel-cache: HIT
-x-vercel-id: iad1::frwpf-1792346918679-9c0acc6a9ec1
+x-vercel-cache: MISS
+x-vercel-id: iad1::mfcrk-1792347203618-2d2736009be4
 -- tag icona/manifest nella pagina:
-<link rel="apple-touch-icon" sizes="180x180" href="https://raw.githubusercontent.com/alessandroparrelli/fileappoggio/main/icone-app/crm-180.png"
+<link rel="apple-touch-icon" sizes="180x180" href="https://crm.cnaroma.it/apple-touch-icon.png?v=6"
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png"
+<link id="app-manifest" rel="manifest" href="data:application/manifest+json;base64,eyJuYW1lIjogIkNSTSBDTkEgUm9tYSIsICJzaG9ydF9uYW1lIjogIkNSTSBDTkEiLCAiZGVzY3JpcHRpb24iOiAiQ29uc3VsdGF6aW9uZSBpbXByZXN
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="CRM CNA">
 -- <head> prime 40 righe:
 <head>
-<link rel="apple-touch-icon" sizes="180x180" href="https://raw.githubusercontent.com/alessandroparrelli/fileappoggio/main/icone-app/crm-180.png">
+<link rel="apple-touch-icon" sizes="180x180" href="https://crm.cnaroma.it/apple-touch-icon.png?v=6">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
@@ -175,7 +177,8 @@ x-vercel-id: iad1::frwpf-1792346918679-9c0acc6a9ec1
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="CRM CNA">
 <!-- PWA / icona mobile Android -->
-<script>(function(){var ios=/iPhone|iPad|iPod/.test(navigator.userAgent)||(navigator.platform==="MacIntel"&&navigator.maxTouchPoints>1);if(!ios){var l=document.createElement("link");l.rel="manifest";l
+<link id="app-manifest" rel="manifest" href="data:application/manifest+json;base64,eyJuYW1lIjogIkNSTSBDTkEgUm9tYSIsICJzaG9ydF9uYW1lIjogIkNSTSBDTkEiLCAiZGVzY3JpcHRpb24iOiAiQ29uc3VsdGF6aW9uZSBpbXByZXNlI
+<script>(function(){var ios=/iPhone|iPad|iPod/.test(navigator.userAgent)||(navigator.platform==="MacIntel"&&navigator.maxTouchPoints>1);if(!ios){document.getElementById("app-manifest").href="manifest.
 <meta name="theme-color" content="#005ca9">
 <meta name="mobile-web-app-capable" content="yes">
 <script>
@@ -199,43 +202,43 @@ x-vercel-id: iad1::frwpf-1792346918679-9c0acc6a9ec1
 </script>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  ICON 200 image/png 12880B redirects=0 https://raw.githubusercontent.com/alessandroparrelli/fileappoggio/main/icone-app/crm-180.png [MobileSafari]
-     /tmp/i: PNG image data, 180 x 180, 8-bit/color RGBA, non-interlaced
-  ICON 200 image/png 12880B redirects=0 https://raw.githubusercontent.com/alessandroparrelli/fileappoggio/main/icone-app/crm-180.png [Mozilla/5.0 ]
-     /tmp/i: PNG image data, 180 x 180, 8-bit/color RGBA, non-interlaced
-  ICON 200 image/png 12880B redirects=0 https://crm.cnaroma.it/apple-touch-icon.png [MobileSafari]
-     /tmp/i: PNG image data, 180 x 180, 8-bit/color RGBA, non-interlaced
-  ICON 200 image/png 12880B redirects=0 https://crm.cnaroma.it/apple-touch-icon.png [Mozilla/5.0 ]
-     /tmp/i: PNG image data, 180 x 180, 8-bit/color RGBA, non-interlaced
-  ICON 404 text/plain; charset=utf-8 79B redirects=0 https://crm.cnaroma.it/apple-touch-icon-precomposed.png [MobileSafari]
-     /tmp/i: ASCII text
-  ICON 404 text/plain; charset=utf-8 79B redirects=0 https://crm.cnaroma.it/apple-touch-icon-precomposed.png [Mozilla/5.0 ]
-     /tmp/i: ASCII text
-  ICON 404 text/plain; charset=utf-8 79B redirects=0 https://crm.cnaroma.it/apple-touch-icon-180x180.png [MobileSafari]
-     /tmp/i: ASCII text
-  ICON 404 text/plain; charset=utf-8 79B redirects=0 https://crm.cnaroma.it/apple-touch-icon-180x180.png [Mozilla/5.0 ]
-     /tmp/i: ASCII text
+  ICON 200 image/png 10601B redirects=0 https://crm.cnaroma.it/apple-touch-icon.png?v=6 [MobileSafari]
+     /tmp/i: PNG image data, 180 x 180, 8-bit/color RGB, non-interlaced
+  ICON 200 image/png 10601B redirects=0 https://crm.cnaroma.it/apple-touch-icon.png?v=6 [Mozilla/5.0 ]
+     /tmp/i: PNG image data, 180 x 180, 8-bit/color RGB, non-interlaced
+  ICON 200 image/png 10601B redirects=0 https://crm.cnaroma.it/apple-touch-icon.png [MobileSafari]
+     /tmp/i: PNG image data, 180 x 180, 8-bit/color RGB, non-interlaced
+  ICON 200 image/png 10601B redirects=0 https://crm.cnaroma.it/apple-touch-icon.png [Mozilla/5.0 ]
+     /tmp/i: PNG image data, 180 x 180, 8-bit/color RGB, non-interlaced
+  ICON 200 image/png 10601B redirects=0 https://crm.cnaroma.it/apple-touch-icon-precomposed.png [MobileSafari]
+     /tmp/i: PNG image data, 180 x 180, 8-bit/color RGB, non-interlaced
+  ICON 200 image/png 10601B redirects=0 https://crm.cnaroma.it/apple-touch-icon-precomposed.png [Mozilla/5.0 ]
+     /tmp/i: PNG image data, 180 x 180, 8-bit/color RGB, non-interlaced
+  ICON 200 image/png 10601B redirects=0 https://crm.cnaroma.it/apple-touch-icon-180x180.png [MobileSafari]
+     /tmp/i: PNG image data, 180 x 180, 8-bit/color RGB, non-interlaced
+  ICON 200 image/png 10601B redirects=0 https://crm.cnaroma.it/apple-touch-icon-180x180.png [Mozilla/5.0 ]
+     /tmp/i: PNG image data, 180 x 180, 8-bit/color RGB, non-interlaced
   ICON 200 image/vnd.microsoft.icon 7342B redirects=0 https://crm.cnaroma.it/favicon.ico [MobileSafari]
      /tmp/i: MS Windows icon resource - 3 icons, 16x16 with PNG image data, 16 x 16, 8-bit/color RGBA, non-interlaced, 32 bits/pixel, 32x32 with \012- PNG image data, 32 x 32, 8-bit/color RGBA, non-interlaced, 32 bits/pixel
   ICON 200 image/vnd.microsoft.icon 7342B redirects=0 https://crm.cnaroma.it/favicon.ico [Mozilla/5.0 ]
      /tmp/i: MS Windows icon resource - 3 icons, 16x16 with PNG image data, 16 x 16, 8-bit/color RGBA, non-interlaced, 32 bits/pixel, 32x32 with \012- PNG image data, 32 x 32, 8-bit/color RGBA, non-interlaced, 32 bits/pixel
 ################ eventi
-HTML 200 text/html; charset=utf-8 3090 final=https://eventi.cnaroma.it/
+HTML 200 text/html; charset=utf-8 3466 final=https://eventi.cnaroma.it/
 cache-control: no-cache, no-store, must-revalidate
 server: Vercel
-x-vercel-cache: HIT
-x-vercel-id: iad1::pdv8x-1792346920370-0424f7a448ba
+x-vercel-cache: MISS
+x-vercel-id: iad1::pknr8-1792347205374-6d60851d9f3d
 -- tag icona/manifest nella pagina:
-<link rel="apple-touch-icon" sizes="180x180" href="https://raw.githubusercontent.com/alessandroparrelli/fileappoggio/main/icone-app/eventi-180.png"
+<link rel="apple-touch-icon" sizes="180x180" href="https://eventi.cnaroma.it/apple-touch-icon.png?v=6"
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" /
+<link id="app-manifest" rel="manifest" href="data:application/manifest+json;base64,eyJuYW1lIjogImNuYWV2ZW50aSIsICJzaG9ydF9uYW1lIjogImNuYWV2ZW50aSIsICJkZXNjcmlwdGlvbiI6ICJQb3J0YWxlIGRpIGdlc3Rpb25lIGV
 <meta name="application-name" content="cnaeventi" />
 <meta name="apple-mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-status-bar-style" content="default" />
 <meta name="apple-mobile-web-app-title" content="cnaeventi" />
 -- <head> prime 40 righe:
   <head>
-<link rel="apple-touch-icon" sizes="180x180" href="https://raw.githubusercontent.com/alessandroparrelli/fileappoggio/main/icone-app/eventi-180.png">
+<link rel="apple-touch-icon" sizes="180x180" href="https://eventi.cnaroma.it/apple-touch-icon.png?v=6">
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, viewport-fit=cover" />
 
@@ -253,7 +256,8 @@ x-vercel-id: iad1::pdv8x-1792346920370-0424f7a448ba
     <meta name="apple-mobile-web-app-title" content="cnaeventi" />
 
     <!-- PWA manifest (Android + Chrome) -->
-    <script>(function(){var ios=/iPhone|iPad|iPod/.test(navigator.userAgent)||(navigator.platform==="MacIntel"&&navigator.maxTouchPoints>1);if(!ios){var l=document.createElement("link");l.rel="manifes
+    <link id="app-manifest" rel="manifest" href="data:application/manifest+json;base64,eyJuYW1lIjogImNuYWV2ZW50aSIsICJzaG9ydF9uYW1lIjogImNuYWV2ZW50aSIsICJkZXNjcmlwdGlvbiI6ICJQb3J0YWxlIGRpIGdlc3Rpb25lI
+<script>(function(){var ios=/iPhone|iPad|iPod/.test(navigator.userAgent)||(navigator.platform==="MacIntel"&&navigator.maxTouchPoints>1);if(!ios){document.getElementById("app-manifest").href="/manifest
     <meta name="theme-color" content="#003DA5" />
 
     <!-- Windows tile -->
@@ -268,43 +272,44 @@ x-vercel-id: iad1::pdv8x-1792346920370-0424f7a448ba
     <link rel="modulepreload" crossorigin href="/assets/chunk-aKtaBQYM.js">
     <link rel="stylesheet" crossorigin href="/assets/index-ypYZUDpB.css">
   </head>
-  ICON 200 image/png 4274B redirects=0 https://raw.githubusercontent.com/alessandroparrelli/fileappoggio/main/icone-app/eventi-180.png [MobileSafari]
+  ICON 200 image/png 3905B redirects=0 https://eventi.cnaroma.it/apple-touch-icon.png?v=6 [MobileSafari]
      /tmp/i: PNG image data, 180 x 180, 8-bit/color RGB, non-interlaced
-  ICON 200 image/png 4274B redirects=0 https://raw.githubusercontent.com/alessandroparrelli/fileappoggio/main/icone-app/eventi-180.png [Mozilla/5.0 ]
+  ICON 200 image/png 3905B redirects=0 https://eventi.cnaroma.it/apple-touch-icon.png?v=6 [Mozilla/5.0 ]
      /tmp/i: PNG image data, 180 x 180, 8-bit/color RGB, non-interlaced
-  ICON 200 image/png 4274B redirects=0 https://eventi.cnaroma.it/apple-touch-icon.png [MobileSafari]
+  ICON 200 image/png 3905B redirects=0 https://eventi.cnaroma.it/apple-touch-icon.png [MobileSafari]
      /tmp/i: PNG image data, 180 x 180, 8-bit/color RGB, non-interlaced
-  ICON 200 image/png 4274B redirects=0 https://eventi.cnaroma.it/apple-touch-icon.png [Mozilla/5.0 ]
+  ICON 200 image/png 3905B redirects=0 https://eventi.cnaroma.it/apple-touch-icon.png [Mozilla/5.0 ]
      /tmp/i: PNG image data, 180 x 180, 8-bit/color RGB, non-interlaced
-  ICON 200 text/html; charset=utf-8 3090B redirects=0 https://eventi.cnaroma.it/apple-touch-icon-precomposed.png [MobileSafari]
-     /tmp/i: HTML document, ASCII text
-  ICON 200 text/html; charset=utf-8 3090B redirects=0 https://eventi.cnaroma.it/apple-touch-icon-precomposed.png [Mozilla/5.0 ]
-     /tmp/i: HTML document, ASCII text
-  ICON 200 text/html; charset=utf-8 3090B redirects=0 https://eventi.cnaroma.it/apple-touch-icon-180x180.png [MobileSafari]
-     /tmp/i: HTML document, ASCII text
-  ICON 200 text/html; charset=utf-8 3090B redirects=0 https://eventi.cnaroma.it/apple-touch-icon-180x180.png [Mozilla/5.0 ]
-     /tmp/i: HTML document, ASCII text
+  ICON 200 image/png 3905B redirects=0 https://eventi.cnaroma.it/apple-touch-icon-precomposed.png [MobileSafari]
+     /tmp/i: PNG image data, 180 x 180, 8-bit/color RGB, non-interlaced
+  ICON 200 image/png 3905B redirects=0 https://eventi.cnaroma.it/apple-touch-icon-precomposed.png [Mozilla/5.0 ]
+     /tmp/i: PNG image data, 180 x 180, 8-bit/color RGB, non-interlaced
+  ICON 200 image/png 3905B redirects=0 https://eventi.cnaroma.it/apple-touch-icon-180x180.png [MobileSafari]
+     /tmp/i: PNG image data, 180 x 180, 8-bit/color RGB, non-interlaced
+  ICON 200 image/png 3905B redirects=0 https://eventi.cnaroma.it/apple-touch-icon-180x180.png [Mozilla/5.0 ]
+     /tmp/i: PNG image data, 180 x 180, 8-bit/color RGB, non-interlaced
   ICON 200 image/vnd.microsoft.icon 483B redirects=0 https://eventi.cnaroma.it/favicon.ico [MobileSafari]
      /tmp/i: MS Windows icon resource - 1 icon, 16x16 with PNG image data, 16 x 16, 8-bit/color RGBA, non-interlaced, 32 bits/pixel
   ICON 200 image/vnd.microsoft.icon 483B redirects=0 https://eventi.cnaroma.it/favicon.ico [Mozilla/5.0 ]
      /tmp/i: MS Windows icon resource - 1 icon, 16x16 with PNG image data, 16 x 16, 8-bit/color RGBA, non-interlaced, 32 bits/pixel
 ################ intranet
-HTML 200 text/html; charset=utf-8 418037 final=https://intranet.cnaroma.it/
+HTML 200 text/html; charset=utf-8 418429 final=https://intranet.cnaroma.it/
 cache-control: no-cache
 server: Vercel
-x-vercel-cache: HIT
-x-vercel-id: iad1::gd6xf-1792346921810-f974c9443786
+x-vercel-cache: MISS
+x-vercel-id: iad1::7rr5p-1792347207304-3dc9d824a0e6
 -- tag icona/manifest nella pagina:
-<link rel="apple-touch-icon" sizes="180x180" href="https://raw.githubusercontent.com/alessandroparrelli/fileappoggio/main/icone-app/intranet-180.png"
+<link rel="apple-touch-icon" sizes="180x180" href="https://intranet.cnaroma.it/apple-touch-icon.png?v=6"
+<link id="app-manifest" rel="manifest" href="data:application/manifest+json;base64,eyJuYW1lIjogIkludHJhbmV0IENOQSBSb21hIiwgInNob3J0X25hbWUiOiAiSW50cmFuZXQgQ05BIiwgImRlc2NyaXB0aW9uIjogIlBvcnRhbGUgaW5
 <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32.png"
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Intranet CNA">
 -- <head> prime 40 righe:
-<!DOCTYPE html> <html lang="it"> <head> <link rel="apple-touch-icon" sizes="180x180" href="https://raw.githubusercontent.com/alessandroparrelli/fileappoggio/main/icone-app/intranet-180.png"> <meta cha
-  ICON 200 image/png 19034B redirects=0 https://raw.githubusercontent.com/alessandroparrelli/fileappoggio/main/icone-app/intranet-180.png [MobileSafari]
+<!DOCTYPE html> <html lang="it"> <head> <link rel="apple-touch-icon" sizes="180x180" href="https://intranet.cnaroma.it/apple-touch-icon.png?v=6"> <meta charset="UTF-8"> <meta name="viewport" content="
+  ICON 200 image/png 19034B redirects=0 https://intranet.cnaroma.it/apple-touch-icon.png?v=6 [MobileSafari]
      /tmp/i: PNG image data, 180 x 180, 8-bit/color RGB, non-interlaced
-  ICON 200 image/png 19034B redirects=0 https://raw.githubusercontent.com/alessandroparrelli/fileappoggio/main/icone-app/intranet-180.png [Mozilla/5.0 ]
+  ICON 200 image/png 19034B redirects=0 https://intranet.cnaroma.it/apple-touch-icon.png?v=6 [Mozilla/5.0 ]
      /tmp/i: PNG image data, 180 x 180, 8-bit/color RGB, non-interlaced
   ICON 200 image/png 19034B redirects=0 https://intranet.cnaroma.it/apple-touch-icon.png [MobileSafari]
      /tmp/i: PNG image data, 180 x 180, 8-bit/color RGB, non-interlaced
@@ -314,10 +319,10 @@ x-vercel-id: iad1::gd6xf-1792346921810-f974c9443786
      /tmp/i: PNG image data, 180 x 180, 8-bit/color RGB, non-interlaced
   ICON 200 image/png 19034B redirects=0 https://intranet.cnaroma.it/apple-touch-icon-precomposed.png [Mozilla/5.0 ]
      /tmp/i: PNG image data, 180 x 180, 8-bit/color RGB, non-interlaced
-  ICON 404 text/plain; charset=utf-8 79B redirects=0 https://intranet.cnaroma.it/apple-touch-icon-180x180.png [MobileSafari]
-     /tmp/i: ASCII text
-  ICON 404 text/plain; charset=utf-8 79B redirects=0 https://intranet.cnaroma.it/apple-touch-icon-180x180.png [Mozilla/5.0 ]
-     /tmp/i: ASCII text
+  ICON 200 image/png 19034B redirects=0 https://intranet.cnaroma.it/apple-touch-icon-180x180.png [MobileSafari]
+     /tmp/i: PNG image data, 180 x 180, 8-bit/color RGB, non-interlaced
+  ICON 200 image/png 19034B redirects=0 https://intranet.cnaroma.it/apple-touch-icon-180x180.png [Mozilla/5.0 ]
+     /tmp/i: PNG image data, 180 x 180, 8-bit/color RGB, non-interlaced
   ICON 200 image/vnd.microsoft.icon 18684B redirects=0 https://intranet.cnaroma.it/favicon.ico [MobileSafari]
      /tmp/i: MS Windows icon resource - 1 icon, 256x256 with PNG image data, 256 x 256, 8-bit/color RGBA, non-interlaced, 32 bits/pixel
   ICON 200 image/vnd.microsoft.icon 18684B redirects=0 https://intranet.cnaroma.it/favicon.ico [Mozilla/5.0 ]
