@@ -1,0 +1,69 @@
+## cnaroma.it
+  CNAME: 
+  A: 116.203.55.106 
+  AAAA: aaaa:2a01:4f8:1c1e:9fb4::1 
+  CAA: 
+  HTTPS: 
+## www.cnaroma.it
+  CNAME: cnaroma.it. 
+  A: cnaroma.it. 116.203.55.106 
+  AAAA: cnaroma.it. aaaa:2a01:4f8:1c1e:9fb4::1 
+  CAA: cnaroma.it. 
+  HTTPS: cnaroma.it. 
+## signature.cnaroma.it
+  CNAME: 5d4fd10090b49ab0.vercel-dns-017.com. 
+  A: 5d4fd10090b49ab0.vercel-dns-017.com. 216.198.79.65 64.29.17.65 
+  AAAA: 5d4fd10090b49ab0.vercel-dns-017.com. 
+  CAA: 5d4fd10090b49ab0.vercel-dns-017.com. 0 issue "globalsign.com" 0 issue "letsencrypt.org" 0 issue "pki.goog" 0 issue "sectigo.com" 
+  HTTPS: 5d4fd10090b49ab0.vercel-dns-017.com. 
+## erp.cnaroma.it
+  CNAME: 362c4b8826ff914c.vercel-dns-017.com. 
+  A: 362c4b8826ff914c.vercel-dns-017.com. 64.29.17.1 216.198.79.1 
+  AAAA: 362c4b8826ff914c.vercel-dns-017.com. 
+  CAA: 362c4b8826ff914c.vercel-dns-017.com. 0 issue "globalsign.com" 0 issue "letsencrypt.org" 0 issue "pki.goog" 0 issue "sectigo.com" 
+  HTTPS: 362c4b8826ff914c.vercel-dns-017.com. 
+## crm.cnaroma.it
+  CNAME: e77494df81f3a867.vercel-dns-017.com. 
+  A: e77494df81f3a867.vercel-dns-017.com. 64.29.17.1 216.198.79.1 
+  AAAA: e77494df81f3a867.vercel-dns-017.com. 
+  CAA: e77494df81f3a867.vercel-dns-017.com. 0 issue "globalsign.com" 0 issue "letsencrypt.org" 0 issue "pki.goog" 0 issue "sectigo.com" 
+  HTTPS: e77494df81f3a867.vercel-dns-017.com. 
+## eventi.cnaroma.it
+  CNAME: 852353be1c2e06b0.vercel-dns-017.com. 
+  A: 852353be1c2e06b0.vercel-dns-017.com. 216.198.79.65 64.29.17.65 
+  AAAA: 852353be1c2e06b0.vercel-dns-017.com. 
+  CAA: 852353be1c2e06b0.vercel-dns-017.com. 0 issue "globalsign.com" 0 issue "letsencrypt.org" 0 issue "pki.goog" 0 issue "sectigo.com" 
+  HTTPS: 852353be1c2e06b0.vercel-dns-017.com. 
+## intranet.cnaroma.it
+  CNAME: b9373a4d0b9f5176.vercel-dns-017.com. 
+  A: b9373a4d0b9f5176.vercel-dns-017.com. 216.198.79.1 64.29.17.1 
+  AAAA: b9373a4d0b9f5176.vercel-dns-017.com. 
+  CAA: b9373a4d0b9f5176.vercel-dns-017.com. 0 issue "globalsign.com" 0 issue "letsencrypt.org" 0 issue "pki.goog" 0 issue "sectigo.com" 
+  HTTPS: b9373a4d0b9f5176.vercel-dns-017.com. 
+## NS
+dns.technorail.com.
+dns2.technorail.com.
+dns3.arubadns.net.
+dns4.arubadns.cz.
+## curl IPv6 signature
+curl: (6) Could not resolve host: signature.cnaroma.it
+000 
+IPv6 FAIL
+## curl IPv4 signature
+200 216.198.79.65
+## cert signature
+subject=CN = signature.cnaroma.it
+issuer=C = AT, O = ZeroSSL GmbH, CN = ZeroSSL RSA DV SSL CA 2
+notBefore=Oct 15 00:00:00 2026 GMT
+notAfter=Jan 13 23:59:59 2027 GMT
+## curl IPv6 erp
+curl: (6) Could not resolve host: erp.cnaroma.it
+000 
+IPv6 FAIL
+## curl IPv4 erp
+200 216.198.79.1
+## cert erp
+subject=CN = erp.cnaroma.it
+issuer=C = US, O = Let's Encrypt, CN = YR1
+notBefore=Oct 15 14:36:22 2026 GMT
+notAfter=Jan 13 14:36:21 2027 GMT
