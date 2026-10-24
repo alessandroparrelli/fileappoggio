@@ -162,6 +162,40 @@ ul.fx li::before{content:"";width:7px;height:7px;border-radius:50%;background:cu
 .ph-n{margin-left:auto;font-family:var(--mono);font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums}
 @media (max-width:0px){.ph-logo{width:104px;height:34px}.ph-n{display:none}.ph-t{white-space:normal;font-size:14px}}
 
+
+/* Testata: titolo presentazione a destra, numero pagina in basso a destra */
+.ph-r{margin-left:auto;font-family:var(--display);font-weight:600;font-size:clamp(13px,1vw,16px);color:var(--muted);letter-spacing:-.01em;white-space:nowrap}
+.ph-r::before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--cna);margin-right:10px;vertical-align:1px}
+#deck .pg-n{position:absolute;right:56px;bottom:22px;font-family:var(--mono);font-size:14px;color:var(--muted);font-variant-numeric:tabular-nums;z-index:2}
+.hint{right:auto;left:18px}
+
+/* ═══ Animazioni d'ingresso ═══ */
+@media (prefers-reduced-motion:no-preference){
+  #deck .slide.in .eye,#deck .slide.in h1,#deck .slide.in h2,#deck .slide.in .lead,#deck .slide.in ul.fx li{animation:txtUp .6s cubic-bezier(.2,.7,.2,1) both}
+  #deck .slide.in .eye{animation-delay:.05s}
+  #deck .slide.in h1,#deck .slide.in h2{animation-delay:.12s}
+  #deck .slide.in .lead{animation-delay:.22s}
+  #deck .slide.in ul.fx li:nth-child(1){animation-delay:.28s}#deck .slide.in ul.fx li:nth-child(2){animation-delay:.33s}#deck .slide.in ul.fx li:nth-child(3){animation-delay:.38s}#deck .slide.in ul.fx li:nth-child(4){animation-delay:.43s}#deck .slide.in ul.fx li:nth-child(5){animation-delay:.48s}#deck .slide.in ul.fx li:nth-child(6){animation-delay:.53s}#deck .slide.in ul.fx li:nth-child(7){animation-delay:.58s}#deck .slide.in ul.fx li:nth-child(n+8){animation-delay:.63s}
+  @keyframes txtUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+  #deck .slide.in .wrap>.t:not(.head):not(.intro):not(.arch-intro):not(.case-hero){animation:cardIn .7s cubic-bezier(.2,.8,.2,1) both}
+  #deck .slide.in .wrap>.t:nth-child(1){animation-delay:.08s}#deck .slide.in .wrap>.t:nth-child(2){animation-delay:.16s}#deck .slide.in .wrap>.t:nth-child(3){animation-delay:.24s}#deck .slide.in .wrap>.t:nth-child(4){animation-delay:.32s}#deck .slide.in .wrap>.t:nth-child(5){animation-delay:.40s}#deck .slide.in .wrap>.t:nth-child(6){animation-delay:.48s}#deck .slide.in .wrap>.t:nth-child(7){animation-delay:.56s}#deck .slide.in .wrap>.t:nth-child(8){animation-delay:.64s}#deck .slide.in .wrap>.t:nth-child(n+9){animation-delay:.72s}
+  @keyframes cardIn{from{opacity:0;transform:translateY(26px) scale(.96)}to{opacity:1;transform:none}}
+  #deck .slide.in .ico{animation:icoPop .55s cubic-bezier(.3,1.6,.5,1) both;animation-delay:.45s}
+  @keyframes icoPop{from{transform:scale(.4) rotate(-12deg);opacity:0}to{transform:none;opacity:1}}
+  #deck .slide.in .bar-r i{animation:barGrow 1.1s cubic-bezier(.2,.8,.2,1) both;animation-delay:.5s;transform-origin:left}
+  @keyframes barGrow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+  #deck .slide.in .vb i{animation:colGrow 1s cubic-bezier(.2,.8,.2,1) both;transform-origin:bottom}
+  #deck .slide.in .vb:nth-child(1) i{animation-delay:.45s}#deck .slide.in .vb:nth-child(2) i{animation-delay:.55s}#deck .slide.in .vb:nth-child(3) i{animation-delay:.65s}#deck .slide.in .vb:nth-child(4) i{animation-delay:.75s}
+  @keyframes colGrow{from{transform:scaleY(0)}to{transform:scaleY(1)}}
+  #deck .slide.in .split>div{animation:barGrow 1.1s cubic-bezier(.2,.8,.2,1) both;animation-delay:.5s;transform-origin:left}
+  #deck .slide.in polyline,#deck .slide.in .flow path[marker-end]{stroke-dasharray:2000;animation:draw 1.8s ease-out both;animation-delay:.4s}
+  @keyframes draw{from{stroke-dashoffset:2000}to{stroke-dashoffset:0}}
+  #deck .slide.in .fs{animation:cardIn .6s cubic-bezier(.2,.8,.2,1) both}
+  #deck .slide.in .fs:nth-child(1){animation-delay:.3s}#deck .slide.in .fs:nth-child(2){animation-delay:.45s}#deck .slide.in .fs:nth-child(3){animation-delay:.6s}#deck .slide.in .fs:nth-child(4){animation-delay:.75s}#deck .slide.in .fs:nth-child(5){animation-delay:.9s}
+  #deck .t:not(.head):not(.intro){transition:transform .25s,box-shadow .25s}
+  #deck .t:not(.head):not(.intro):not(.arch-intro):not(.case-hero):hover{transform:translateY(-4px);box-shadow:0 18px 40px -22px rgba(15,26,58,.45)}
+}
+
 /* nav */
 #nav{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(14px + env(safe-area-inset-bottom,0px));display:flex;align-items:center;gap:10px;background:rgba(255,255,255,.92);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid var(--line);border-radius:999px;padding:6px 8px;z-index:20;box-shadow:0 10px 30px -14px rgba(15,26,58,.35);max-width:calc(100% - 32px)}
 #nav button{border:0;background:transparent;color:var(--ink);width:34px;height:34px;border-radius:50%;display:grid;place-items:center;cursor:pointer;font:inherit}
@@ -237,7 +271,7 @@ body.idle .hint,body.fs .hint{opacity:0}
 
 <!-- 1 COVER -->
 <section class="slide" id="inizio" aria-label="Copertina">
-  <header class="ph"><span class="ph-logo" role="img" aria-label="CNA Roma"></span><span class="ph-sep"></span><span class="ph-t">Ecosistema digitale CNA Roma</span><span class="ph-n">01 / 22</span></header>
+  <header class="ph"><span class="ph-logo" role="img" aria-label="CNA Roma"></span><span class="ph-sep"></span><span class="ph-t">Ecosistema digitale CNA Roma</span><span class="ph-r">Ecosistema CNA di Roma</span></header><span class="pg-n">01 / 22</span>
   <div class="wrap g-cover">
     <div class="t blue on-dark hero">
       <svg class="mark" viewBox="0 0 100 100" style="color:#fff;opacity:.2"><use href="#cnamark"/></svg>
@@ -270,7 +304,7 @@ body.idle .hint,body.fs .hint{opacity:0}
 
 <!-- 2 PROBLEMI -->
 <section class="slide" id="problemi" aria-label="Il punto di partenza">
-  <header class="ph"><span class="ph-logo" role="img" aria-label="CNA Roma"></span><span class="ph-sep"></span><span class="ph-t">Il punto di partenza</span><span class="ph-n">02 / 22</span></header>
+  <header class="ph"><span class="ph-logo" role="img" aria-label="CNA Roma"></span><span class="ph-sep"></span><span class="ph-t">Il punto di partenza</span><span class="ph-r">Ecosistema CNA di Roma</span></header><span class="pg-n">02 / 22</span>
   <div class="wrap g-problems">
     <div class="t paper on-light head">
       <span class="eye" style="color:var(--coral)"><i></i>Il punto di partenza</span>
@@ -293,7 +327,7 @@ body.idle .hint,body.fs .hint{opacity:0}
 
 <!-- 3 NECESSITA -->
 <section class="slide" id="necessita" aria-label="Le necessità">
-  <header class="ph"><span class="ph-logo" role="img" aria-label="CNA Roma"></span><span class="ph-sep"></span><span class="ph-t">Le necessità di sviluppo</span><span class="ph-n">03 / 22</span></header>
+  <header class="ph"><span class="ph-logo" role="img" aria-label="CNA Roma"></span><span class="ph-sep"></span><span class="ph-t">Le necessità di sviluppo</span><span class="ph-r">Ecosistema CNA di Roma</span></header><span class="pg-n">03 / 22</span>
   <div class="wrap g-problems">
     <div class="t blue on-dark head">
       <svg class="mark" viewBox="0 0 100 100" style="color:#fff"><use href="#cnamark"/></svg>
@@ -312,7 +346,7 @@ body.idle .hint,body.fs .hint{opacity:0}
 
 <!-- 4 INTRANET -->
 <section class="slide" id="intranet" aria-label="Intranet">
-  <header class="ph"><span class="ph-logo" role="img" aria-label="CNA Roma"></span><span class="ph-sep"></span><span class="ph-t">Intranet · Portale dipendenti</span><span class="ph-n">04 / 22</span></header>
+  <header class="ph"><span class="ph-logo" role="img" aria-label="CNA Roma"></span><span class="ph-sep"></span><span class="ph-t">Intranet · Portale dipendenti</span><span class="ph-r">Ecosistema CNA di Roma</span></header><span class="pg-n">04 / 22</span>
   <div class="wrap g-app">
     <div class="t sun on-light intro">
       <span class="eye"><i></i>App 1 · Intranet</span>
@@ -354,7 +388,7 @@ body.idle .hint,body.fs .hint{opacity:0}
 
 <!-- 5 CRM A -->
 <section class="slide" id="crm" aria-label="CRM, imprese e trattative">
-  <header class="ph"><span class="ph-logo" role="img" aria-label="CNA Roma"></span><span class="ph-sep"></span><span class="ph-t">CRM · Imprese e trattative</span><span class="ph-n">05 / 22</span></header>
+  <header class="ph"><span class="ph-logo" role="img" aria-label="CNA Roma"></span><span class="ph-sep"></span><span class="ph-t">CRM · Imprese e trattative</span><span class="ph-r">Ecosistema CNA di Roma</span></header><span class="pg-n">05 / 22</span>
   <div class="wrap g-app">
     <div class="t coral on-dark intro">
       <span class="eye"><i></i>App 2 · CRM · 1 di 2</span>
@@ -398,7 +432,7 @@ body.idle .hint,body.fs .hint{opacity:0}
 
 <!-- 6 CRM B -->
 <section class="slide" id="crm-azioni" aria-label="CRM, attività e automazioni">
-  <header class="ph"><span class="ph-logo" role="img" aria-label="CNA Roma"></span><span class="ph-sep"></span><span class="ph-t">CRM · Attività e automazioni</span><span class="ph-n">06 / 22</span></header>
+  <header class="ph"><span class="ph-logo" role="img" aria-label="CNA Roma"></span><span class="ph-sep"></span><span class="ph-t">CRM · Attività e automazioni</span><span class="ph-r">Ecosistema CNA di Roma</span></header><span class="pg-n">06 / 22</span>
   <div class="wrap g-feat">
     <div class="t paper on-light head">
       <div style="display:grid;gap:10px"><span class="eye" style="color:var(--coral)"><i></i>App 2 · CRM · 2 di 2</span><h2>Nessuna trattativa resta ferma.</h2></div>
@@ -415,7 +449,7 @@ body.idle .hint,body.fs .hint{opacity:0}
 
 <!-- 7 SIGNATURE -->
 <section class="slide" id="signature" aria-label="Signature">
-  <header class="ph"><span class="ph-logo" role="img" aria-label="CNA Roma"></span><span class="ph-sep"></span><span class="ph-t">Signature · Contratti di adesione</span><span class="ph-n">07 / 22</span></header>
+  <header class="ph"><span class="ph-logo" role="img" aria-label="CNA Roma"></span><span class="ph-sep"></span><span class="ph-t">Signature · Contratti di adesione</span><span class="ph-r">Ecosistema CNA di Roma</span></header><span class="pg-n">07 / 22</span>
   <div class="wrap g-app">
     <div class="t mint on-light intro">
       <span class="eye"><i></i>App 3 · Signature</span>
@@ -461,7 +495,7 @@ body.idle .hint,body.fs .hint{opacity:0}
 
 <!-- SIGNATURE DETTAGLIO -->
 <section class="slide" id="signature-firma" aria-label="Signature, firma sicura">
-  <header class="ph"><span class="ph-logo" role="img" aria-label="CNA Roma"></span><span class="ph-sep"></span><span class="ph-t">Signature · Firma sicura</span><span class="ph-n">08 / 22</span></header>
+  <header class="ph"><span class="ph-logo" role="img" aria-label="CNA Roma"></span><span class="ph-sep"></span><span class="ph-t">Signature · Firma sicura</span><span class="ph-r">Ecosistema CNA di Roma</span></header><span class="pg-n">08 / 22</span>
   <div class="wrap g-feat">
     <div class="t paper on-light head">
       <div style="display:grid;gap:10px"><span class="eye" style="color:#0E9F6E"><i></i>Signature · nel dettaglio</span><h2>Una firma che vale.</h2></div>
@@ -477,7 +511,7 @@ body.idle .hint,body.fs .hint{opacity:0}
 </section>
 <!-- 8 CNAFLOW A -->
 <section class="slide" id="cnaflow" aria-label="cnaflow, tesseramento">
-  <header class="ph"><span class="ph-logo" role="img" aria-label="CNA Roma"></span><span class="ph-sep"></span><span class="ph-t">cnaflow · ERP del tesseramento</span><span class="ph-n">09 / 22</span></header>
+  <header class="ph"><span class="ph-logo" role="img" aria-label="CNA Roma"></span><span class="ph-sep"></span><span class="ph-t">cnaflow · ERP del tesseramento</span><span class="ph-r">Ecosistema CNA di Roma</span></header><span class="pg-n">09 / 22</span>
   <div class="wrap g-app">
     <div class="t night on-dark intro">
       <span class="eye"><i></i>App 4 · cnaflow · 1 di 2</span>
@@ -525,7 +559,7 @@ body.idle .hint,body.fs .hint{opacity:0}
 
 <!-- 9 CNAFLOW B -->
 <section class="slide" id="cnaflow-analisi" aria-label="cnaflow, analisi">
-  <header class="ph"><span class="ph-logo" role="img" aria-label="CNA Roma"></span><span class="ph-sep"></span><span class="ph-t">cnaflow · Analisi e report</span><span class="ph-n">10 / 22</span></header>
+  <header class="ph"><span class="ph-logo" role="img" aria-label="CNA Roma"></span><span class="ph-sep"></span><span class="ph-t">cnaflow · Analisi e report</span><span class="ph-r">Ecosistema CNA di Roma</span></header><span class="pg-n">10 / 22</span>
   <div class="wrap g-feat">
     <div class="t paper on-light head">
       <div style="display:grid;gap:10px"><span class="eye" style="color:var(--blue)"><i></i>App 4 · cnaflow · 2 di 2</span><h2>Dai dati alle decisioni.</h2></div>
@@ -542,7 +576,7 @@ body.idle .hint,body.fs .hint{opacity:0}
 
 <!-- CNAFLOW DATI 1 -->
 <section class="slide" id="cnaflow-numeri" aria-label="cnaflow in numeri">
-  <header class="ph"><span class="ph-logo" role="img" aria-label="CNA Roma"></span><span class="ph-sep"></span><span class="ph-t">cnaflow · Dati reali</span><span class="ph-n">11 / 22</span></header>
+  <header class="ph"><span class="ph-logo" role="img" aria-label="CNA Roma"></span><span class="ph-sep"></span><span class="ph-t">cnaflow · Dati reali</span><span class="ph-r">Ecosistema CNA di Roma</span></header><span class="pg-n">11 / 22</span>
   <div class="wrap g-feat">
     <div class="t paper on-light head">
       <div style="display:grid;gap:10px"><span class="eye" style="color:var(--blue)"><i></i>cnaflow · dati reali</span><h2>L'archivio, in numeri.</h2></div>
@@ -558,7 +592,7 @@ body.idle .hint,body.fs .hint{opacity:0}
 </section>
 <!-- CNAFLOW DATI 2 -->
 <section class="slide" id="cnaflow-storia" aria-label="cnaflow, serie storica">
-  <header class="ph"><span class="ph-logo" role="img" aria-label="CNA Roma"></span><span class="ph-sep"></span><span class="ph-t">cnaflow · Serie storica</span><span class="ph-n">12 / 22</span></header>
+  <header class="ph"><span class="ph-logo" role="img" aria-label="CNA Roma"></span><span class="ph-sep"></span><span class="ph-t">cnaflow · Serie storica</span><span class="ph-r">Ecosistema CNA di Roma</span></header><span class="pg-n">12 / 22</span>
   <div class="wrap g-hist">
     <div class="t paper on-light hist-chart">
       <span class="eye" style="color:var(--blue)"><i></i>cnaflow · serie storica</span>
@@ -581,7 +615,7 @@ body.idle .hint,body.fs .hint{opacity:0}
 </section>
 <!-- 10 EVENTI A -->
 <section class="slide" id="eventi" aria-label="Eventi, organizzazione">
-  <header class="ph"><span class="ph-logo" role="img" aria-label="CNA Roma"></span><span class="ph-sep"></span><span class="ph-t">Eventi · Organizzazione</span><span class="ph-n">13 / 22</span></header>
+  <header class="ph"><span class="ph-logo" role="img" aria-label="CNA Roma"></span><span class="ph-sep"></span><span class="ph-t">Eventi · Organizzazione</span><span class="ph-r">Ecosistema CNA di Roma</span></header><span class="pg-n">13 / 22</span>
   <div class="wrap g-app">
     <div class="t lilac on-light intro">
       <span class="eye"><i></i>App 5 · Eventi · 1 di 2</span>
@@ -625,7 +659,7 @@ body.idle .hint,body.fs .hint{opacity:0}
 
 <!-- 11 EVENTI B -->
 <section class="slide" id="eventi-dopo" aria-label="Eventi, comunicazione e analisi">
-  <header class="ph"><span class="ph-logo" role="img" aria-label="CNA Roma"></span><span class="ph-sep"></span><span class="ph-t">Eventi · Comunicazione e analisi</span><span class="ph-n">14 / 22</span></header>
+  <header class="ph"><span class="ph-logo" role="img" aria-label="CNA Roma"></span><span class="ph-sep"></span><span class="ph-t">Eventi · Comunicazione e analisi</span><span class="ph-r">Ecosistema CNA di Roma</span></header><span class="pg-n">14 / 22</span>
   <div class="wrap g-feat">
     <div class="t paper on-light head">
       <div style="display:grid;gap:10px"><span class="eye" style="color:#5B4FE0"><i></i>App 5 · Eventi · 2 di 2</span><h2>Prima, durante e dopo l'evento.</h2></div>
@@ -642,7 +676,7 @@ body.idle .hint,body.fs .hint{opacity:0}
 
 <!-- INTRANET E CRM IN NUMERI -->
 <section class="slide" id="uso-numeri" aria-label="Uso delle app in numeri">
-  <header class="ph"><span class="ph-logo" role="img" aria-label="CNA Roma"></span><span class="ph-sep"></span><span class="ph-t">Intranet e CRM · Dati reali</span><span class="ph-n">15 / 22</span></header>
+  <header class="ph"><span class="ph-logo" role="img" aria-label="CNA Roma"></span><span class="ph-sep"></span><span class="ph-t">Intranet e CRM · Dati reali</span><span class="ph-r">Ecosistema CNA di Roma</span></header><span class="pg-n">15 / 22</span>
   <div class="wrap g-feat">
     <div class="t paper on-light head">
       <div style="display:grid;gap:10px"><span class="eye" style="color:var(--coral)"><i></i>Intranet e CRM · dati reali</span><h2>Chi le usa, e come.</h2></div>
@@ -666,7 +700,7 @@ body.idle .hint,body.fs .hint{opacity:0}
 </section>
 <!-- 12 COME DIALOGANO -->
 <section class="slide" id="dialogo" aria-label="Come dialogano le app">
-  <header class="ph"><span class="ph-logo" role="img" aria-label="CNA Roma"></span><span class="ph-sep"></span><span class="ph-t">Come dialogano le app</span><span class="ph-n">16 / 22</span></header>
+  <header class="ph"><span class="ph-logo" role="img" aria-label="CNA Roma"></span><span class="ph-sep"></span><span class="ph-t">Come dialogano le app</span><span class="ph-r">Ecosistema CNA di Roma</span></header><span class="pg-n">16 / 22</span>
   <div class="wrap g-flow">
     <div class="t blue on-dark intro">
       <span class="eye"><i></i>Come dialogano</span>
@@ -724,7 +758,7 @@ body.idle .hint,body.fs .hint{opacity:0}
 
 <!-- ARCHITETTURA -->
 <section class="slide" id="architettura" aria-label="Architettura">
-  <header class="ph"><span class="ph-logo" role="img" aria-label="CNA Roma"></span><span class="ph-sep"></span><span class="ph-t">Architettura</span><span class="ph-n">17 / 22</span></header>
+  <header class="ph"><span class="ph-logo" role="img" aria-label="CNA Roma"></span><span class="ph-sep"></span><span class="ph-t">Architettura</span><span class="ph-r">Ecosistema CNA di Roma</span></header><span class="pg-n">17 / 22</span>
   <div class="wrap g-arch">
     <div class="t night on-dark arch-intro">
       <span class="eye"><i></i>Architettura</span>
@@ -795,7 +829,7 @@ body.idle .hint,body.fs .hint{opacity:0}
 
 <!-- CASO D'USO 1 -->
 <section class="slide" id="caso" aria-label="Caso d'uso, l'evento">
-  <header class="ph"><span class="ph-logo" role="img" aria-label="CNA Roma"></span><span class="ph-sep"></span><span class="ph-t">Caso d'uso · L'evento</span><span class="ph-n">18 / 22</span></header>
+  <header class="ph"><span class="ph-logo" role="img" aria-label="CNA Roma"></span><span class="ph-sep"></span><span class="ph-t">Caso d'uso · L'evento</span><span class="ph-r">Ecosistema CNA di Roma</span></header><span class="pg-n">18 / 22</span>
   <div class="wrap g-case">
     <div class="t blue on-dark case-hero">
       <svg class="mark" viewBox="0 0 100 100" style="color:#fff"><use href="#cnamark"/></svg>
@@ -825,7 +859,7 @@ body.idle .hint,body.fs .hint{opacity:0}
 
 <!-- CASO D'USO 2 -->
 <section class="slide" id="caso-contatti" aria-label="Caso d'uso, i contatti generati">
-  <header class="ph"><span class="ph-logo" role="img" aria-label="CNA Roma"></span><span class="ph-sep"></span><span class="ph-t">Caso d'uso · I contatti generati</span><span class="ph-n">19 / 22</span></header>
+  <header class="ph"><span class="ph-logo" role="img" aria-label="CNA Roma"></span><span class="ph-sep"></span><span class="ph-t">Caso d'uso · I contatti generati</span><span class="ph-r">Ecosistema CNA di Roma</span></header><span class="pg-n">19 / 22</span>
   <div class="wrap g-feat">
     <div class="t paper on-light head">
       <div style="display:grid;gap:10px"><span class="eye" style="color:var(--coral)"><i></i>Caso d'uso · 2 di 3</span><h2>1.097 iscritti, riconosciuti in automatico.</h2></div>
@@ -852,7 +886,7 @@ body.idle .hint,body.fs .hint{opacity:0}
 
 <!-- CASO D'USO 3 -->
 <section class="slide" id="caso-flusso" aria-label="Caso d'uso, il flusso">
-  <header class="ph"><span class="ph-logo" role="img" aria-label="CNA Roma"></span><span class="ph-sep"></span><span class="ph-t">Caso d'uso · Il flusso</span><span class="ph-n">20 / 22</span></header>
+  <header class="ph"><span class="ph-logo" role="img" aria-label="CNA Roma"></span><span class="ph-sep"></span><span class="ph-t">Caso d'uso · Il flusso</span><span class="ph-r">Ecosistema CNA di Roma</span></header><span class="pg-n">20 / 22</span>
   <div class="wrap g-steps">
     <div class="t paper on-light head">
       <span class="eye" style="color:var(--cna)"><i></i>Caso d'uso · 3 di 3</span>
@@ -876,7 +910,7 @@ body.idle .hint,body.fs .hint{opacity:0}
 
 <!-- 13 VANTAGGI -->
 <section class="slide" id="vantaggi" aria-label="Vantaggi su dati e conversione">
-  <header class="ph"><span class="ph-logo" role="img" aria-label="CNA Roma"></span><span class="ph-sep"></span><span class="ph-t">Vantaggi su dati e conversione</span><span class="ph-n">21 / 22</span></header>
+  <header class="ph"><span class="ph-logo" role="img" aria-label="CNA Roma"></span><span class="ph-sep"></span><span class="ph-t">Vantaggi su dati e conversione</span><span class="ph-r">Ecosistema CNA di Roma</span></header><span class="pg-n">21 / 22</span>
   <div class="wrap g-gain">
     <div class="t paper on-light funnel">
       <span class="eye" style="color:var(--cna)"><i></i>Vantaggi su dati e conversione</span>
@@ -900,7 +934,7 @@ body.idle .hint,body.fs .hint{opacity:0}
 
 <!-- 14 CHIUSURA -->
 <section class="slide" id="fine" aria-label="Chiusura">
-  <header class="ph"><span class="ph-logo" role="img" aria-label="CNA Roma"></span><span class="ph-sep"></span><span class="ph-t">CNA Roma · Progetti digitali</span><span class="ph-n">22 / 22</span></header>
+  <header class="ph"><span class="ph-logo" role="img" aria-label="CNA Roma"></span><span class="ph-sep"></span><span class="ph-t">CNA Roma · Progetti digitali</span><span class="ph-r">Ecosistema CNA di Roma</span></header><span class="pg-n">22 / 22</span>
   <div class="wrap g-cover">
     <div class="t night on-dark hero">
       <svg class="mark" viewBox="0 0 100 100" style="color:#fff;opacity:.18"><use href="#cnamark"/></svg>
@@ -953,11 +987,24 @@ body.idle .hint,body.fs .hint{opacity:0}
     w.style.marginTop=Math.max(0,(avail-h*k)/2)+'px';
     w.style.marginBottom=(-(h*(1-k)))+'px';
   }
+
+  function countUp(s){
+    if(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    s.querySelectorAll('.big').forEach(function(el){
+      if(!el.dataset.v) el.dataset.v=el.textContent;
+      var txt=el.dataset.v, nums=txt.match(/\d[\d.]*/g); if(!nums) return;
+      var t0=null, D=1100;
+      function step(ts){ if(!t0)t0=ts; var p=Math.min((ts-t0)/D,1), e=1-Math.pow(1-p,3);
+        el.textContent=txt.replace(/\d[\d.]*/g,function(m){ var n=parseInt(m.replace(/\./g,''),10); return Math.round(n*e).toLocaleString('it-IT'); });
+        if(p<1) requestAnimationFrame(step); else el.textContent=txt; }
+      requestAnimationFrame(step);
+    });
+  }
   function go(i){
     i=Math.max(0,Math.min(slides.length-1,i));
     slides[cur].classList.remove('on','in');
     cur=i; var s=slides[cur];
-    s.classList.add('on'); fit(s); void s.offsetWidth; s.classList.add('in');
+    s.classList.add('on'); fit(s); void s.offsetWidth; s.classList.add('in'); setTimeout(function(){countUp(s)},350);
     count.textContent=(cur+1)+' / '+slides.length;
     prog.style.width=((cur+1)/slides.length*100)+'%';
     [].forEach.call(dots.children,function(d,j){d.classList.toggle('on',j===cur)});
