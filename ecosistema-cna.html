@@ -9,13 +9,13 @@
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500&display=swap">
 <style>
 /* Layout: presentazione a slide verticali a tutto schermo, ogni slide è una griglia bento su fondo grigio-blu CNA. Look unico chiaro, scelto di proposito per proiezione. */
 :root{
   --ground:#E6EBF2; --paper:#FFFFFF; --ink:#0F1A3A; --muted:#5B6782; --line:#D5DDE8;
   --blue:#1A44B8; --cna:#005AC9; --sun:#FFD84D; --mint:#6EE7C5; --night:#1E1B4B; --coral:#F04A3E; --lilac:#B9B2FF;
-  --display:'Bricolage Grotesque','Inter',system-ui,sans-serif;
+  --display:'Inter',system-ui,-apple-system,'Segoe UI',sans-serif;
   --body:'Inter',system-ui,-apple-system,'Segoe UI',sans-serif;
   --mono:'JetBrains Mono',ui-monospace,Menlo,monospace;
   --r:26px; --gap:14px;
@@ -196,6 +196,15 @@ ul.fx li::before{content:"";width:7px;height:7px;border-radius:50%;background:cu
   #deck .t:not(.head):not(.intro):not(.arch-intro):not(.case-hero):hover{transform:translateY(-4px);box-shadow:0 18px 40px -22px rgba(15,26,58,.45)}
 }
 
+
+/* Font Inter, titoli con spaziatura stretta */
+h1,h2{font-family:var(--display);font-weight:900;letter-spacing:-.055em}
+h3{font-weight:800;letter-spacing:-.035em}
+.big,.k{font-weight:900;letter-spacing:-.05em}
+.lg-tile,.t,.fs,.ph-t,.ph-r{font-family:var(--body)}
+.ph-t{font-weight:700;letter-spacing:-.02em}
+svg text{font-family:'Inter',sans-serif!important}
+
 /* nav */
 #nav{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(14px + env(safe-area-inset-bottom,0px));display:flex;align-items:center;gap:10px;background:rgba(255,255,255,.92);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid var(--line);border-radius:999px;padding:6px 8px;z-index:20;box-shadow:0 10px 30px -14px rgba(15,26,58,.35);max-width:calc(100% - 32px)}
 #nav button{border:0;background:transparent;color:var(--ink);width:34px;height:34px;border-radius:50%;display:grid;place-items:center;cursor:pointer;font:inherit}
@@ -239,7 +248,7 @@ ul.fx li::before{content:"";width:7px;height:7px;border-radius:50%;background:cu
 }
 
 /* ═══ MODALITÀ PRESENTAZIONE: palco 16:9 fisso, scalato sullo schermo ═══ */
-html,body{height:100%;overflow:hidden;background:#0B1230}
+html,body{height:100%;overflow:hidden;background:var(--ground)}
 #deck{position:fixed;left:50%;top:50%;width:1600px;height:900px;overflow:hidden;scroll-snap-type:none;transform-origin:center center;background:var(--ground);border-radius:6px;box-shadow:0 30px 80px rgba(0,0,0,.45)}
 #deck .slide{position:absolute;inset:0;min-height:0;display:none;padding:26px 56px 34px!important;gap:16px;align-items:flex-start}
 #deck .slide.on{display:flex}
@@ -972,7 +981,11 @@ body.idle .hint,body.fs .hint{opacity:0}
     b.setAttribute('aria-label','Vai alla slide '+(i+1)); b.onclick=function(){go(i)}; dots.appendChild(b);
   });
   function scale(){
-    var k=Math.min(window.innerWidth/W, window.innerHeight/H);
+    var vw=window.innerWidth, vh=window.innerHeight;
+    /* il palco segue le proporzioni dello schermo: niente bande nere */
+    H=Math.round(Math.max(700,Math.min(1200,W*vh/vw)));
+    deck.style.height=H+'px';
+    var k=Math.min(vw/W, vh/H);
     deck.style.transform='translate(-50%,-50%) scale('+k+')';
   }
   function fit(s){
