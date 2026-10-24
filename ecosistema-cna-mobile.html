@@ -1,0 +1,661 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#E6EBF2">
+<meta name="description" content="Le cinque app digitali di CNA Roma: Intranet, CRM, Signature, cnaflow ed Eventi.">
+<link rel="icon" href="logocna.ico">
+<title>Ecosistema digitale CNA Roma · Mobile</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap">
+<style>
+/* Layout: presentazione a slide verticali a tutto schermo, ogni slide è una griglia bento su fondo grigio-blu CNA. Look unico chiaro, scelto di proposito per proiezione. */
+:root{
+  --ground:#E6EBF2; --paper:#FFFFFF; --ink:#0F1A3A; --muted:#5B6782; --line:#D5DDE8;
+  --blue:#1A44B8; --cna:#005AC9; --sun:#FFD84D; --mint:#6EE7C5; --night:#1E1B4B; --coral:#F04A3E; --lilac:#B9B2FF;
+  --display:'Bricolage Grotesque','Inter',system-ui,sans-serif;
+  --body:'Inter',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,Menlo,monospace;
+  --r:26px; --gap:14px;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--body);-webkit-font-smoothing:antialiased;overflow:hidden}
+#deck{height:100%;overflow-y:auto;scroll-snap-type:y mandatory;scroll-behavior:smooth}
+.slide{min-height:100%;scroll-snap-align:start;display:flex;align-items:center;justify-content:center;
+  padding-block:calc(28px + env(safe-area-inset-top,0px)) calc(70px + env(safe-area-inset-bottom,0px));
+  padding-left:max(28px,env(safe-area-inset-left,0px));padding-right:max(28px,env(safe-area-inset-right,0px))}
+.wrap{width:100%;max-width:1320px;display:grid;gap:var(--gap)}
+.t{border-radius:var(--r);padding:26px 28px;position:relative;overflow:hidden;min-width:0;display:flex;flex-direction:column;gap:10px}
+.paper{background:var(--paper)} .blue{background:var(--blue);color:#fff} .sun{background:var(--sun);color:var(--night)}
+.mint{background:var(--mint);color:var(--night)} .night{background:var(--night);color:#fff} .coral{background:var(--coral);color:#fff}
+.lilac{background:var(--lilac);color:var(--night)} .cna{background:var(--cna);color:#fff}
+h1,h2,h3{font-family:var(--display);margin:0;text-wrap:balance;letter-spacing:-.035em}
+h1{font-size:clamp(44px,5.6vw,92px);line-height:.9;font-weight:800}
+h2{font-size:clamp(34px,4.4vw,64px);line-height:.95;font-weight:800}
+h3{font-size:clamp(19px,1.7vw,24px);line-height:1.08;font-weight:700}
+p{margin:0;line-height:1.5}
+.lead{font-size:clamp(15px,1.25vw,18px);line-height:1.5;max-width:58ch}
+.eye{display:inline-flex;align-items:center;gap:8px;font-size:12.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;opacity:.8}
+.eye i{width:8px;height:8px;border-radius:50%;background:currentColor;display:inline-block}
+.small{font-size:13.5px;line-height:1.45;opacity:.85}
+.mono{font-family:var(--mono);font-size:12px;letter-spacing:.02em}
+.ico{width:42px;height:42px;border-radius:14px;display:grid;place-items:center;flex:none}
+.ico svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.on-light .ico{background:rgba(15,26,58,.08)} .on-dark .ico{background:rgba(255,255,255,.14)}
+.mark{position:absolute;right:-70px;bottom:-90px;width:340px;height:340px;opacity:.16;pointer-events:none}
+.pill{display:inline-flex;align-items:center;gap:6px;padding:6px 12px;border-radius:999px;font-size:12.5px;font-weight:600;background:rgba(255,255,255,.18);width:max-content;max-width:100%}
+.pill.dark{background:rgba(15,26,58,.08)}
+ul.fx{list-style:none;margin:0;padding:0;display:grid;gap:9px}
+ul.fx li{display:flex;gap:10px;font-size:14.5px;line-height:1.4}
+ul.fx li::before{content:"";width:7px;height:7px;border-radius:50%;background:currentColor;margin-top:7px;flex:none;opacity:.7}
+
+/* griglie */
+.g-cover{grid-template-columns:1.45fr 1fr 1fr}
+.g-cover .hero{grid-column:1;grid-row:1/4;justify-content:flex-end;min-height:440px}
+.g-cover .span2{grid-column:2/4}
+#fine .hero{grid-row:1/3}
+.g-problems{grid-template-columns:repeat(3,1fr)}
+.g-problems .head{grid-column:1/-1}
+.g-app{grid-template-columns:1.05fr 1.35fr;grid-template-rows:auto auto}
+.g-app .intro{grid-row:1/3}
+.g-feat{grid-template-columns:repeat(4,1fr)}
+.g-feat .head{grid-column:1/-1;flex-direction:row;align-items:flex-end;justify-content:space-between;flex-wrap:wrap}
+.g-feat .wide{grid-column:span 2}
+.g-flow{grid-template-columns:1fr 1.6fr}
+.g-gain{grid-template-columns:repeat(3,1fr)}
+.g-gain .funnel{grid-column:1/-1}
+
+/* mockup schermate */
+.screen{background:#F3F6FA;border-radius:18px;overflow:hidden;border:1px solid var(--line);display:flex;flex-direction:column;flex:1;min-height:300px;box-shadow:0 24px 50px -30px rgba(15,26,58,.45)}
+.bar{display:flex;align-items:center;gap:6px;padding:10px 12px;background:#fff;border-bottom:1px solid var(--line)}
+.bar b{width:9px;height:9px;border-radius:50%;background:#D5DDE8;display:block}
+.bar .url{margin-left:10px;font-family:var(--mono);font-size:11px;color:var(--muted);background:#F1F4F9;border-radius:999px;padding:4px 12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sc{padding:14px;display:grid;gap:10px;flex:1;align-content:start;color:var(--ink)}
+.row{display:flex;gap:10px;align-items:center}
+.box{background:#fff;border-radius:12px;padding:10px 12px;border:1px solid #E3E9F1;min-width:0}
+.ln{height:7px;border-radius:5px;background:#DCE3EE}
+.ln.s{width:40%} .ln.m{width:65%} .ln.l{width:88%}
+.chip{font-size:10.5px;font-weight:700;padding:3px 8px;border-radius:999px;white-space:nowrap}
+.cap{font-size:11px;color:var(--muted);text-align:right;padding:0 4px 2px}
+.k{font-family:var(--display);font-weight:800;font-size:22px;letter-spacing:-.03em}
+.lbl{font-size:10.5px;color:var(--muted);font-weight:600}
+
+/* flusso */
+.flow svg{width:100%;height:auto;display:block}
+.funnel-steps{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+.fs{border-radius:20px;padding:18px;display:flex;flex-direction:column;gap:6px;position:relative}
+.fs .n{font-family:var(--mono);font-size:11.5px;opacity:.7}
+.fs h3{font-size:clamp(16px,1.4vw,20px)}
+
+/* nav */
+#nav{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(14px + env(safe-area-inset-bottom,0px));display:flex;align-items:center;gap:10px;background:rgba(255,255,255,.92);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid var(--line);border-radius:999px;padding:6px 8px;z-index:20;box-shadow:0 10px 30px -14px rgba(15,26,58,.35);max-width:calc(100% - 32px)}
+#nav button{border:0;background:transparent;color:var(--ink);width:34px;height:34px;border-radius:50%;display:grid;place-items:center;cursor:pointer;font:inherit}
+#nav button:hover{background:#EEF2F8}
+#nav button:focus-visible,#nav .dot:focus-visible{outline:2px solid var(--cna);outline-offset:2px}
+#nav svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+#dots{display:flex;gap:5px;align-items:center;overflow:hidden}
+#nav .dot{width:7px;height:7px;border-radius:999px;background:#C6D0DE;border:0;padding:0;cursor:pointer;transition:width .25s,background .25s;flex:none}
+#nav .dot.on{width:22px;background:var(--cna)}
+#count{font-family:var(--mono);font-size:12px;color:var(--muted);padding:0 6px;font-variant-numeric:tabular-nums;white-space:nowrap}
+
+/* animazione d'ingresso: lo stato di riposo è visibile */
+@media (prefers-reduced-motion:no-preference){
+  .slide.in .t{animation:rise .55s cubic-bezier(.2,.7,.2,1) both}
+  .slide.in .t:nth-child(2){animation-delay:.05s}.slide.in .t:nth-child(3){animation-delay:.1s}
+  .slide.in .t:nth-child(4){animation-delay:.15s}.slide.in .t:nth-child(5){animation-delay:.2s}
+  .slide.in .t:nth-child(6){animation-delay:.25s}.slide.in .t:nth-child(7){animation-delay:.3s}
+  .slide.in .t:nth-child(n+8){animation-delay:.35s}
+  @keyframes rise{from{transform:translateY(14px);opacity:.35}to{transform:none;opacity:1}}
+  .pulse{animation:pulse 2.4s ease-in-out infinite}
+  @keyframes pulse{0%,100%{opacity:.55}50%{opacity:1}}
+  .dash{stroke-dasharray:6 7;animation:dash 1.6s linear infinite}
+  @keyframes dash{to{stroke-dashoffset:-26}}
+}
+
+@media (max-width:980px){
+  .g-cover,.g-app,.g-flow{grid-template-columns:1fr}
+  .g-cover .hero,.g-app .intro{grid-row:auto;min-height:0}
+  .g-problems,.g-gain{grid-template-columns:1fr 1fr}
+  .g-feat{grid-template-columns:1fr 1fr}
+  .funnel-steps{grid-template-columns:1fr 1fr}
+}
+@media (max-width:560px){
+  #deck{scroll-snap-type:y proximity}
+  .slide{min-height:auto}
+  .slide{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));align-items:flex-start}
+  .g-problems,.g-gain,.g-feat,.funnel-steps{grid-template-columns:1fr}
+  .g-feat .wide{grid-column:auto}
+  .t{padding:22px}
+  #dots{display:none}
+}
+</style>
+<style>
+/* ═══ VERSIONE MOBILE: lettura in verticale, una card sotto l'altra ═══ */
+html,body{height:auto}
+body{overflow:auto;overflow-x:hidden}
+#deck{height:auto;overflow:visible;scroll-snap-type:none}
+.slide{min-height:0;display:block;padding:14px max(14px,env(safe-area-inset-right,0px)) 14px max(14px,env(safe-area-inset-left,0px))}
+.slide:first-child{padding-top:calc(14px + env(safe-area-inset-top,0px))}
+.slide:last-of-type{padding-bottom:calc(96px + env(safe-area-inset-bottom,0px))}
+.wrap{grid-template-columns:1fr!important;gap:10px}
+.wrap>*{grid-column:auto!important;grid-row:auto!important}
+.t{padding:20px;border-radius:22px;min-height:0!important}
+.g-feat .head{flex-direction:column;align-items:flex-start}
+h1{font-size:44px}
+h2{font-size:31px;line-height:1}
+h3{font-size:19px}
+.lead{font-size:15.5px}
+ul.fx li{font-size:14.5px}
+.mark{width:220px;height:220px;right:-60px;bottom:-60px}
+.screen{min-height:0}
+.screen .sc{overflow-x:auto}
+#crm .screen .sc{grid-template-columns:repeat(4,minmax(120px,1fr))!important}
+#signature .screen .sc,#eventi .screen .sc{grid-template-columns:1fr!important}
+#signature .t.night{grid-template-columns:1fr 1fr!important}
+.cap{text-align:left}
+.funnel-steps{grid-template-columns:1fr!important;gap:8px}
+.fs{flex-direction:row;align-items:center;gap:12px;padding:14px 16px}
+.fs .n{min-width:68px}
+.fs h3{font-size:17px}
+.fs .small{margin-left:auto;text-align:right;max-width:40%}
+.flow svg{min-width:0!important}
+.flow>div{overflow:visible!important}
+/* separatore tra sezioni */
+.slide+.slide::before{content:"";display:block;height:1px;background:var(--line);margin:4px 6px 18px}
+/* nav compatta */
+#nav{gap:4px;padding:5px 6px}
+#dots,#fs{display:none!important}
+#count{min-width:64px;text-align:center}
+</style>
+
+</head>
+<body>
+
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="cnamark" viewBox="0 0 100 100"><circle cx="50" cy="50" r="48" fill="none" stroke="currentColor" stroke-width="2"/><g stroke="currentColor" stroke-width="2.4">
+      <line x1="22" y1="20" x2="22" y2="80"/><line x1="29" y1="13" x2="29" y2="87"/><line x1="36" y1="9" x2="36" y2="91"/><line x1="43" y1="7" x2="43" y2="93"/><line x1="50" y1="6" x2="50" y2="94"/><line x1="57" y1="7" x2="57" y2="93"/><line x1="64" y1="9" x2="64" y2="91"/><line x1="71" y1="13" x2="71" y2="87"/><line x1="78" y1="20" x2="78" y2="80"/></g></symbol>
+  </defs>
+</svg>
+
+<main id="deck">
+
+<!-- 1 COVER -->
+<section class="slide" id="inizio" aria-label="Copertina">
+  <div class="wrap g-cover">
+    <div class="t blue on-dark hero">
+      <svg class="mark" viewBox="0 0 100 100" style="color:#fff;opacity:.2"><use href="#cnamark"/></svg>
+      <span class="eye"><i></i>CNA Roma · Progetti digitali 2026</span>
+      <h1>Un ecosistema,<br>cinque app.</h1>
+      <p class="lead" style="opacity:.9">Intranet, CRM, Signature, cnaflow ed Eventi: un solo accesso e un solo archivio dati, dal primo contatto con un'impresa fino al tesseramento.</p>
+    </div>
+    <div class="t sun on-light">
+      <div class="ico"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="2"/><rect x="14" y="3" width="7" height="7" rx="2"/><rect x="3" y="14" width="7" height="7" rx="2"/><rect x="14" y="14" width="7" height="7" rx="2"/></svg></div>
+      <h3>Intranet</h3><p class="small">Il portale dei dipendenti e la porta d'ingresso a tutte le app.</p><span class="mono">intranet.cnaroma.it</span>
+    </div>
+    <div class="t coral on-dark">
+      <div class="ico"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.8-3.5 3.3-5.5 6.5-5.5s5.7 2 6.5 5.5"/><path d="M16 4.5a3.5 3.5 0 0 1 0 7M18 14.8c2 .7 3.2 2.4 3.6 5.2"/></svg></div>
+      <h3>CRM</h3><p class="small">Imprese, contatti e trattative della rete commerciale.</p><span class="mono">crm.cnaroma.it</span>
+    </div>
+    <div class="t mint on-light">
+      <div class="ico"><svg viewBox="0 0 24 24"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><path d="M8 17c1.5-2 2.5-2 3 0s1.5 2 3-1"/></svg></div>
+      <h3>Signature</h3><p class="small">Contratti di adesione compilati e firmati sul tablet.</p><span class="mono">signature.cnaroma.it</span>
+    </div>
+    <div class="t night on-dark">
+        <div class="ico"><svg viewBox="0 0 24 24"><path d="M3 20h18"/><rect x="5" y="11" width="3" height="7" rx="1"/><rect x="10.5" y="6" width="3" height="12" rx="1"/><rect x="16" y="9" width="3" height="9" rx="1"/></svg></div>
+        <h3>cnaflow</h3><p class="small">ERP del tesseramento: anagrafiche, contratti, incassi, report.</p><span class="mono">erp.cnaroma.it</span>
+      </div>
+      <div class="t lilac on-light span2">
+        <div class="ico"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 10h18M8 3v4M16 3v4"/><path d="M8.5 15l2 2 4-4"/></svg></div>
+        <h3>Eventi</h3><p class="small">Eventi, iscrizioni, check-in e comunicazioni ai partecipanti.</p><span class="mono">eventi.cnaroma.it</span>
+      </div>
+      </div>
+</section>
+
+<!-- 2 PROBLEMI -->
+<section class="slide" id="problemi" aria-label="Il punto di partenza">
+  <div class="wrap g-problems">
+    <div class="t paper on-light head">
+      <span class="eye" style="color:var(--coral)"><i></i>Il punto di partenza</span>
+      <h2>Dati sparsi, passaggi a mano, contatti che si perdono.</h2>
+    </div>
+    <div class="t paper on-light"><div class="ico" style="color:var(--coral)"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M3 15h18M9 3v18M15 3v18"/></svg></div>
+      <h3>Archivi frammentati</h3><p class="small">Imprese, contratti e incassi vivono in fogli Excel diversi, aggiornati da persone diverse. Nessuno ha la versione giusta.</p></div>
+    <div class="t paper on-light"><div class="ico" style="color:var(--coral)"><svg viewBox="0 0 24 24"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h4"/></svg></div>
+      <h3>Contratti di carta</h3><p class="small">I moduli di adesione si compilano a mano, si firmano in più punti e poi si ricopiano nel gestionale. Ogni passaggio è un rischio di errore.</p></div>
+    <div class="t paper on-light"><div class="ico" style="color:var(--coral)"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 10h18M8 3v4M16 3v4M9 15l6 0"/></svg></div>
+      <h3>Eventi senza seguito</h3><p class="small">Chi partecipa a un evento lascia nome ed email, poi il contatto resta in una lista e non diventa un'opportunità.</p></div>
+    <div class="t paper on-light"><div class="ico" style="color:var(--coral)"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
+      <h3>Nessuno storico commerciale</h3><p class="small">Chiamate, appuntamenti e solleciti non sono registrati. Se un collega cambia ruolo, la relazione con l'impresa riparte da zero.</p></div>
+    <div class="t paper on-light"><div class="ico" style="color:var(--coral)"><svg viewBox="0 0 24 24"><path d="M4 4h16v12H5.5L4 17.5z"/><path d="M8 9h8M8 12h5"/></svg></div>
+      <h3>Comunicazione interna dispersa</h3><p class="small">Circolari, moduli e contatti dei colleghi passano per email e cartelle condivise, difficili da ritrovare.</p></div>
+    <div class="t paper on-light"><div class="ico" style="color:var(--coral)"><svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></div>
+      <h3>Accessi e numeri scollegati</h3><p class="small">Credenziali diverse per ogni strumento e report costruiti a mano: per sapere come va il tesseramento servono giorni.</p></div>
+  </div>
+</section>
+
+<!-- 3 NECESSITA -->
+<section class="slide" id="necessita" aria-label="Le necessità">
+  <div class="wrap g-problems">
+    <div class="t blue on-dark head">
+      <svg class="mark" viewBox="0 0 100 100" style="color:#fff"><use href="#cnamark"/></svg>
+      <span class="eye"><i></i>Le necessità di sviluppo</span>
+      <h2>Cosa doveva fare il sistema.</h2>
+      <p class="lead" style="opacity:.9">Sei requisiti, che hanno guidato la costruzione di tutte e cinque le app.</p>
+    </div>
+    <div class="t sun on-light"><h3>Un solo archivio</h3><p class="small">Ogni impresa e ogni persona esiste una volta sola, in un database condiviso da tutte le app.</p></div>
+    <div class="t mint on-light"><h3>Contratti digitali</h3><p class="small">Compilazione guidata, firma sul tablet e PDF pronto, senza ricopiature.</p></div>
+    <div class="t paper on-light"><h3>Ogni contatto tracciato</h3><p class="small">Dalla prima iscrizione a un evento fino all'adesione, con un responsabile e un prossimo passo.</p></div>
+    <div class="t paper on-light"><h3>Numeri in tempo reale</h3><p class="small">Tesseramento, incassi e obiettivi visibili subito, per sede, consulente e periodo.</p></div>
+    <div class="t night on-dark"><h3>Ovunque, anche da telefono</h3><p class="small">Le app si installano sulla schermata Home e funzionano su smartphone e tablet.</p></div>
+    <div class="t coral on-dark"><h3>Un accesso, ruoli chiari</h3><p class="small">Stesse credenziali per tutte le app, permessi per ruolo e registro delle attività.</p></div>
+  </div>
+</section>
+
+<!-- 4 INTRANET -->
+<section class="slide" id="intranet" aria-label="Intranet">
+  <div class="wrap g-app">
+    <div class="t sun on-light intro">
+      <span class="eye"><i></i>App 1 · Intranet</span>
+      <h2>Il portale dei dipendenti.</h2>
+      <p class="lead">Il punto in cui ogni collega entra la mattina: comunicazioni, documenti, rubrica e accesso diretto a tutte le altre app.</p>
+      <ul class="fx" style="margin-top:6px">
+        <li>Dashboard con le card delle app aziendali: Posta, CRM, cnaflow, Eventi, Signature</li>
+        <li>Rubrica dei colleghi con ricerca immediata</li>
+        <li>Documenti, circolari e modulistica per reparto</li>
+        <li>Comunicazioni ai dipendenti, notizie e calendario</li>
+        <li>Rimborsi chilometrici e spese, con i dati presi dal login</li>
+        <li>Area amministrazione: utenti, ruoli, registro attività, statistiche di visita</li>
+      </ul>
+      <span class="mono" style="margin-top:auto">intranet.cnaroma.it</span>
+    </div>
+    <div class="t paper on-light" style="padding:18px">
+      <div class="screen">
+        <div class="bar"><b></b><b></b><b></b><span class="url">intranet.cnaroma.it</span></div>
+        <div class="sc">
+          <div class="box row" style="justify-content:space-between"><div style="font-family:var(--display);font-weight:800;line-height:1">Portale<br><span style="color:var(--muted)">Dipendenti</span></div><div class="row" style="gap:6px"><span class="chip" style="background:var(--ink);color:#fff">Dashboard</span><span class="chip">Rubrica</span><span class="chip">Documenti</span><span class="chip">Rimborsi</span></div></div>
+          <div class="box" style="background:var(--cna);color:#fff;border:0;padding:16px"><div style="font-family:var(--display);font-weight:800;font-size:24px;letter-spacing:-.03em">Buongiorno, Giulia</div><div style="background:#fff;border-radius:999px;height:26px;margin-top:10px;width:70%"></div></div>
+          <div style="display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:8px">
+            <div class="box" style="display:grid;gap:7px"><b style="font-size:12px">Ultime notizie</b><div class="ln l"></div><div class="ln m"></div><div class="ln l"></div><div class="ln s"></div></div>
+            <div class="box" style="background:var(--night);color:#fff;border:0"><b style="font-size:12px">Prossimi eventi</b></div>
+            <div class="box" style="background:var(--coral);color:#fff;border:0;display:grid;gap:6px"><b style="font-size:12px">Le tue app</b><div class="row" style="gap:5px"><span style="width:22px;height:22px;border-radius:7px;background:#fff"></span><span style="width:22px;height:22px;border-radius:7px;background:var(--sun)"></span><span style="width:22px;height:22px;border-radius:7px;background:var(--mint)"></span></div></div>
+          </div>
+        </div>
+      </div>
+      <div class="cap">Schermata illustrativa della dashboard, dati di esempio</div>
+    </div>
+    <div class="t night on-dark" style="flex-direction:row;align-items:center;gap:16px">
+      <div class="ico"><svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></div>
+      <p class="small" style="opacity:.95">Senza login il portale non si apre: si atterra sulla schermata di accesso, come in tutte le altre app.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 5 CRM A -->
+<section class="slide" id="crm" aria-label="CRM, imprese e trattative">
+  <div class="wrap g-app">
+    <div class="t coral on-dark intro">
+      <span class="eye"><i></i>App 2 · CRM · 1 di 2</span>
+      <h2>La rete commerciale, dal primo contatto alla chiusura.</h2>
+      <p class="lead" style="opacity:.92">Il CRM legge le stesse anagrafiche dell'ERP e aggiunge tutto quello che succede prima e dopo la firma.</p>
+      <ul class="fx" style="margin-top:6px">
+        <li>Ricerca imprese per ragione sociale, partita IVA, titolare, comune, codice fiscale</li>
+        <li>Scheda impresa a pagina intera: anagrafica, addetti, stato associativo, contratti, mappa</li>
+        <li>Contatti arrivati dagli eventi, pronti da convertire in associati</li>
+        <li>Pipeline a colonne con cambio di stato e priorità</li>
+      </ul>
+      <span class="mono" style="margin-top:auto">crm.cnaroma.it</span>
+    </div>
+    <div class="t paper on-light" style="padding:18px">
+      <div class="screen">
+        <div class="bar"><b></b><b></b><b></b><span class="url">crm.cnaroma.it · Pipeline</span></div>
+        <div class="sc" style="grid-template-columns:repeat(4,1fr);gap:8px">
+          <div style="display:grid;gap:7px;align-content:start"><span class="lbl">Nuovo</span>
+            <div class="box"><b style="font-size:11.5px">Rossi Impianti</b><div class="ln m" style="margin-top:6px"></div><span class="chip" style="background:#EDE9FE;color:#5B21B6;display:inline-block;margin-top:6px">da evento</span></div>
+            <div class="box"><b style="font-size:11.5px">Forno Bianchi</b><div class="ln s" style="margin-top:6px"></div></div></div>
+          <div style="display:grid;gap:7px;align-content:start"><span class="lbl">Contattato</span>
+            <div class="box"><b style="font-size:11.5px">Officina Verdi</b><div class="ln m" style="margin-top:6px"></div><span class="chip" style="background:#FEF3C7;color:#92400E;display:inline-block;margin-top:6px">sollecito</span></div></div>
+          <div style="display:grid;gap:7px;align-content:start"><span class="lbl">Appuntamento</span>
+            <div class="box"><b style="font-size:11.5px">Studio Neri</b><div class="ln l" style="margin-top:6px"></div><span class="chip" style="background:#DBEAFE;color:#1E40AF;display:inline-block;margin-top:6px">mar 10:30</span></div>
+            <div class="box"><b style="font-size:11.5px">Edil Conti</b><div class="ln s" style="margin-top:6px"></div></div></div>
+          <div style="display:grid;gap:7px;align-content:start"><span class="lbl">Chiuso</span>
+            <div class="box" style="border-color:#A7F3D0"><b style="font-size:11.5px">Gallo Moda</b><div class="ln m" style="margin-top:6px"></div><span class="chip" style="background:#D1FAE5;color:#065F46;display:inline-block;margin-top:6px">associato</span></div></div>
+        </div>
+      </div>
+      <div class="cap">Schermata illustrativa della pipeline, nomi di esempio</div>
+    </div>
+    <div class="t mint on-light" style="flex-direction:row;align-items:center;gap:16px">
+      <div class="ico"><svg viewBox="0 0 24 24"><path d="M4 12h12M12 6l6 6-6 6"/></svg></div>
+      <p class="small" style="opacity:1">Stesse credenziali dell'ERP: chi vende vede subito se l'impresa è già associata e quali contratti ha.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 6 CRM B -->
+<section class="slide" id="crm-azioni" aria-label="CRM, attività e automazioni">
+  <div class="wrap g-feat">
+    <div class="t paper on-light head">
+      <div style="display:grid;gap:10px"><span class="eye" style="color:var(--coral)"><i></i>App 2 · CRM · 2 di 2</span><h2>Nessuna trattativa resta ferma.</h2></div>
+      <p class="lead" style="color:var(--muted)">Ogni contatto ha un prossimo passo, e il CRM lo ricorda al posto tuo.</p>
+    </div>
+    <div class="t coral on-dark"><div class="ico"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 10h18M8 3v4M16 3v4"/></svg></div><h3>Appuntamenti</h3><p class="small">Agenda degli incontri legata all'impresa e al consulente.</p></div>
+    <div class="t paper on-light"><div class="ico"><svg viewBox="0 0 24 24"><path d="M9 11l3 3 8-8"/><path d="M20 12v7a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h9"/></svg></div><h3>Attività e solleciti</h3><p class="small">Task con priorità e solleciti per chi non ha ancora risposto.</p></div>
+    <div class="t night on-dark wide"><div class="ico"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></div><h3>Email a gruppi, con tracciamento</h3><p class="small">Editor con modelli e anteprima, invio a liste di contatti e registro di aperture e clic per ogni destinatario.</p></div>
+    <div class="t sun on-light wide"><div class="ico"><svg viewBox="0 0 24 24"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></svg></div><h3>Automazioni</h3><p class="small">Quando un contatto cambia stato parte l'azione prevista: un'email, un'attività, un promemoria. Un limite giornaliero evita invii a ripetizione.</p></div>
+    <div class="t mint on-light"><div class="ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="9" r="5"/><path d="M8.5 13.5L7 22l5-3 5 3-1.5-8.5"/></svg></div><h3>Attestati PDF</h3><p class="small">Attestati generati in un clic per i partecipanti.</p></div>
+    <div class="t lilac on-light"><div class="ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 3 2.5 15 0 18M12 3c-2.5 3-2.5 15 0 18"/></svg></div><h3>Scheda pubblica</h3><p class="small">Una pagina dell'impresa condivisibile con un link.</p></div>
+  </div>
+</section>
+
+<!-- 7 SIGNATURE -->
+<section class="slide" id="signature" aria-label="Signature">
+  <div class="wrap g-app">
+    <div class="t mint on-light intro">
+      <span class="eye"><i></i>App 3 · Signature</span>
+      <h2>Il contratto di adesione, firmato sul tablet.</h2>
+      <p class="lead">Il modulo cartaceo diventa un percorso guidato che produce un PDF firmato in pochi minuti.</p>
+      <ul class="fx" style="margin-top:6px">
+        <li>Modulo unico: dati personali, dati aziendali, iscrizione, privacy, INPS, SEPA</li>
+        <li>27 campi obbligatori con controllo visivo e mestieri ATECO a tendina</li>
+        <li>Firma con il dito o la penna, riportata nei 5 punti del modulo</li>
+        <li>PDF generato in automatico e inviato al cliente via email</li>
+        <li>Archivio contratti con filtri per stato, anno, operatore ed esportazione Excel</li>
+      </ul>
+      <span class="mono" style="margin-top:auto">signature.cnaroma.it</span>
+    </div>
+    <div class="t paper on-light" style="padding:18px">
+      <div class="screen">
+        <div class="bar"><b></b><b></b><b></b><span class="url">signature.cnaroma.it · Nuovo contratto</span></div>
+        <div class="sc" style="grid-template-columns:1fr 1fr">
+          <div style="display:grid;gap:8px;align-content:start">
+            <div class="row" style="gap:5px;flex-wrap:wrap"><span class="chip" style="background:var(--ink);color:#fff">Dati personali</span><span class="chip" style="background:#E3E9F1">Azienda</span><span class="chip" style="background:#E3E9F1">Privacy</span><span class="chip" style="background:#E3E9F1">SEPA</span></div>
+            <div class="box"><span class="lbl">Codice fiscale *</span><div class="ln m" style="margin-top:6px;background:#A7F3D0"></div></div>
+            <div class="box"><span class="lbl">Ragione sociale *</span><div class="ln l" style="margin-top:6px;background:#A7F3D0"></div></div>
+            <div class="box"><span class="lbl">Mestiere ATECO *</span><div class="ln s" style="margin-top:6px"></div></div>
+          </div>
+          <div class="box" style="display:grid;gap:8px;align-content:start"><span class="lbl">Firma del cliente</span>
+            <svg viewBox="0 0 200 90" style="width:100%;height:auto;background:#F8FAFC;border-radius:10px;border:1.5px dashed #C9D3E0"><path d="M18 62c14-26 24-34 30-22s-2 30 8 22 14-36 22-30-6 32 6 26 16-24 26-18 4 18 16 14 18-12 30-10" fill="none" stroke="#1E1B4B" stroke-width="2.6" stroke-linecap="round" class="pulse"/></svg>
+            <div style="background:var(--night);color:#fff;border-radius:999px;text-align:center;font-size:12px;font-weight:700;padding:8px">Firma e genera PDF</div>
+          </div>
+        </div>
+      </div>
+      <div class="cap">Schermata illustrativa del modulo, dati di esempio</div>
+    </div>
+    <div class="t night on-dark" style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px">
+      <div><div class="k">Bozze</div><span class="small">da completare</span></div>
+      <div><div class="k">Da firmare</div><span class="small">in attesa del cliente</span></div>
+      <div><div class="k">Firmati</div><span class="small">PDF pronto</span></div>
+      <div><div class="k">Caricati</div><span class="small">registrati nel gestionale</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- 8 CNAFLOW A -->
+<section class="slide" id="cnaflow" aria-label="cnaflow, tesseramento">
+  <div class="wrap g-app">
+    <div class="t night on-dark intro">
+      <span class="eye"><i></i>App 4 · cnaflow · 1 di 2</span>
+      <h2>L'ERP del tesseramento.</h2>
+      <p class="lead" style="opacity:.92">Il cuore dei dati: tutte le imprese associate, i contratti e gli incassi, con i numeri sempre aggiornati.</p>
+      <ul class="fx" style="margin-top:6px">
+        <li>Dashboard del tesseramento con grafici per periodo e sede</li>
+        <li>Anagrafiche delle imprese con scheda completa</li>
+        <li>Ricerca e verifica dei dati sul Registro Imprese</li>
+        <li>Import guidato dei file del gestionale</li>
+        <li>Archivio contratti e incassi</li>
+        <li>Export Excel formattato e login con ruoli e permessi</li>
+      </ul>
+      <span class="mono" style="margin-top:auto">erp.cnaroma.it</span>
+    </div>
+    <div class="t paper on-light" style="padding:18px">
+      <div class="screen">
+        <div class="bar"><b></b><b></b><b></b><span class="url">erp.cnaroma.it · Dashboard</span></div>
+        <div class="sc">
+          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px">
+            <div class="box"><span class="lbl">Associati</span><div class="ln m" style="margin-top:8px;height:12px;background:var(--cna)"></div></div>
+            <div class="box"><span class="lbl">Rinnovi</span><div class="ln s" style="margin-top:8px;height:12px;background:var(--mint)"></div></div>
+            <div class="box"><span class="lbl">Incassi</span><div class="ln l" style="margin-top:8px;height:12px;background:var(--sun)"></div></div>
+          </div>
+          <div class="box" style="padding:12px">
+            <span class="lbl">Andamento tesseramento</span>
+            <svg viewBox="0 0 300 110" style="width:100%;height:auto;margin-top:6px">
+              <g stroke="#E3E9F1" stroke-width="1"><line x1="0" y1="20" x2="300" y2="20"/><line x1="0" y1="55" x2="300" y2="55"/><line x1="0" y1="90" x2="300" y2="90"/></g>
+              <path d="M0 92 L30 86 L60 80 L90 74 L120 70 L150 58 L180 52 L210 44 L240 36 L270 30 L300 22 L300 110 L0 110Z" fill="rgba(0,90,201,.12)"/>
+              <path d="M0 92 L30 86 L60 80 L90 74 L120 70 L150 58 L180 52 L210 44 L240 36 L270 30 L300 22" fill="none" stroke="#005AC9" stroke-width="2.5"/>
+              <circle cx="300" cy="22" r="4" fill="#005AC9"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="cap">Schermata illustrativa, andamento di esempio senza valori reali</div>
+    </div>
+    <div class="t blue on-dark" style="flex-direction:row;align-items:center;gap:16px">
+      <div class="ico"><svg viewBox="0 0 24 24"><ellipse cx="12" cy="6" rx="8" ry="3"/><path d="M4 6v12c0 1.7 3.6 3 8 3s8-1.3 8-3V6M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg></div>
+      <p class="small" style="opacity:.95">Le anagrafiche di cnaflow sono le stesse che il CRM consulta: un'impresa aggiornata qui è aggiornata ovunque.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 9 CNAFLOW B -->
+<section class="slide" id="cnaflow-analisi" aria-label="cnaflow, analisi">
+  <div class="wrap g-feat">
+    <div class="t paper on-light head">
+      <div style="display:grid;gap:10px"><span class="eye" style="color:var(--blue)"><i></i>App 4 · cnaflow · 2 di 2</span><h2>Dai dati alle decisioni.</h2></div>
+      <p class="lead" style="color:var(--muted)">Quattordici sezioni che trasformano l'archivio in report per la direzione e per chi lavora sul territorio.</p>
+    </div>
+    <div class="t blue on-dark wide"><div class="ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5"/></svg></div><h3>Obiettivi e consulenti</h3><p class="small">Obiettivi di tesseramento per consulente e promotore, con l'avanzamento sempre visibile.</p></div>
+    <div class="t sun on-light"><div class="ico"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="2"/><rect x="14" y="3" width="7" height="7" rx="2"/><rect x="8.5" y="14" width="7" height="7" rx="2"/></svg></div><h3>Unioni e mestieri</h3><p class="small">Imprese raggruppate per categoria e codice ATECO.</p></div>
+    <div class="t paper on-light"><div class="ico"><svg viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5M12 7v5l3 2"/></svg></div><h3>Storico</h3><p class="small">Il confronto anno su anno di ogni impresa.</p></div>
+    <div class="t mint on-light"><div class="ico"><svg viewBox="0 0 24 24"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 17v-3M12 17v-6M15 17v-4"/></svg></div><h3>Reportistica</h3><p class="small">Report pronti da esportare e un generatore di report su misura.</p></div>
+    <div class="t night on-dark"><div class="ico"><svg viewBox="0 0 24 24"><path d="M4 5h16v11H8l-4 4z"/><path d="M9 10h.01M12 10h.01M15 10h.01"/></svg></div><h3>Assistente</h3><p class="small">Domande sui dati in linguaggio naturale.</p></div>
+    <div class="t coral on-dark wide"><div class="ico"><svg viewBox="0 0 24 24"><path d="M12 3v12M7 10l5 5 5-5"/><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg></div><h3>Import e trasformatore</h3><p class="small">I file esportati dal gestionale vengono letti, puliti e caricati senza lavoro manuale.</p></div>
+  </div>
+</section>
+
+<!-- 10 EVENTI A -->
+<section class="slide" id="eventi" aria-label="Eventi, organizzazione">
+  <div class="wrap g-app">
+    <div class="t lilac on-light intro">
+      <span class="eye"><i></i>App 5 · Eventi · 1 di 2</span>
+      <h2>Dall'invito al check-in.</h2>
+      <p class="lead">Ogni evento ha la sua pagina, il suo modulo di iscrizione e la gestione delle presenze in sala.</p>
+      <ul class="fx" style="margin-top:6px">
+        <li>Creazione eventi con editor e calendario pubblico</li>
+        <li>Landing page personalizzabili con editor visuale</li>
+        <li>Modulo di iscrizione online, conferma e rinuncia alla presenza</li>
+        <li>Mappa dei posti per gli eventi a teatro</li>
+        <li>Check-in all'ingresso dal telefono</li>
+      </ul>
+      <span class="mono" style="margin-top:auto">eventi.cnaroma.it</span>
+    </div>
+    <div class="t paper on-light" style="padding:18px">
+      <div class="screen">
+        <div class="bar"><b></b><b></b><b></b><span class="url">eventi.cnaroma.it · Check-in</span></div>
+        <div class="sc" style="grid-template-columns:1.2fr 1fr">
+          <div style="display:grid;gap:7px;align-content:start">
+            <div class="box row" style="justify-content:space-between"><span style="font-size:12px;font-weight:700">Marco Rossi</span><span class="chip" style="background:#D1FAE5;color:#065F46">presente</span></div>
+            <div class="box row" style="justify-content:space-between"><span style="font-size:12px;font-weight:700">Anna Ferri</span><span class="chip" style="background:#D1FAE5;color:#065F46">presente</span></div>
+            <div class="box row" style="justify-content:space-between"><span style="font-size:12px;font-weight:700">Luca Moretti</span><span class="chip" style="background:#FEF3C7;color:#92400E">atteso</span></div>
+            <div class="box row" style="justify-content:space-between"><span style="font-size:12px;font-weight:700">Sara Greco</span><span class="chip" style="background:#FEE2E2;color:#991B1B">rinuncia</span></div>
+          </div>
+          <div class="box" style="display:grid;gap:8px;place-items:center;background:var(--night);border:0;color:#fff">
+            <svg viewBox="0 0 60 60" width="96" height="96" aria-hidden="true"><g fill="#fff"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="40" y="4" width="16" height="16" rx="2"/><rect x="4" y="40" width="16" height="16" rx="2"/><rect x="26" y="8" width="6" height="6"/><rect x="26" y="26" width="8" height="8"/><rect x="40" y="28" width="6" height="6"/><rect x="48" y="40" width="8" height="6"/><rect x="28" y="44" width="6" height="12"/><rect x="40" y="48" width="6" height="8"/></g><g fill="#1E1B4B"><rect x="8" y="8" width="8" height="8"/><rect x="44" y="8" width="8" height="8"/><rect x="8" y="44" width="8" height="8"/></g></svg>
+            <span style="font-size:12px;font-weight:700">Inquadra il QR</span>
+          </div>
+        </div>
+      </div>
+      <div class="cap">Schermata illustrativa del check-in, nomi di esempio</div>
+    </div>
+    <div class="t sun on-light" style="flex-direction:row;align-items:center;gap:16px">
+      <div class="ico"><svg viewBox="0 0 24 24"><path d="M4 12h12M12 6l6 6-6 6"/></svg></div>
+      <p class="small" style="opacity:1">Ogni iscritto entra nel database comune e può proseguire nel CRM come contatto da seguire.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 11 EVENTI B -->
+<section class="slide" id="eventi-dopo" aria-label="Eventi, comunicazione e analisi">
+  <div class="wrap g-feat">
+    <div class="t paper on-light head">
+      <div style="display:grid;gap:10px"><span class="eye" style="color:#5B4FE0"><i></i>App 5 · Eventi · 2 di 2</span><h2>Prima, durante e dopo l'evento.</h2></div>
+      <p class="lead" style="color:var(--muted)">La comunicazione con i partecipanti e i numeri per capire cosa ha funzionato.</p>
+    </div>
+    <div class="t night on-dark wide"><div class="ico"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></div><h3>Email, SMS e social</h3><p class="small">Inviti, promemoria e follow-up dallo stesso pannello, su tre canali.</p></div>
+    <div class="t mint on-light"><div class="ico"><svg viewBox="0 0 24 24"><path d="M9 11l3 3 8-8"/><rect x="3" y="3" width="18" height="18" rx="3"/></svg></div><h3>Questionari</h3><p class="small">Gradimento raccolto a fine evento.</p></div>
+    <div class="t sun on-light"><div class="ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="9" r="5"/><path d="M8.5 13.5L7 22l5-3 5 3-1.5-8.5"/></svg></div><h3>Certificati</h3><p class="small">Attestati di partecipazione scaricabili.</p></div>
+    <div class="t lilac on-light wide"><div class="ico"><svg viewBox="0 0 24 24"><path d="M3 20h18"/><rect x="5" y="11" width="3" height="7" rx="1"/><rect x="10.5" y="6" width="3" height="12" rx="1"/><rect x="16" y="9" width="3" height="9" rx="1"/></svg></div><h3>Statistiche</h3><p class="small">Analisi per evento, per partecipante e per utente: iscritti, presenti, rinunce, provenienza.</p></div>
+    <div class="t paper on-light"><div class="ico"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.8-3.5 3.3-5.5 6.5-5.5s5.7 2 6.5 5.5"/></svg></div><h3>Contatti dalle landing</h3><p class="small">Chi lascia i dati entra nell'elenco contatti.</p></div>
+    <div class="t coral on-dark"><div class="ico"><svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></div><h3>Ruoli e registro</h3><p class="small">Permessi per sezione e storico delle attività.</p></div>
+  </div>
+</section>
+
+<!-- 12 COME DIALOGANO -->
+<section class="slide" id="dialogo" aria-label="Come dialogano le app">
+  <div class="wrap g-flow">
+    <div class="t blue on-dark">
+      <svg class="mark" viewBox="0 0 100 100" style="color:#fff"><use href="#cnamark"/></svg>
+      <span class="eye"><i></i>Come dialogano</span>
+      <h2>Un database, un login, un percorso.</h2>
+      <p class="lead" style="opacity:.92">Le cinque app leggono e scrivono sullo stesso archivio. Il dato si inserisce una volta e passa da un'app all'altra seguendo l'impresa.</p>
+      <ul class="fx" style="margin-top:8px">
+        <li><span><b>Eventi → CRM</b>: l'iscritto diventa un contatto da seguire</span></li>
+        <li><span><b>CRM → Signature</b>: la trattativa chiusa diventa un contratto</span></li>
+        <li><span><b>Signature → cnaflow</b>: il contratto firmato entra nel tesseramento</span></li>
+        <li><span><b>cnaflow → CRM</b>: anagrafiche e stato associativo sempre aggiornati</span></li>
+        <li><span><b>Intranet</b>: la porta d'ingresso con accesso unico a tutte</span></li>
+      </ul>
+    </div>
+    <div class="t paper on-light flow" style="justify-content:center">
+      <div style="overflow-x:auto">
+      <svg viewBox="0 0 740 525" role="img" aria-label="Schema: le cinque app collegate a un database comune" style="min-width:520px">
+        <defs><marker id="ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#0F1A3A"/></marker></defs>
+        <!-- linee verso il centro -->
+        <g stroke="#B9C4D6" stroke-width="2" fill="none" class="dash">
+          <line x1="360" y1="260" x2="140" y2="110"/><line x1="360" y1="260" x2="580" y2="110"/>
+          <line x1="360" y1="260" x2="590" y2="400"/><line x1="360" y1="260" x2="130" y2="400"/>
+        </g>
+        <!-- percorso -->
+        <g stroke="#0F1A3A" stroke-width="2.4" fill="none" marker-end="url(#ar)">
+          <path d="M222 100 C 320 50, 410 50, 495 100"/>
+          <path d="M600 146 C 640 220, 640 290, 605 370"/>
+          <path d="M515 418 C 430 440, 300 440, 207 418"/>
+        </g>
+        <g font-family="Inter,sans-serif" font-size="12.5" font-weight="600" fill="#5B6782">
+          <text x="358" y="52" text-anchor="middle">iscritti → contatti</text>
+          <text x="660" y="250">trattativa</text><text x="660" y="267">→ contratto</text>
+          <text x="360" y="455" text-anchor="middle">firma → tesseramento</text>
+        </g>
+        <!-- centro -->
+        <circle cx="360" cy="260" r="88" fill="#005AC9"/>
+        <circle cx="360" cy="260" r="104" fill="none" stroke="#005AC9" stroke-opacity=".25" stroke-width="2" class="pulse"/>
+        <g fill="#fff" font-family="Bricolage Grotesque,Inter,sans-serif" text-anchor="middle">
+          <text x="360" y="250" font-size="22" font-weight="800">Database</text>
+          <text x="360" y="276" font-size="22" font-weight="800">comune</text>
+          <text x="360" y="300" font-size="12" font-family="Inter,sans-serif" opacity=".85">+ accesso unico</text>
+        </g>
+        <!-- nodi -->
+        <g font-family="Bricolage Grotesque,Inter,sans-serif" font-weight="800" font-size="20" text-anchor="middle">
+          <rect x="60" y="72" width="160" height="70" rx="22" fill="#B9B2FF"/><text x="140" y="114" fill="#1E1B4B">Eventi</text>
+          <rect x="500" y="72" width="160" height="70" rx="22" fill="#F04A3E"/><text x="580" y="114" fill="#fff">CRM</text>
+          <rect x="510" y="372" width="160" height="70" rx="22" fill="#6EE7C5"/><text x="590" y="414" fill="#1E1B4B">Signature</text>
+          <rect x="50" y="372" width="160" height="70" rx="22" fill="#1E1B4B"/><text x="130" y="414" fill="#fff">cnaflow</text>
+          <rect x="290" y="470" width="140" height="44" rx="16" fill="#FFD84D"/><text x="360" y="499" font-size="17" fill="#1E1B4B">Intranet</text>
+        </g>
+      </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 13 VANTAGGI -->
+<section class="slide" id="vantaggi" aria-label="Vantaggi su dati e conversione">
+  <div class="wrap g-gain">
+    <div class="t paper on-light funnel">
+      <span class="eye" style="color:var(--cna)"><i></i>Vantaggi su dati e conversione</span>
+      <h2>Da partecipante ad associato, senza perdere il filo.</h2>
+      <div class="funnel-steps" style="margin-top:10px">
+        <div class="fs lilac"><span class="n">Eventi</span><h3>Partecipa a un evento</h3><span class="small">iscrizione e check-in</span></div>
+        <div class="fs coral" style="color:#fff"><span class="n">CRM</span><h3>Diventa un contatto</h3><span class="small">con un responsabile</span></div>
+        <div class="fs sun"><span class="n">CRM</span><h3>Fissa un appuntamento</h3><span class="small">solleciti e automazioni</span></div>
+        <div class="fs mint"><span class="n">Signature</span><h3>Firma il contratto</h3><span class="small">PDF in pochi minuti</span></div>
+        <div class="fs night" style="color:#fff"><span class="n">cnaflow</span><h3>È associato</h3><span class="small">tesseramento e incassi</span></div>
+      </div>
+    </div>
+    <div class="t blue on-dark"><div class="ico"><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg></div><h3>Dato inserito una volta</h3><p class="small">Nessuna ricopiatura tra moduli, fogli e gestionale. Meno errori, meno tempo perso.</p></div>
+    <div class="t sun on-light"><div class="ico"><svg viewBox="0 0 24 24"><path d="M3 20h18"/><path d="M5 16l4-5 4 3 6-8"/></svg></div><h3>Conversione misurabile</h3><p class="small">Si vede quanti partecipanti di ogni evento diventano contatti, appuntamenti e adesioni.</p></div>
+    <div class="t night on-dark"><div class="ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div><h3>Storico completo dell'impresa</h3><p class="small">Eventi seguiti, contatti, contratti e pagamenti in un'unica scheda, anche quando cambia il consulente.</p></div>
+    <div class="t mint on-light"><div class="ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5"/></svg></div><h3>Obiettivi per consulente</h3><p class="small">Ogni adesione firmata aggiorna subito l'avanzamento degli obiettivi.</p></div>
+    <div class="t coral on-dark"><div class="ico"><svg viewBox="0 0 24 24"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></svg></div><h3>Nessun contatto dimenticato</h3><p class="small">Automazioni e solleciti tengono vivo ogni contatto fino alla risposta.</p></div>
+    <div class="t lilac on-light"><div class="ico"><svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></div><h3>Dati protetti</h3><p class="small">Accesso con login, ruoli per sezione e registro di chi ha fatto cosa.</p></div>
+  </div>
+</section>
+
+<!-- 14 CHIUSURA -->
+<section class="slide" id="fine" aria-label="Chiusura">
+  <div class="wrap g-cover">
+    <div class="t night on-dark hero">
+      <svg class="mark" viewBox="0 0 100 100" style="color:#fff;opacity:.18"><use href="#cnamark"/></svg>
+      <span class="eye"><i></i>CNA Roma</span>
+      <h1>Meno carta,<br>più associati.</h1>
+      <p class="lead" style="opacity:.9">Cinque app costruite in casa, collegate tra loro, già in uso su cnaroma.it.</p>
+    </div>
+    <div class="t sun on-light"><span class="mono">intranet.cnaroma.it</span><h3>Intranet</h3></div>
+    <div class="t coral on-dark"><span class="mono">crm.cnaroma.it</span><h3>CRM</h3></div>
+    <div class="t mint on-light"><span class="mono">signature.cnaroma.it</span><h3>Signature</h3></div>
+    <div class="t blue on-dark" style="flex-direction:row;justify-content:space-between;flex-wrap:wrap">
+      <div style="display:grid;gap:6px"><span class="mono">erp.cnaroma.it</span><h3>cnaflow</h3></div>
+      <div style="display:grid;gap:6px"><span class="mono">eventi.cnaroma.it</span><h3>Eventi</h3></div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<nav id="nav" aria-label="Navigazione slide">
+  <button id="prev" type="button" aria-label="Slide precedente"><svg viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg></button>
+  <div id="dots"></div>
+  <span id="count">1 / 14</span>
+  <button id="next" type="button" aria-label="Slide successiva"><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></button>
+  <button id="fs" type="button" aria-label="Schermo intero"><svg viewBox="0 0 24 24"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg></button>
+</nav>
+
+<script>
+(function(){
+  var deck=document.getElementById('deck'), slides=[].slice.call(document.querySelectorAll('.slide'));
+  var dots=document.getElementById('dots'), count=document.getElementById('count'), cur=0;
+  slides.forEach(function(s,i){
+    var b=document.createElement('button'); b.className='dot'; b.type='button';
+    b.setAttribute('aria-label','Vai alla slide '+(i+1)); b.onclick=function(){go(i)}; dots.appendChild(b);
+  });
+  function mark(i){
+    cur=i; count.textContent=(i+1)+' / '+slides.length;
+    [].forEach.call(dots.children,function(d,j){d.classList.toggle('on',j===i)});
+    slides.forEach(function(s,j){ if(j===i) s.classList.add('in'); });
+  }
+  function go(i){ i=Math.max(0,Math.min(slides.length-1,i)); slides[i].scrollIntoView({behavior:'smooth'}); mark(i); }
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){ if(e.isIntersecting) mark(slides.indexOf(e.target)); })},{root:null,rootMargin:'-45% 0px -50% 0px',threshold:0});
+  slides.forEach(function(s){io.observe(s)});
+  document.getElementById('prev').onclick=function(){go(cur-1)};
+  document.getElementById('next').onclick=function(){go(cur+1)};
+  document.getElementById('fs').onclick=function(){
+    try{ if(document.fullscreenElement) document.exitFullscreen(); else document.documentElement.requestFullscreen().catch(function(){}); }catch(e){}
+  };
+  document.addEventListener('keydown',function(e){
+    if(['ArrowRight','ArrowDown','PageDown',' '].indexOf(e.key)>-1){e.preventDefault();go(cur+1)}
+    else if(['ArrowLeft','ArrowUp','PageUp'].indexOf(e.key)>-1){e.preventDefault();go(cur-1)}
+    else if(e.key==='Home'){e.preventDefault();go(0)} else if(e.key==='End'){e.preventDefault();go(slides.length-1)}
+    else if(e.key==='f'||e.key==='F'){document.getElementById('fs').click()}
+  });
+  var h=(location.hash||'').slice(1), k=slides.findIndex(function(s){return s.id===h});
+  mark(k>0?k:0); if(k>0) slides[k].scrollIntoView();
+})();
+</script>
+
+</body>
+</html>
