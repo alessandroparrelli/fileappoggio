@@ -119,6 +119,39 @@ ul.fx li::before{content:"";width:7px;height:7px;border-radius:50%;background:cu
 @media (max-width:980px){.g-arch,.g-case,.g-steps{grid-template-columns:1fr 1fr}.g-arch>*,.g-case>*{grid-column:1/-1!important;grid-row:auto!important}}
 @media (max-width:560px){.g-arch,.g-case,.g-steps{grid-template-columns:1fr}.bar-r{grid-template-columns:110px 1fr 40px;font-size:12.5px}}
 
+
+.g-hist{grid-template-columns:1.7fr 1fr}
+.g-hist .hist-chart{grid-row:1/3}
+.vbars{display:flex;align-items:flex-end;gap:14px;height:170px;padding-top:8px}
+.vb{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:6px;height:100%;font-variant-numeric:tabular-nums}
+.vb i{display:block;width:100%;background:var(--cna);border-radius:10px 10px 4px 4px}
+.vb:last-child i{background:var(--coral)}
+.vb span{font-size:12.5px;color:var(--muted);font-weight:600}
+.vb b{font-size:14px}
+.bars.dark .bar-r>div{background:rgba(15,26,58,.1)}
+@media (max-width:980px){.g-hist{grid-template-columns:1fr}.g-hist>*{grid-row:auto!important}}
+
+
+/* ═══ Testo nel corpo della pagina, card solo per i contenuti ═══ */
+.t.head,.t.intro,.t.arch-intro,.t.case-hero{background:transparent!important;color:var(--ink)!important;padding:6px 6px 10px!important;overflow:visible;box-shadow:none}
+.t.head .mark,.t.intro .mark,.t.arch-intro .mark,.t.case-hero .mark{display:none}
+.t.head .lead,.t.intro .lead,.t.arch-intro .lead,.t.case-hero .lead{color:var(--muted)!important;opacity:1!important}
+.t.intro ul.fx li,.t.arch-intro ul.fx li{color:var(--ink)}
+.t.intro ul.fx li::before,.t.arch-intro ul.fx li::before{background:var(--acc,var(--cna));opacity:1}
+.t.head .eye,.t.intro .eye,.t.arch-intro .eye,.t.case-hero .eye{color:var(--acc,var(--cna))!important;opacity:1}
+.t.intro .mono,.t.case-hero .pill{color:var(--ink)}
+.t.case-hero .pill{background:rgba(15,26,58,.07)}
+.t.intro h2,.t.head h2,.t.case-hero h2,.t.arch-intro h2{color:var(--ink)}
+.t.head h2 .hl,.t.intro h2 .hl{color:var(--acc,var(--cna))}
+.g-app{grid-template-columns:1fr 1.35fr;column-gap:36px}
+.g-app .intro{justify-content:center}
+#problemi{--acc:var(--coral)} #necessita{--acc:var(--cna)} #intranet{--acc:#B98900} #crm,#crm-azioni{--acc:var(--coral)}
+#signature,#signature-firma{--acc:#0E9F6E} #cnaflow,#cnaflow-analisi,#cnaflow-numeri,#cnaflow-storia{--acc:var(--blue)}
+#eventi,#eventi-dopo{--acc:#5B4FE0} #dialogo,#architettura{--acc:var(--blue)} #caso,#caso-contatti,#caso-flusso{--acc:var(--coral)} #vantaggi,#uso-numeri{--acc:var(--cna)}
+.t.head{flex-direction:row!important;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:12px 40px}
+.t.head>.eye,.t.head>h2{flex-basis:100%}
+.t.head .lead{max-width:52ch}
+
 /* nav */
 #nav{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(14px + env(safe-area-inset-bottom,0px));display:flex;align-items:center;gap:10px;background:rgba(255,255,255,.92);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid var(--line);border-radius:999px;padding:6px 8px;z-index:20;box-shadow:0 10px 30px -14px rgba(15,26,58,.35);max-width:calc(100% - 32px)}
 #nav button{border:0;background:transparent;color:var(--ink);width:34px;height:34px;border-radius:50%;display:grid;place-items:center;cursor:pointer;font:inherit}
@@ -199,6 +232,11 @@ ul.fx li{font-size:14.5px}
 #count{min-width:64px;text-align:center}
 .g-arch .arch-map svg{max-height:none}
 .big{font-size:48px}
+.g-app{column-gap:10px}
+.t.head{display:grid!important;gap:10px}
+.t.head>*{flex-basis:auto!important;max-width:100%;min-width:0}
+.screen .row{flex-wrap:wrap}
+.vbars{height:140px}
 </style>
 </head>
 <body>
@@ -430,6 +468,21 @@ ul.fx li{font-size:14.5px}
   </div>
 </section>
 
+<!-- SIGNATURE DETTAGLIO -->
+<section class="slide" id="signature-firma" aria-label="Signature, firma sicura">
+  <div class="wrap g-feat">
+    <div class="t paper on-light head">
+      <div style="display:grid;gap:10px"><span class="eye" style="color:#0E9F6E"><i></i>Signature · nel dettaglio</span><h2>Una firma che vale.</h2></div>
+      <p class="lead" style="color:var(--muted)">Ogni contratto registra le prove che servono a dimostrare chi ha firmato, quando e dove.</p>
+    </div>
+    <div class="t mint on-light"><div class="ico"><svg viewBox="0 0 24 24"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M9.5 9h5M9.5 12.5h5M10 18h4"/></svg></div><h3>Codice OTP via SMS</h3><p class="small">Il cliente riceve un codice sul cellulare e lo inserisce prima di firmare.</p></div>
+    <div class="t paper on-light"><div class="ico"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="12" r="2.5"/><path d="M14 10h4M14 14h4"/></svg></div><h3>Documento fotografato</h3><p class="small">Fronte e retro del documento d'identità, con tipo e numero.</p></div>
+    <div class="t night on-dark"><div class="ico"><svg viewBox="0 0 24 24"><path d="M12 21s7-6.2 7-11.5A7 7 0 0 0 5 9.5C5 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg></div><h3>Posizione e dispositivo</h3><p class="small">Coordinate GPS, indirizzo IP e browser al momento della firma.</p></div>
+    <div class="t sun on-light"><div class="ico"><svg viewBox="0 0 24 24"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 15l2 2 4-4"/></svg></div><h3>Consensi separati</h3><p class="small">Privacy, dati sanitari, sistema CNA, web e social: ognuno con la sua spunta.</p></div>
+    <div class="t coral on-dark wide"><div class="ico"><svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h10"/></svg></div><h3>Ciclo di vita del contratto</h3><p class="small">Inviato, firmato, email post-firma, caricato nel gestionale con data e operatore. Il contratto firmato si blocca e non è più modificabile.</p></div>
+    <div class="t lilac on-light wide"><div class="ico"><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg></div><h3>Firma da remoto o in presenza</h3><p class="small">Il cliente può firmare sul tablet del consulente oppure dal proprio telefono, tramite un link personale. Si possono allegare anche moduli cartacei scansionati.</p></div>
+  </div>
+</section>
 <!-- 8 CNAFLOW A -->
 <section class="slide" id="cnaflow" aria-label="cnaflow, tesseramento">
   <div class="wrap g-app">
@@ -493,6 +546,43 @@ ul.fx li{font-size:14.5px}
   </div>
 </section>
 
+<!-- CNAFLOW DATI 1 -->
+<section class="slide" id="cnaflow-numeri" aria-label="cnaflow in numeri">
+  <div class="wrap g-feat">
+    <div class="t paper on-light head">
+      <div style="display:grid;gap:10px"><span class="eye" style="color:var(--blue)"><i></i>cnaflow · dati reali</span><h2>L'archivio, in numeri.</h2></div>
+      <p class="lead" style="color:var(--muted)">Valori letti dal database di produzione il 24 ottobre 2026.</p>
+    </div>
+    <div class="t night on-dark"><span class="lbl2">Imprese in anagrafica</span><div class="big">27.756</div><p class="small">clienti e associati di CNA Roma</p></div>
+    <div class="t blue on-dark"><span class="lbl2">Imprese della Camera di Commercio</span><div class="big">948.699</div><p class="small">l'archivio CCIAA di Roma, per trovare chi non è ancora cliente</p></div>
+    <div class="t sun on-light"><span class="lbl2">Contratti di servizio</span><div class="big">13.405</div><p class="small">17 tipologie, dalla sicurezza alle paghe</p></div>
+    <div class="t mint on-light"><span class="lbl2">Movimenti di incasso</span><div class="big">14.820</div><p class="small">€ 1,03 milioni nel 2025, € 486 mila nel 2026 finora</p></div>
+    <div class="t paper on-light wide"><h3>Tesseramenti per anno</h3><div class="vbars"><div class="vb"><b>737</b><i style="height:76%"></i><span>2022</span></div><div class="vb"><b>776</b><i style="height:80%"></i><span>2023</span></div><div class="vb"><b>821</b><i style="height:84%"></i><span>2024</span></div><div class="vb"><b>975</b><i style="height:100%"></i><span>2025</span></div></div><p class="small">Da 737 a 975 in tre anni: +32%. Nel 2026, 549 a fine settembre.</p></div>
+    <div class="t night on-dark wide"><h3>Contratti di servizio per tipo</h3><div class="bars"><div class="bar-r"><span>Sorveglianza sanitaria</span><div><i style="width:100.0%"></i></div><b>2.916</b></div><div class="bar-r"><span>Sicurezza</span><div><i style="width:97.0%"></i></div><b>2.829</b></div><div class="bar-r"><span>Servizio 730</span><div><i style="width:84.8%"></i></div><b>2.474</b></div><div class="bar-r"><span>PEC</span><div><i style="width:52.4%"></i></div><b>1.529</b></div><div class="bar-r"><span>Contabilità</span><div><i style="width:42.0%"></i></div><b>1.226</b></div><div class="bar-r"><span>Paghe</span><div><i style="width:23.5%"></i></div><b>684</b></div><div class="bar-r"><span>Catasto rifiuti</span><div><i style="width:17.0%"></i></div><b>497</b></div><div class="bar-r"><span>RENTRI</span><div><i style="width:11.6%"></i></div><b>338</b></div></div></div>
+  </div>
+</section>
+<!-- CNAFLOW DATI 2 -->
+<section class="slide" id="cnaflow-storia" aria-label="cnaflow, serie storica">
+  <div class="wrap g-hist">
+    <div class="t paper on-light hist-chart">
+      <span class="eye" style="color:var(--blue)"><i></i>cnaflow · serie storica</span>
+      <h2>Ventisette anni di tesseramento.</h2>
+      <p class="small" style="color:var(--muted)">Tesseramenti per anno, dal 2000 al 2026. Il dato del 2026 è parziale.</p>
+      <svg viewBox="0 0 720 260" role="img" aria-label="Tesseramenti per anno dal 2000 al 2026" style="width:100%;height:auto;display:block">
+<g stroke="#E3E9F1" stroke-width="1" font-family="Inter,sans-serif" font-size="11" fill="#5B6782"><line x1="44" y1="230.0" x2="706" y2="230.0"/><text x="36" y="234.0" text-anchor="end">0</text><line x1="44" y1="187.2" x2="706" y2="187.2"/><text x="36" y="191.2" text-anchor="end">500</text><line x1="44" y1="144.4" x2="706" y2="144.4"/><text x="36" y="148.4" text-anchor="end">1.000</text><line x1="44" y1="101.6" x2="706" y2="101.6"/><text x="36" y="105.6" text-anchor="end">1.500</text><line x1="44" y1="58.8" x2="706" y2="58.8"/><text x="36" y="62.8" text-anchor="end">2.000</text><line x1="44" y1="16.0" x2="706" y2="16.0"/><text x="36" y="20.0" text-anchor="end">2.500</text></g>
+<g font-family="Inter,sans-serif" font-size="11" fill="#5B6782"><text x="44.0" y="252" text-anchor="middle">2000</text><text x="171.3" y="252" text-anchor="middle">2005</text><text x="298.6" y="252" text-anchor="middle">2010</text><text x="425.9" y="252" text-anchor="middle">2015</text><text x="553.2" y="252" text-anchor="middle">2020</text><text x="706.0" y="252" text-anchor="middle">2026</text></g>
+<path d="M44.0,230.0 L44.0,153.0 L69.5,170.3 L94.9,153.0 L120.4,159.1 L145.8,134.4 L171.3,149.8 L196.8,135.8 L222.2,140.1 L247.7,101.9 L273.2,25.1 L298.6,39.2 L324.1,84.1 L349.5,133.0 L375.0,131.4 L400.5,143.5 L425.9,137.2 L451.4,169.7 L476.8,178.0 L502.3,144.0 L527.8,143.7 L553.2,148.5 L578.7,173.7 L604.2,167.1 L629.6,163.9 L655.1,160.0 L680.5,146.3 L680.5,230.0Z" fill="rgba(0,90,201,.10)"/>
+<polyline points="44.0,153.0 69.5,170.3 94.9,153.0 120.4,159.1 145.8,134.4 171.3,149.8 196.8,135.8 222.2,140.1 247.7,101.9 273.2,25.1 298.6,39.2 324.1,84.1 349.5,133.0 375.0,131.4 400.5,143.5 425.9,137.2 451.4,169.7 476.8,178.0 502.3,144.0 527.8,143.7 553.2,148.5 578.7,173.7 604.2,167.1 629.6,163.9 655.1,160.0 680.5,146.3" fill="none" stroke="#005AC9" stroke-width="2.6" stroke-linejoin="round"/>
+<line x1="680.5" y1="146.3" x2="706.0" y2="183.0" stroke="#005AC9" stroke-width="2.2" stroke-dasharray="4 4"/>
+<circle cx="273.2" cy="25.1" r="4.5" fill="#005AC9"/><text x="281.2" y="19.1" font-family="Inter,sans-serif" font-size="12" font-weight="700" fill="#0F1A3A">2009 · 2.394</text>
+<circle cx="680.5" cy="146.3" r="4.5" fill="#F04A3E"/><text x="672.5" y="134.3" text-anchor="end" font-family="Inter,sans-serif" font-size="12" font-weight="700" fill="#0F1A3A">2025 · 978</text>
+<circle cx="706.0" cy="183.0" r="4" fill="#fff" stroke="#005AC9" stroke-width="2"/><text x="700.0" y="203.0" text-anchor="end" font-family="Inter,sans-serif" font-size="11" fill="#5B6782">2026 · 549 (a settembre)</text>
+</svg>
+    </div>
+    <div class="t sun on-light"><h3>Unioni di mestiere, 2026</h3><div class="bars dark"><div class="bar-r"><span>Agroalimentare</span><div><i style="width:100.0%;background:var(--night)"></i></div><b>46</b></div><div class="bar-r"><span>Benessere e Sanità</span><div><i style="width:82.6%;background:var(--night)"></i></div><b>38</b></div><div class="bar-r"><span>Costruzioni</span><div><i style="width:76.1%;background:var(--night)"></i></div><b>35</b></div><div class="bar-r"><span>Servizi alla Comunità</span><div><i style="width:73.9%;background:var(--night)"></i></div><b>34</b></div><div class="bar-r"><span>Installazione e Impianti</span><div><i style="width:69.6%;background:var(--night)"></i></div><b>32</b></div><div class="bar-r"><span>Comunicazione e Terziario</span><div><i style="width:47.8%;background:var(--night)"></i></div><b>22</b></div><div class="bar-r"><span>FITA</span><div><i style="width:23.9%;background:var(--night)"></i></div><b>11</b></div><div class="bar-r"><span>Produzione</span><div><i style="width:19.6%;background:var(--night)"></i></div><b>9</b></div><div class="bar-r"><span>Federmoda</span><div><i style="width:17.4%;background:var(--night)"></i></div><b>8</b></div></div><p class="small">293 tesseramenti 2026 non hanno ancora un'unione assegnata: un lavoro di pulizia dati che l'ERP rende visibile.</p></div>
+    <div class="t coral on-dark"><span class="lbl2">Obiettivi dei funzionari</span><div class="big">256 / 535</div><p class="small">tesseramenti fatti sull'obiettivo dei 13 funzionari, aggiornati in automatico.</p><div class="split" style="background:rgba(255,255,255,.2)"><div style="flex:256;background:#fff"></div><div style="flex:279"></div></div></div>
+  </div>
+</section>
 <!-- 10 EVENTI A -->
 <section class="slide" id="eventi" aria-label="Eventi, organizzazione">
   <div class="wrap g-app">
@@ -552,11 +642,33 @@ ul.fx li{font-size:14.5px}
   </div>
 </section>
 
+<!-- INTRANET E CRM IN NUMERI -->
+<section class="slide" id="uso-numeri" aria-label="Uso delle app in numeri">
+  <div class="wrap g-feat">
+    <div class="t paper on-light head">
+      <div style="display:grid;gap:10px"><span class="eye" style="color:var(--coral)"><i></i>Intranet e CRM · dati reali</span><h2>Chi le usa, e come.</h2></div>
+      <p class="lead" style="color:var(--muted)">Ogni accesso e ogni operazione restano registrati: la base per misurare l'adozione.</p>
+    </div>
+    <div class="t blue on-dark"><span class="lbl2">Accessi riusciti</span><div class="big">652</div><p class="small">di 11 utenti alle app con login unico. 52 tentativi falliti bloccati.</p></div>
+    <div class="t sun on-light"><span class="lbl2">Colleghi in rubrica</span><div class="big">141</div><p class="small">nella rubrica condivisa dell'intranet</p></div>
+    <div class="t mint on-light"><span class="lbl2">Notizie pubblicate</span><div class="big">63</div><p class="small">sincronizzate dal sito cnaroma.it</p></div>
+    <div class="t night on-dark"><span class="lbl2">Operazioni nel CRM</span><div class="big">418</div><p class="small">registrate nel registro attività, con autore e data</p></div>
+    <div class="t paper on-light wide"><h3>Visite all'intranet per dispositivo</h3>
+      <div class="split" style="height:30px"><div style="flex:139;background:var(--cna)"></div><div style="flex:47;background:var(--coral)"></div></div>
+      <div class="row" style="justify-content:space-between;flex-wrap:wrap;gap:8px"><span class="small"><b style="color:var(--cna)">Computer · 139</b> (75%)</span><span class="small"><b style="color:var(--coral)">Smartphone · 47</b> (25%)</span></div>
+      <p class="small">186 visite tracciate nelle prime settimane di attività.</p></div>
+    <div class="t coral on-dark wide"><h3>Eventi sincronizzati nel CRM</h3>
+      <div class="bars">
+        <div class="bar-r"><span>Da 80 anni sul palcoscenico</span><div><i style="width:100%"></i></div><b>1.097</b></div>
+        <div class="bar-r"><span>Spreco alimentare</span><div><i style="width:2%"></i></div><b>22</b></div>
+      </div>
+      <p class="small">195 sincronizzazioni automatiche tra Eventi e CRM. 57 versioni dei modelli email salvate.</p></div>
+  </div>
+</section>
 <!-- 12 COME DIALOGANO -->
 <section class="slide" id="dialogo" aria-label="Come dialogano le app">
   <div class="wrap g-flow">
-    <div class="t blue on-dark">
-      <svg class="mark" viewBox="0 0 100 100" style="color:#fff"><use href="#cnamark"/></svg>
+    <div class="t blue on-dark intro">
       <span class="eye"><i></i>Come dialogano</span>
       <h2>Un database, un login, un percorso.</h2>
       <p class="lead" style="opacity:.92">Le cinque app leggono e scrivono sullo stesso archivio. Il dato si inserisce una volta e passa da un'app all'altra seguendo l'impresa.</p>
@@ -805,7 +917,7 @@ ul.fx li{font-size:14.5px}
 <nav id="nav" aria-label="Navigazione slide">
   <button id="prev" type="button" aria-label="Slide precedente"><svg viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg></button>
   <div id="dots"></div>
-  <span id="count">1 / 18</span>
+  <span id="count">1 / 22</span>
   <button id="next" type="button" aria-label="Slide successiva"><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></button>
   <button id="fs" type="button" aria-label="Schermo intero"><svg viewBox="0 0 24 24"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg></button>
 </nav>
